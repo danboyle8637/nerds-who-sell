@@ -1,20 +1,15 @@
-import App from 'next/app'
+import { AppProps } from "next/app";
 
-import Layout from '../src/Layouts/BaseLayout'
+import Layout from "../src/Layouts/BaseLayout";
 
-class MyApp extends App {
+export const MyApp: React.FC<AppProps> = ({ pageProps, Component }) => {
+  return (
+    <>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
+  );
+};
 
-  render() {
-    const { Component, pageProps } = this.props
-
-    return (
-      <>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </>
-    )
-  }
-}
-
-export default MyApp
+export default MyApp;

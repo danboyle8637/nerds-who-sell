@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
   @font-face {
@@ -8,6 +8,7 @@ const Global = createGlobalStyle`
   }
 
   html {
+    font-size: 62.5%;
     box-sizing: border-box;
   }
 
@@ -34,7 +35,7 @@ const Global = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: RobotoBold, sans-serif;
-    font-size: 40px;
+    font-size: 4rem;
   }
 
   h3, h4, h5 {
@@ -54,6 +55,6 @@ const Global = createGlobalStyle`
     padding: 0;
   }
 
-`
+`;
 
-export default Global
+export default Global;
