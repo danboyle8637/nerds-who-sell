@@ -7,6 +7,21 @@ const Global = createGlobalStyle`
     font-display: fallback;
   }
 
+  :root {
+    --primary-background: hsl(225, 32%, 20%);
+    --secondary-background: hsl(224, 33%, 32%);
+
+    --section-background-1: hsl(224, 33%, 44%);
+    --section-background-2: hsl(227, 39%, 62%);
+    --section-background-3: hsl(256, 39%, 62%);
+    --section-background-4: hsl(256, 29%, 42%);
+
+    --accent-1: hsl(246, 59%, 62%);
+    --accent-2: hsl(176, 92%, 53%);
+  
+    --base-text-color: hsl(227, 37%, 93%);
+  }
+
   html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -21,9 +36,9 @@ const Global = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background: #f8f8f8;
+    background: var(--primary-background);
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
   }
 
   section {
@@ -31,23 +46,22 @@ const Global = createGlobalStyle`
     padding: 0;
   }
 
-  h1 {
+  h1, h2, h3, h4, h5 {
     margin: 0;
     padding: 0;
-    font-family: RobotoBold, sans-serif;
-    font-size: 4rem;
+    font-family: RobotoBold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--base-text-color);
   }
 
-  h3, h4, h5 {
-    margin: 0;
-    padding: 0;
-    font-family: RobotoBold, sans-serif;
+  h1 {
+    font-size: 5.6rem;
+    letter-spacing: 0.1rem;
   }
 
   p {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
   button {

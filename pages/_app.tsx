@@ -1,13 +1,13 @@
 import { AppProps } from "next/app";
 
-import Layout from "../src/Layouts/BaseLayout";
+import { BaseLayout } from "../src/layouts/BaseLayout";
 
 export const MyApp: React.FC<AppProps> = ({ pageProps, Component }) => {
   return (
     <>
-      <Layout>
+      <BaseLayout>
         <Component {...pageProps} />
-      </Layout>
+      </BaseLayout>
     </>
   );
 };
