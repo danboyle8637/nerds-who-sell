@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { QuestionCard } from "../src/components/attentionGrabbers/QuestionCard";
+import { ServiceCard } from "../src/components/cards/ServiceCard";
 
 const TempSection = styled.div`
   display: flex;
@@ -13,9 +14,7 @@ const TempSection = styled.div`
 const Home = () => {
   return (
     <TempSection>
-      <QuestionCard align="right" spacerWidth={40}>
-        Brining in fresh leads?
-      </QuestionCard>
+      <h1>Full Page Form</h1>
     </TempSection>
   );
 };
