@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 import { Option } from "./Option";
+import { darkFormTheme } from "../../../../styles/themes/forms";
 import { Option as OptionType } from "../../../../types/forms";
 
 interface RadioInputProps {
+  name: string;
   inputLabel: string;
   options: OptionType[];
   updateInputValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -22,7 +24,7 @@ const InputContainer = styled.div`
 const InputQuestion = styled.p`
   font-size: 2rem;
   font-weight: 600;
-  color: var(--color-accent-blue-1);
+  color: var(--input-label-color);
 `;
 
 const OptionsContainer = styled.div`
@@ -34,13 +36,13 @@ const OptionsContainer = styled.div`
 `;
 
 export const RadioInput: React.FC<RadioInputProps> = ({
+  name,
   inputLabel,
   options,
   updateInputValue,
 }) => {
   const radioOptions = options.map((option) => {
     const id = option.id;
-    const name = option.name;
     const label = option.label;
     const value = option.value;
     const isChecked = option.isChecked;
@@ -59,7 +61,7 @@ export const RadioInput: React.FC<RadioInputProps> = ({
   });
 
   return (
-    <InputContainer>
+    <InputContainer style={darkFormTheme}>
       <InputQuestion>{inputLabel}</InputQuestion>
       <OptionsContainer>{radioOptions}</OptionsContainer>
     </InputContainer>

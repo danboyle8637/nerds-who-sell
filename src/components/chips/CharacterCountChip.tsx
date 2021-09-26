@@ -11,9 +11,9 @@ const ChipContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--chip-container-background, hsl(227, 30%, 10%));
+  background: var(--chip-container-background, var(--primary-background));
   border-radius: 60px;
-  box-shadow: 0 0 0 4px hsla(240, 0%, 0%, 0.6);
+  box-shadow: 0 0 0 4px var(--chip-box-shadow, var(--section-background-2));
   width: fit-content;
   height: 30px;
 `;
@@ -28,7 +28,7 @@ const CountContainer = styled.div`
 const CountLabel = styled.p`
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--count-label-color, var(--color-accent-blue-1));
+  color: var(--count-label-color, var(--accent-2));
   letter-spacing: 0.18rem;
 `;
 

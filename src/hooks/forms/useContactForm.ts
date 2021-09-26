@@ -22,42 +22,36 @@ interface InputOptions {
 export const options: Option[] = [
   {
     id: 0,
-    name: "web-design",
     label: "Web Design or Re-design",
     value: "web-design",
     isChecked: true,
   },
   {
     id: 1,
-    name: "landing-page",
     label: "Build a Landing Page",
     value: "landing-page",
     isChecked: false,
   },
   {
     id: 2,
-    name: "ecommerce",
     label: "Ecommerce Site",
     value: "ecommerce",
     isChecked: false,
   },
   {
     id: 3,
-    name: "website-ewrite",
     label: "Website Re-Write",
     value: "website-rewrite",
     isChecked: false,
   },
   {
     id: 4,
-    name: "email-writing",
     label: "Email Writing",
     value: "email-writing",
     isChecked: false,
   },
   {
     id: 5,
-    name: "ads",
     label: "Buying Ads",
     value: "ads",
     isChecked: false,
@@ -117,7 +111,9 @@ export const useContactForm = () => {
     setClearForm(false);
   }, [clearForm]);
 
-  const updateInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const updateInputValue = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const name = event.target.name as ContactFormInput;
     const value = event.target.value;
 
@@ -166,7 +162,9 @@ export const useContactForm = () => {
     const isValid = formValidator(value, isRequiredValidationRules);
   };
 
-  const updateInputOptions = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const updateInputOptions = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     // Normally need name if the form as multiple inputs which most do.
     const name = event.target.name;
 

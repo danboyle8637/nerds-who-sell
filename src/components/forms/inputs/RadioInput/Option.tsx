@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
+import { UncheckRadioButton } from "./UncheckedRadioButton";
+import { CheckRadioButton } from "./CheckedRadioButton";
 import {
   basicRadioIsChecked,
   basicRadioIsNotChecked,
@@ -23,7 +25,7 @@ const InputLabel = styled.label`
   align-items: center;
   font-size: 1.8rem;
   font-weight: 600;
-  color: var(--paragraph-font-color);
+  color: var(--input-label-color);
   width: 100%;
   cursor: pointer;
 `;
@@ -34,8 +36,8 @@ const CircleRadioContainer = styled.div`
   grid-template-rows: 1fr;
   justify-items: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 `;
 
 const RadioInput = styled.input.attrs({ type: "radio" })`
@@ -55,16 +57,14 @@ const CircleBorder = styled.div`
   border-radius: 100%;
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 0 2px var(--color-accent-blue-1);
 `;
 
 const CircleSelect = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  background-color: var(--color-accent-blue-1);
   border-radius: 100%;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   opacity: 0;
   transform: scale(0);
 `;
@@ -95,8 +95,12 @@ export const Option: React.FC<BasicRadioOptionProps> = ({
     <>
       <InputLabel htmlFor={id}>
         <CircleRadioContainer>
-          <CircleBorder />
-          <CircleSelect ref={checkedDotRef} />
+          <CircleBorder>
+            <UncheckRadioButton />
+          </CircleBorder>
+          <CircleSelect ref={checkedDotRef}>
+            <CheckRadioButton />
+          </CircleSelect>
           <RadioInput
             type="radio"
             id={id}

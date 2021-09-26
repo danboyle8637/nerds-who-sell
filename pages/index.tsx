@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Form } from "../src/views/Contact/Form";
+import { HamburgerIcon } from "../src/components/navigation/HamburgerIcon";
 
 const TempSection = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const TempSection = styled.div`
 const Home = () => {
   return (
     <TempSection>
-      <Form />
+      <HamburgerIcon handleClick={() => console.log("Open up the menu")} />
     </TempSection>
   );
 };

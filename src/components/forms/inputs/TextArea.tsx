@@ -5,13 +5,15 @@ import { CheckmarkIcon } from "../CheckmarkIcon";
 import { ErrorIcon } from "../ErrorIcon";
 import { InputActiveIcon } from "../InputActiveIcon";
 import { CharacterCountChip } from "../../chips/CharacterCountChip";
+import { darkFormTheme } from "../../../styles/themes/forms";
 import { InputStatusTransition } from "../../../animations/transitions/InputStatusTransition";
 import { moveLabelAboveTextareaAni } from "../../../animations/forms";
+import { ContactFormInput } from "../../../types/forms";
 
 interface TextareaProps {
-  name: string;
+  name: ContactFormInput;
   labelName: string;
-  labelFor: string;
+  labelFor: ContactFormInput;
   labelError?: string;
   labelInstructions?: string;
   placeholder?: string;
@@ -34,10 +36,9 @@ const InputContainer = styled.div`
   grid-template-columns: 1fr min-content;
   gap: 6px;
   align-items: start;
-  background: var(--input-container-background, hsla(227, 30%, 40%));
+  background: var(--input-container-background);
   border-radius: 18px;
   width: 100%;
-  max-width: 400px;
   box-shadow: 0 0 0 4px
     var(--input-container-box-shadow-color, hsla(240, 0%, 0%, 0.3));
   transition: box-shadow 300ms ease-in-out;
@@ -49,24 +50,27 @@ const InputLabel = styled.label`
   left: 0;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--input-label, var(--color-accent-blue-2));
+  color: var(--input-label-color);
   transform: translate(16%, 100%);
 `;
 
 const TextareaField = styled.textarea`
   margin: 0;
   padding: 12px 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.8rem;
   font-weight: 500;
-  color: var(--input-text, var(--color-accent-blue-1));
-  background: var(--input-background, "none");
+  color: var(--input-text-color);
+  background: var(--input-background);
   border: none;
   width: 100%;
   outline: none;
-  caret-color: var(--input-caret, var(--color-accent-blue-1));
+  caret-color: var(--input-caret);
+  resize: none;
   &::placeholder {
     font-size: 16px;
-    color: var(--input-placeholder, var(--dark-theme-background));
+    color: var(--input-placeholder);
   }
 `;
 
@@ -83,19 +87,22 @@ const StatusContainer = styled.div`
 const CheckmarkContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  width: 30px;
+  width: 40px;
+  line-height: 0;
 `;
 
 const FormActiveContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  width: 30px;
+  width: 50px;
+  line-height: 0;
 `;
 
 const FormErrorContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  width: 24px;
+  width: 34px;
+  line-height: 0;
 `;
 
 const CharacterCountContainer = styled.div`
@@ -166,6 +173,7 @@ export const Textarea: React.FC<TextareaProps> = ({
       : valid && !touched
       ? "hsl(136, 68%, 61%)"
       : "hsla(240, 0%, 0%, 0.3)",
+    ...darkFormTheme,
   } as CSSProperties;
 
   return (
@@ -178,6 +186,7 @@ export const Textarea: React.FC<TextareaProps> = ({
         placeholder={placeholder}
         maxLength={maxLength}
         rows={rows}
+        spellCheck={true}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}

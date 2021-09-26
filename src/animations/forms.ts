@@ -1,4 +1,4 @@
-import { gsap, Power3, Back } from "gsap";
+import { gsap, Power3, Back, Linear } from "gsap";
 
 export const moveLabelAboveInputAni = (
   label: HTMLLabelElement,
@@ -10,13 +10,13 @@ export const moveLabelAboveInputAni = (
     label,
     {
       x: 20,
-      y: "100%",
+      y: "86%",
       fontSize: "2rem",
       fontWeight: 700,
     },
     {
       duration: 0.2,
-      x: "20%",
+      x: 20,
       y: "-140%",
       fontSize: "1.4rem",
       fontWeight: 500,
@@ -36,7 +36,7 @@ export const moveLabelAboveTextareaAni = (
     label,
     {
       x: 20,
-      y: "100%",
+      y: "86%",
       fontSize: "2rem",
       fontWeight: 700,
     },
@@ -50,6 +50,26 @@ export const moveLabelAboveTextareaAni = (
       reversed: reverse,
     }
   );
+};
+
+export const inputActiveDots = (dotArray: HTMLDivElement[], kill: boolean) => {
+  const tl = gsap.timeline({ repeat: -1 });
+
+  if (kill) {
+    tl.kill();
+  }
+
+  tl.to(dotArray, {
+    duration: 0.5,
+    autoAlpha: 0,
+    ease: Linear.easeNone,
+    stagger: 0.5,
+  }).to(dotArray, {
+    duration: 0.5,
+    autoAlpha: 1,
+    ease: Linear.easeNone,
+    stagger: 0.5,
+  });
 };
 
 export const basicRadioIsChecked = (dot: HTMLDivElement) => {

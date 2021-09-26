@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { CheckmarkIcon } from "../CheckmarkIcon";
 import { ErrorIcon } from "../ErrorIcon";
 import { InputActiveIcon } from "../InputActiveIcon";
+import { darkFormTheme } from "../../../styles/themes/forms";
 import { InputStatusTransition } from "../../../animations/transitions/InputStatusTransition";
 import { moveLabelAboveInputAni } from "../../../animations/forms";
 import { ContactFormInput } from "../../../types/forms";
@@ -31,10 +32,9 @@ const InputContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr min-content;
   gap: 6px;
-  background: var(--input-container-background, hsla(227, 30%, 40%));
+  background: var(--input-container-background);
   border-radius: 18px;
   width: 100%;
-  max-width: 400px;
   box-shadow: 0 0 0 4px
     var(--input-container-box-shadow-color, hsla(240, 0%, 0%, 0.3));
   transition: box-shadow 300ms ease-in-out;
@@ -46,8 +46,8 @@ const InputLabel = styled.label`
   left: 0;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--input-label, var(--color-accent-blue-2));
-  transform: translate(16%, 100%);
+  color: var(--input-label-color);
+  width: 100%;
 `;
 
 const InputField = styled.input`
@@ -55,8 +55,8 @@ const InputField = styled.input`
   padding: 12px 12px;
   font-size: 1.8rem;
   font-weight: 500;
-  color: var(--input-text, var(--color-accent-blue-1));
-  background: var(--input-background, "none");
+  color: var(--input-text-color);
+  background: var(--input-background);
   border: none;
   width: 100%;
   height: 60px;
@@ -64,7 +64,7 @@ const InputField = styled.input`
   caret-color: var(--input-caret, var(--color-accent-blue-1));
   &::placeholder {
     font-size: 16px;
-    color: var(--input-placeholder, var(--dark-theme-background));
+    color: var(--input-placeholder);
   }
 `;
 
@@ -78,22 +78,25 @@ const StatusContainer = styled.div`
   height: 60px;
 `;
 
-const Checkmark = styled(CheckmarkIcon)`
+const CheckmarkContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  width: 30px;
+  width: 40px;
+  line-height: 0;
 `;
 
-const FormActive = styled(InputActiveIcon)`
+const FormActiveContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  width: 30px;
+  width: 50px;
+  line-height: 0;
 `;
 
-const FormError = styled(ErrorIcon)`
+const FormErrorContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  width: 24px;
+  width: 34px;
+  line-height: 0;
 `;
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -125,19 +128,25 @@ export const TextInput: React.FC<TextInputProps> = ({
 
   const isError = (
     <InputStatusTransition isActive={!valid && !touched && !initial}>
-      <FormError />
+      <FormErrorContainer>
+        <ErrorIcon />
+      </FormErrorContainer>
     </InputStatusTransition>
   );
 
   const isActive = (
     <InputStatusTransition isActive={touched}>
-      <FormActive />
+      <FormActiveContainer>
+        <InputActiveIcon />
+      </FormActiveContainer>
     </InputStatusTransition>
   );
 
   const isValid = (
     <InputStatusTransition isActive={valid && !touched}>
-      <Checkmark />
+      <CheckmarkContainer>
+        <CheckmarkIcon />
+      </CheckmarkContainer>
     </InputStatusTransition>
   );
 
@@ -149,6 +158,7 @@ export const TextInput: React.FC<TextInputProps> = ({
       : valid && !touched
       ? "hsl(136, 68%, 61%)"
       : "hsla(240, 0%, 0%, 0.3)",
+    ...darkFormTheme,
   } as CSSProperties;
 
   return (
