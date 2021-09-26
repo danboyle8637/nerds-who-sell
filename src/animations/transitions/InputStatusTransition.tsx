@@ -1,5 +1,5 @@
 import { Transition } from "react-transition-group";
-import { timeline } from "motion";
+import { gsap, Power3 } from "gsap";
 
 interface FormMessageTransitionProps {
   isActive: boolean;

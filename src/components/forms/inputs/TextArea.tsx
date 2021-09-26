@@ -4,25 +4,27 @@ import styled from "styled-components";
 import { CheckmarkIcon } from "../CheckmarkIcon";
 import { ErrorIcon } from "../ErrorIcon";
 import { InputActiveIcon } from "../InputActiveIcon";
+import { CharacterCountChip } from "../../chips/CharacterCountChip";
 import { InputStatusTransition } from "../../../animations/transitions/InputStatusTransition";
-import { moveLabelAboveInputAni } from "../../../animations/forms";
-import { ContactFormInput } from "../../../types/forms";
+import { moveLabelAboveTextareaAni } from "../../../animations/forms";
 
-interface TextInputProps {
-  inputType: string;
-  inputName: ContactFormInput;
+interface TextareaProps {
+  name: string;
   labelName: string;
-  labelFor: ContactFormInput;
+  labelFor: string;
   labelError?: string;
   labelInstructions?: string;
   placeholder?: string;
+  maxLength: number;
+  rows: number;
   value: string;
   valid: boolean;
   initial: boolean;
   touched: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
-  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onFocus: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onBlur: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent) => void;
 }
 
 const InputContainer = styled.div`
@@ -31,6 +33,7 @@ const InputContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr min-content;
   gap: 6px;
+  align-items: start;
   background: var(--input-container-background, hsla(227, 30%, 40%));
   border-radius: 18px;
   width: 100%;
@@ -50,7 +53,7 @@ const InputLabel = styled.label`
   transform: translate(16%, 100%);
 `;
 
-const InputField = styled.input`
+const TextareaField = styled.textarea`
   margin: 0;
   padding: 12px 12px;
   font-size: 1.8rem;
@@ -59,7 +62,6 @@ const InputField = styled.input`
   background: var(--input-background, "none");
   border: none;
   width: 100%;
-  height: 60px;
   outline: none;
   caret-color: var(--input-caret, var(--color-accent-blue-1));
   &::placeholder {
@@ -78,29 +80,37 @@ const StatusContainer = styled.div`
   height: 60px;
 `;
 
-const Checkmark = styled(CheckmarkIcon)`
+const CheckmarkContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   width: 30px;
 `;
 
-const FormActive = styled(InputActiveIcon)`
+const FormActiveContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   width: 30px;
 `;
 
-const FormError = styled(ErrorIcon)`
+const FormErrorContainer = styled.div`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   width: 24px;
 `;
 
-export const TextInput: React.FC<TextInputProps> = ({
-  inputType,
-  inputName,
+const CharacterCountContainer = styled.div`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+`;
+
+export const Textarea: React.FC<TextareaProps> = ({
+  name,
   labelName,
   labelFor,
+  placeholder,
+  maxLength,
+  rows,
   value,
   valid,
   initial,
@@ -108,6 +118,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   onChange,
   onFocus,
   onBlur,
+  onKeyDown,
 }) => {
   const inputLabelRef = useRef<HTMLLabelElement | null>(null);
 
@@ -115,29 +126,35 @@ export const TextInput: React.FC<TextInputProps> = ({
     const inputLabel = inputLabelRef.current;
 
     if (inputLabel && touched && value === "") {
-      moveLabelAboveInputAni(inputLabel, false);
+      moveLabelAboveTextareaAni(inputLabel, false);
     }
 
     if (inputLabel && !touched && value === "") {
-      moveLabelAboveInputAni(inputLabel, true);
+      moveLabelAboveTextareaAni(inputLabel, true);
     }
   }, [touched, initial, value]);
 
   const isError = (
     <InputStatusTransition isActive={!valid && !touched && !initial}>
-      <FormError />
+      <FormErrorContainer>
+        <ErrorIcon />
+      </FormErrorContainer>
     </InputStatusTransition>
   );
 
   const isActive = (
     <InputStatusTransition isActive={touched}>
-      <FormActive />
+      <FormActiveContainer>
+        <InputActiveIcon />
+      </FormActiveContainer>
     </InputStatusTransition>
   );
 
   const isValid = (
     <InputStatusTransition isActive={valid && !touched}>
-      <Checkmark />
+      <CheckmarkContainer>
+        <CheckmarkIcon />
+      </CheckmarkContainer>
     </InputStatusTransition>
   );
 
@@ -153,14 +170,18 @@ export const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <InputContainer style={inputStyles}>
-      <InputField
-        type={inputType}
-        id={inputName}
-        name={inputName}
+      <TextareaField
+        typeof="text"
+        id={name}
+        name={name}
         value={value}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        rows={rows}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        onKeyDown={onKeyDown ? onKeyDown : undefined}
       />
       <InputLabel ref={inputLabelRef} htmlFor={labelFor}>
         {labelName}
@@ -170,6 +191,9 @@ export const TextInput: React.FC<TextInputProps> = ({
         {isActive}
         {isValid}
       </StatusContainer>
+      <CharacterCountContainer>
+        <CharacterCountChip value={value} maxCount={maxLength} />
+      </CharacterCountContainer>
     </InputContainer>
   );
 };

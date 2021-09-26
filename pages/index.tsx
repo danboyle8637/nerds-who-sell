@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import { QuestionCard } from "../src/components/attentionGrabbers/QuestionCard";
-import { ServiceCard } from "../src/components/cards/ServiceCard";
+import { Form } from "../src/views/Contact/Form";
 
 const TempSection = styled.div`
   display: flex;
@@ -14,7 +13,7 @@ const TempSection = styled.div`
 const Home = () => {
   return (
     <TempSection>
-      <h1>Full Page Form</h1>
+      <Form />
     </TempSection>
   );
 };

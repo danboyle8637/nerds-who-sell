@@ -2,15 +2,11 @@ import Image from "next/image";
 import styled from "styled-components";
 
 const InputStatusIcon = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
   justify-items: center;
   width: fit-content;
-  transform: translate(0, 0);
 `;
 
 export const InputActiveIcon = () => {

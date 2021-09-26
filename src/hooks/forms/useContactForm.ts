@@ -64,7 +64,7 @@ export const options: Option[] = [
   },
 ];
 
-export const useTextInputBrain = () => {
+export const useContactForm = () => {
   const [firstName, setFirstName] = useState<InputValue>({
     value: "",
     valid: false,
@@ -203,7 +203,7 @@ export const useTextInputBrain = () => {
   return {
     firstName,
     firstNameOptions,
-    emailValidationRules,
+    emailAddress,
     emailAddressOptions,
     serviceValue,
     contactMessage,
