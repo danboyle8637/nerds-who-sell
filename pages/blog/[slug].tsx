@@ -12,7 +12,6 @@ const Post: React.FC<PostProps> = ({ code, frontmatter }) => {
 
   return (
     <div style={{ width: "100%" }}>
-      <h1>{frontmatter.title}</h1>
       <Component />
     </div>
   );
@@ -44,11 +43,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   };
 
-  const post = await getSinglePost(slug as string);
+  const { code, frontmatter } = await getSinglePost(slug as string);
 
   return {
     props: {
-      ...post,
+      code,
+      frontmatter,
     },
   };
 };
@@ -81,6 +81,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
       },
     };
   });
+
+  console.log(paths);
 
   return {
     paths,

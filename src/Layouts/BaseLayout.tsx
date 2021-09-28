@@ -7,8 +7,8 @@ import { MenuDrawer } from "../components/overlays/MenuDrawer";
 const BaseContainer = styled.main`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
+  min-height: 100vh;
 `;
 
 const ContentContainer = styled.div`
@@ -16,7 +16,6 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1440px;
   overflow: hidden;
 `;
 

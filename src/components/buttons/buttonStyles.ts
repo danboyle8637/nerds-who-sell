@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { sizes } from "../../styles/sizes";
 
 export const baseButtonStyles = css`
   padding: 16px 20px;
@@ -14,10 +15,13 @@ export const baseButtonStyles = css`
   border: none;
   border-radius: 12px;
   outline: none;
-  width: 340px;
+  width: 300px;
   box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.3);
   &:focus {
   }
   &:hover {
+  }
+  ${sizes.aboveMobile} {
+    width: 340px;
   }
 `;
