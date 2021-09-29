@@ -1,6 +1,9 @@
+import { useMemo } from "react";
 import styled from "styled-components";
+import { getMDXComponent } from "mdx-bundler/client";
 
-import { bodyText, smallHeadline } from "../../../styles/typography";
+import { Paragraph } from "../../mdx/Paragraph";
+import { smallHeadline } from "../../../styles/typography";
 import { sizes } from "../../../styles/sizes";
 
 interface CardContentProps {
@@ -26,19 +29,19 @@ const Headline = styled.h3`
   }
 `;
 
-const Description = styled.p`
-  ${bodyText}
-  line-height: 1.6;
-`;
-
 export const CardContent: React.FC<CardContentProps> = ({
   headline,
   description,
 }) => {
+  const Description = useMemo(
+    () => getMDXComponent(description),
+    [description]
+  );
+
   return (
     <Container>
       <Headline>{headline}</Headline>
-      <Description>{description}</Description>
+      <Description components={{ p: Paragraph }} />
     </Container>
   );
 };

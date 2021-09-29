@@ -19,11 +19,15 @@ const Headline = styled.h3`
 export const QuestionHeadlines = () => {
   return (
     <HeadlineContainer>
-      <Headline>If you feel like your competition is lapping you...</Headline>
       <Headline>
-        If you're business is new and you want to make an impact...
+        If you feel like your website is ugly... slow... and can't be found...
       </Headline>
-      <Headline>Or if you know your website isn't performing...</Headline>
+      <Headline>
+        If you're business is new and you want to make an impact online...
+      </Headline>
+      <Headline>
+        Or if you know your website isn't performing or selling...
+      </Headline>
     </HeadlineContainer>
   );
 };

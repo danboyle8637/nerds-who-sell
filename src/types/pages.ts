@@ -1,4 +1,4 @@
-interface Markdown {
+export interface Markdown {
   code: string;
   frontmatter: {
     [key: string]: string | number;
@@ -12,7 +12,15 @@ export interface PostProps {
   };
 }
 
+interface Services {
+  service1: Markdown;
+  service2: Markdown;
+  service3: Markdown;
+}
+
 export interface HomePageProps {
   webDevContent: Markdown;
+  webDevServices: Services;
   copywritingContent: Markdown;
+  copywritingServices: Services;
 }

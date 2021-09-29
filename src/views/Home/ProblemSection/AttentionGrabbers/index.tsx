@@ -9,7 +9,7 @@ const SectionContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
-  gap: 120px;
+  gap: 140px;
   justify-items: start;
   width: fit-content;
 `;

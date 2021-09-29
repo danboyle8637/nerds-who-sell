@@ -4,6 +4,8 @@ export type AlignQuestion = "left" | "right";
 
 export type QuestionImage = "phone-call" | "leads" | "sales";
 
+export type ServiceType = "web-dev" | "copywriting";
+
 export type ServiceImage =
   | "web-dev"
   | "landing-page"

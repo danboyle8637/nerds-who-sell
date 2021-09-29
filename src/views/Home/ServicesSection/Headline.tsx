@@ -11,13 +11,15 @@ const HeadlineContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
-  gap: 8px;
+  gap: 0px;
   justify-items: start;
   width: 100%;
 `;
 
 const PreHeadline = styled.h3`
   ${smallHeadline}
+  padding-left: 60px;
+  color: var(--accent-1);
 `;
 
 const MainHeadline = styled.h3`

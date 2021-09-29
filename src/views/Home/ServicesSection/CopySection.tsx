@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { getMDXComponent } from "mdx-bundler/client";
 
 import { Headline } from "./Headline";
+import { Paragraph, Strong } from "../../../components/mdx";
 import { sizes } from "../../../styles/sizes";
-import { Head } from "next/document";
 
-interface WebDevSectionProps {
+interface CopySectionProps {
   preHeadline: string;
   headline: string;
   bodyCopy: string;
@@ -22,7 +22,16 @@ const SectionContainer = styled.section`
   max-width: 800px;
 `;
 
-export const WebDevSection: React.FC<WebDevSectionProps> = ({
+const ContentContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+  gap: 26px;
+  justify-items: start;
+  width: 100%;
+`;
+
+export const CopySection: React.FC<CopySectionProps> = ({
   preHeadline,
   headline,
   bodyCopy,
@@ -32,6 +41,9 @@ export const WebDevSection: React.FC<WebDevSectionProps> = ({
   return (
     <SectionContainer>
       <Headline preHeadline={preHeadline} headline={headline} />
+      <ContentContainer>
+        <WebDevComponent components={{ p: Paragraph, strong: Strong }} />
+      </ContentContainer>
     </SectionContainer>
   );
 };
