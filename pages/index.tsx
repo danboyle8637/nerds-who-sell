@@ -12,6 +12,7 @@ const Home: React.FC<HomePageProps> = ({
   copywritingContent,
   webDevServices,
   copywritingServices,
+  callToActionContent,
 }) => {
   return (
     <HomeView
@@ -29,6 +30,9 @@ const Home: React.FC<HomePageProps> = ({
       copywritingService1={copywritingServices.service1}
       copywritingService2={copywritingServices.service2}
       copywritingService3={copywritingServices.service3}
+      ctaPreHeadline={callToActionContent.frontmatter.preHeadline as string}
+      ctaHeadline={callToActionContent.frontmatter.headline as string}
+      ctaBodyCopy={callToActionContent.code}
     />
   );
 };
@@ -67,6 +71,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const copywritingService2 = await getContent("copywriting-emails");
   const copywritingService3 = await getContent("copywriting-facebook-ads");
 
+  const callToActionContent = await getContent("call-to-action");
+
   return {
     props: {
       webDevContent: webDevContent,
@@ -81,6 +87,7 @@ export const getStaticProps: GetStaticProps = async () => {
         service2: copywritingService2,
         service3: copywritingService3,
       },
+      callToActionContent: callToActionContent,
     },
   };
 };

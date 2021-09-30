@@ -23,4 +23,5 @@ export interface HomePageProps {
   webDevServices: Services;
   copywritingContent: Markdown;
   copywritingServices: Services;
+  callToActionContent: Markdown;
 }

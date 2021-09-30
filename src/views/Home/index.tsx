@@ -4,6 +4,7 @@ import { HeaderSection } from "./HeaderSection";
 import { ProblemSection } from "./ProblemSection";
 import { IntroductionSection } from "./IntroductionSection";
 import { ServicesSection } from "./ServicesSection";
+import { CallToActionSection } from "./CallToActionSection";
 import { Markdown } from "../../types/pages";
 
 interface HomeViewProps {
@@ -19,12 +20,16 @@ interface HomeViewProps {
   copywritingService1: Markdown;
   copywritingService2: Markdown;
   copywritingService3: Markdown;
+  ctaPreHeadline: string;
+  ctaHeadline: string;
+  ctaBodyCopy: string;
 }
 
 const ViewContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 120px;
+  width: 100%;
 `;
 
 export const HomeView: React.FC<HomeViewProps> = ({
@@ -40,6 +45,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
   copywritingService1,
   copywritingService2,
   copywritingService3,
+  ctaPreHeadline,
+  ctaHeadline,
+  ctaBodyCopy,
 }) => {
   return (
     <ViewContainer>
@@ -63,6 +71,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
         service1={copywritingService1}
         service2={copywritingService2}
         service3={copywritingService3}
+      />
+      <CallToActionSection
+        preHeadline={ctaPreHeadline}
+        headline={ctaHeadline}
+        bodyCopy={ctaBodyCopy}
       />
     </ViewContainer>
   );
