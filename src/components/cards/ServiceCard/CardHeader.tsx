@@ -5,6 +5,7 @@ import { ServiceImage } from "../../../types/components";
 
 interface CardHeaderProps {
   imageType: ServiceImage;
+  isHovering: boolean;
 }
 
 const HeaderContainer = styled.div`
@@ -16,12 +17,29 @@ const HeaderContainer = styled.div`
   border-radius: 12px 12px 0 0;
   width: 100%;
   height: 150px;
+  pointer-events: none;
 `;
 
-export const CardHeader: React.FC<CardHeaderProps> = ({ imageType }) => {
+const ImageContainer = styled.div`
+  transition: transform 300ms ease-in-out;
+  transform: var(--image-transform);
+`;
+
+export const CardHeader: React.FC<CardHeaderProps> = ({
+  imageType,
+  isHovering,
+}) => {
+  const styles = {
+    "--image-transform": isHovering
+      ? "translateY(-6px) scale(1.02)"
+      : "translateY(0) scale(1)",
+  } as React.CSSProperties;
+
   return (
     <HeaderContainer>
-      <RenderCardImage imageType={imageType} />
+      <ImageContainer style={styles}>
+        <RenderCardImage imageType={imageType} />
+      </ImageContainer>
     </HeaderContainer>
   );
 };

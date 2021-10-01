@@ -5,6 +5,7 @@ import { ServiceCards } from "./ServiceCards";
 import { ServiceCallToAction } from "./ServiceCallToAction";
 import { Markdown } from "../../../types/pages";
 import { ServiceType } from "../../../types/components";
+import { sizes } from "../../../styles/sizes";
 
 interface WebDevSectionProps {
   serviceType: ServiceType;
@@ -20,9 +21,12 @@ const SectionContainar = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
-  gap: 0px;
+  gap: 60px;
   justify-items: center;
   width: 100%;
+  ${sizes.aboveTablet} {
+    gap: 80px;
+  }
 `;
 
 export const ServicesSection: React.FC<WebDevSectionProps> = ({

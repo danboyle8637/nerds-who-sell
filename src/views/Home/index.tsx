@@ -28,6 +28,7 @@ interface HomeViewProps {
 const ViewContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 120px;
   width: 100%;
 `;

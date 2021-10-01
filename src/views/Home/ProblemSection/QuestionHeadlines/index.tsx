@@ -1,14 +1,22 @@
 import styled from "styled-components";
 
 import { smallHeadline } from "../../../../styles/typography";
+import { sizes } from "../../../../styles/sizes";
 
 const HeadlineContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 60px;
-  justify-items: center;
+  justify-items: start;
   width: 100%;
+  ${sizes.aboveTablet} {
+    width: 800px;
+  }
+  ${sizes.aboveIpadPro} {
+    justify-items: center;
+    width: 100%;
+  }
 `;
 
 const Headline = styled.h3`

@@ -1,10 +1,17 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { PhoneImage } from "./PhoneImage";
 import { bodyText } from "../../../styles/typography";
+import { phoneRingAni } from "../../../animations/images";
+import { useIntersectionObserver } from "../../../hooks/componets/useIntersectionObserver";
+import { sizes } from "../../../styles/sizes";
 
 const CardContainer = styled.div`
-  transform: translateX(30px);
+  transform: translateX(14px);
+  ${sizes.aboveMobile} {
+    transform: translateX(-160px);
+  }
 `;
 
 const QuestionContainer = styled.div`
@@ -36,17 +43,33 @@ const Phone = styled.div`
 `;
 
 export const PhoneCallsCard = () => {
+  const phoneRef = useRef<HTMLDivElement | null>(null);
+
+  const { nodeRef, runAction } = useIntersectionObserver({
+    rootMargin: "0px 0px -200px 0px",
+    threshold: 0.5,
+    shouldUnobserve: true,
+  });
+
+  useEffect(() => {
+    const phone = phoneRef.current;
+
+    if (phone && runAction) {
+      phoneRingAni(phone);
+    }
+  }, [runAction]);
+
   const styles = {
     "--background-color": "var(--base-text-color)",
     "--body-text-color": "var(--primary-background)",
   } as React.CSSProperties;
 
   return (
-    <CardContainer style={styles}>
+    <CardContainer ref={nodeRef} style={styles}>
       <QuestionContainer>
         <Spacer />
         <Question>Making your phone ring?</Question>
-        <Phone>
+        <Phone ref={phoneRef}>
           <PhoneImage />
         </Phone>
       </QuestionContainer>

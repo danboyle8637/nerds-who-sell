@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { smallHeadline, largeHeadline } from "../../../styles/typography";
+import { sizes } from "../../../styles/sizes";
 
 interface HeadlineProps {
   preHeadline: string;
@@ -18,8 +19,11 @@ const HeadlineContainer = styled.div`
 
 const PreHeadline = styled.h3`
   ${smallHeadline}
-  padding-left: 60px;
+  padding-left: 30px;
   color: var(--accent-1);
+  ${sizes.aboveMobile} {
+    padding-left: 60px;
+  }
 `;
 
 const MainHeadline = styled.h3`

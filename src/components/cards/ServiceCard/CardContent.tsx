@@ -19,6 +19,7 @@ const Container = styled.div`
   gap: 12px;
   justify-items: start;
   width: 100%;
+  pointer-events: none;
 `;
 
 const Headline = styled.h3`

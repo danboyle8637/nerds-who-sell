@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { bodyText } from "../../../../styles/typography";
 import { ActionButton } from "../../../../components/buttons/ActionButton";
+import { nerdsWhoSellStore } from "../../../../../lib/store";
 
 const ButtonContainer = styled.div`
   display: grid;
@@ -17,8 +18,12 @@ const Declaration = styled.p`
 `;
 
 export const Button = () => {
+  const toggleQuizOverlay = nerdsWhoSellStore(
+    (state) => state.toggleQuizOverlay
+  );
+
   const handleButtonClick = () => {
-    console.log("Open full page form... maybe in an overlay");
+    toggleQuizOverlay();
   };
 
   return (

@@ -29,6 +29,15 @@ const ContentContainer = styled.div`
   gap: 26px;
   justify-items: start;
   width: 100%;
+  ${sizes.aboveMobile} {
+    justify-self: center;
+    width: 600px;
+  }
+  ${sizes.aboveTablet} {
+    padding: 0 24px;
+    justify-self: start;
+    width: 100%;
+  }
 `;
 
 export const CopySection: React.FC<CopySectionProps> = ({

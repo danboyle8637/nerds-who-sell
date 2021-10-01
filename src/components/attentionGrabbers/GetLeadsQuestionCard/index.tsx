@@ -2,9 +2,16 @@ import styled from "styled-components";
 
 import { AnimatedImage } from "./AnimatedImage";
 import { bodyText } from "../../../styles/typography";
+import { sizes } from "../../../styles/sizes";
 
 const CardContainer = styled.div`
-  transform: translateX(0px);
+  transform: translateX(-20px);
+  ${sizes.aboveIphone11Pro} {
+    transform: translateX(0px);
+  }
+  ${sizes.aboveMobile} {
+    transform: translateX(120px);
+  }
 `;
 
 const QuestionContainer = styled.div`

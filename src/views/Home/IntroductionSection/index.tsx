@@ -7,11 +7,12 @@ import {
 } from "../../../styles/typography";
 import { NerdWhoSells } from "../../../components/images/NerdWhoSells";
 import { ActionButton } from "../../../components/buttons/ActionButton";
+import { nerdsWhoSellStore } from "../../../../lib/store";
 import { sizes } from "../../../styles/sizes";
 
 const SectionContainer = styled.section`
   position: relative;
-  padding: 0 12px;
+  padding: 60px 12px;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
@@ -25,6 +26,9 @@ const SectionContainer = styled.section`
   ${sizes.aboveTablet} {
     align-self: center;
     transform: translateX(-60px);
+  }
+  ${sizes.aboveIpadPro} {
+    padding: 100px 0;
   }
 `;
 
@@ -77,6 +81,7 @@ const Sells = styled.span`
 
 const PreHeadline = styled.h3`
   ${smallHeadline}
+  color: var(--accent-1);
   justify-self: start;
   ${sizes.aboveMobile} {
     padding-left: 40px;
@@ -101,13 +106,25 @@ const TheNerd = styled.div`
   transform: translate(10px, 40px);
   ${sizes.aboveMobile} {
     width: 260px;
-    transform: translate(220px, -80px);
+    transform: translate(160px, -50px);
+  }
+  ${sizes.aboveTablet} {
+    width: 260px;
+    transform: translate(200px, -30px);
+  }
+  ${sizes.aboveIpadPro} {
+    width: 260px;
+    transform: translate(220px, 0px);
   }
 `;
 
 export const IntroductionSection = () => {
+  const toggleQuizOverlay = nerdsWhoSellStore(
+    (state) => state.toggleQuizOverlay
+  );
+
   const handleButtonClick = () => {
-    console.log("Open up the full page form overlay");
+    toggleQuizOverlay();
   };
 
   return (

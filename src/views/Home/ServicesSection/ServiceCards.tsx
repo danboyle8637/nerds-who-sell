@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { ServiceCard } from "../../../components/cards/ServiceCard";
+import { useMatchMedia } from "../../../hooks/componets/useMatchMedia";
 import { Markdown } from "../../../types/pages";
 import { ServiceImage, ServiceType } from "../../../types/components";
 import { sizes } from "../../../styles/sizes";
@@ -16,15 +17,15 @@ const ServiceCardsContainer = styled.div`
   padding-top: var(--section-padding);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 260px;
+  gap: var(--cards-gap-mobile);
   justify-items: center;
   align-items: start;
   width: 100%;
   max-width: 1200px;
   ${sizes.aboveMobile} {
     grid-template-columns: 1fr 1fr;
-    column-gap: 12px;
-    row-gap: var(--row-gap);
+    column-gap: 0px;
+    row-gap: var(--cards-gap-tablet);
   }
   ${sizes.aboveTablet} {
     grid-template-columns: repeat(3, 1fr);
@@ -53,6 +54,8 @@ export const ServiceCards: React.FC<ServiceCardsProps> = ({
   const styles = {
     "--section-padding": serviceType === "web-dev" ? "140px" : "100px",
     "--row-gap": serviceType === "copywriting" ? "260px" : "200px",
+    "--cards-gap-mobile": serviceType === "web-dev" ? "260px" : "200px",
+    "--cards-gap-tablet": serviceType === "web-dev" ? "260px" : "200px",
   } as React.CSSProperties;
 
   return (

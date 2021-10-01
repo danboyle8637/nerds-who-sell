@@ -10,7 +10,7 @@ const SectionContainer = styled.section`
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 140px;
-  justify-items: start;
+  justify-items: center;
   width: fit-content;
 `;
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { ActionButton } from "../../../components/buttons/ActionButton";
 import { bodyText } from "../../../styles/typography";
+import { nerdsWhoSellStore } from "../../../../lib/store";
 import { sizes } from "../../../styles/sizes";
 
 interface ServiceCallToActionProps {
@@ -11,6 +12,7 @@ interface ServiceCallToActionProps {
 }
 
 const CallToActionContainer = styled.div`
+  padding: 0 12px;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
@@ -23,6 +25,7 @@ const CallToActionContainer = styled.div`
 const Copy = styled.p`
   ${bodyText}
   font-size: 2.6rem;
+  line-height: 1.6;
   ${sizes.aboveMobile} {
     font-size: 2.6rem;
   }
@@ -32,8 +35,12 @@ export const ServiceCallToAction: React.FC<ServiceCallToActionProps> = ({
   cta,
   buttonText,
 }) => {
+  const toggleQuizOverlay = nerdsWhoSellStore(
+    (state) => state.toggleQuizOverlay
+  );
+
   const handleButtonClick = () => {
-    console.log("Open up the full page form and lets convert them.");
+    toggleQuizOverlay();
   };
 
   return (
