@@ -13,3 +13,9 @@ export type ServiceImage =
   | "rewrite"
   | "emails"
   | "ads";
+
+export interface BaseSVG {
+  width?: string;
+  height?: string;
+  className?: string;
+}
