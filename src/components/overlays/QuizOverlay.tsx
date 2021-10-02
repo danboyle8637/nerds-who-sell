@@ -6,6 +6,7 @@ import {
   navDrawerOpenAni,
   navDrawerClosedAni,
 } from "../../animations/navigation";
+import { ProjectQuizForm } from "../forms/ProjectQuizForm";
 import { sizes } from "../../styles/sizes";
 
 interface QuizOverlayProps {
@@ -85,7 +86,9 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   return (
     <QuizDrawerTransition isOpen={isOpen}>
       <BackgroundOverlay>
-        <DrawerContainer ref={navRef}>Form goes in here.</DrawerContainer>
+        <DrawerContainer ref={navRef}>
+          <ProjectQuizForm />
+        </DrawerContainer>
         <ClickLayer onClick={toggleOverlay} />
       </BackgroundOverlay>
     </QuizDrawerTransition>

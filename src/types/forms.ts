@@ -23,3 +23,16 @@ export type ContactFormInput =
   | "emailAddress"
   | "service"
   | "contactMessage";
+
+export type ProjectQuizFormInput =
+  | "haveWebsite"
+  | "haveTimeline"
+  | "haveBudget"
+  | "haveImages"
+  | "haveMarketingPlan"
+  | "howManyProducts"
+  | "salesCopyPurpose"
+  | "moreDetails"
+  | "websiteUrl"
+  | "idealTimeline"
+  | "primaryInterest";
