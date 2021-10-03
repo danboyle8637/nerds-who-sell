@@ -6,7 +6,9 @@ interface RadioOptionProps {
   value: string;
   label: string;
   isSelected: boolean;
-  updateInputValue: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  updateInputValue: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 
 const InputLabel = styled.label`
@@ -56,9 +58,7 @@ export const RadioOption: React.FC<RadioOptionProps> = ({
   updateInputValue,
 }) => {
   const styles = {
-    "--label-color": isSelected
-      ? "var(--accent-2)"
-      : "var(--section-background-2)",
+    "--label-color": isSelected ? "var(--accent-2)" : "var(--base-text-color)",
     "--label-background": isSelected
       ? "hsla(176, 92%, 53%, 0.4)"
       : "hsla(226, 32%, 16%, 0.4)",

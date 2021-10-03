@@ -4,9 +4,7 @@ type ButtonControlType = "back" | "next";
 
 interface InputControlButtonProps {
   controlType: ButtonControlType;
-  nextQuestionId: number;
-  prevQuestionId: number;
-  handleClick: (questionId: number) => void;
+  handleClick: () => void;
 }
 
 const Button = styled.button`
@@ -31,15 +29,12 @@ const Button = styled.button`
 
 export const InputControlButton: React.FC<InputControlButtonProps> = ({
   controlType,
-  nextQuestionId,
-  prevQuestionId,
   handleClick,
 }) => {
   const label = controlType === "back" ? "back" : "next";
-  const questionId = controlType === "back" ? prevQuestionId : nextQuestionId;
 
   return (
-    <Button type="button" onClick={() => handleClick(questionId)}>
+    <Button type="button" onClick={handleClick}>
       {label}
     </Button>
   );

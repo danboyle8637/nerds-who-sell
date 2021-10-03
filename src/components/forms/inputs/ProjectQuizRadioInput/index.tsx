@@ -49,15 +49,16 @@ export const ProjectQuizRadioInput: React.FC<ProjectQuizRadioInputProps> = ({
   const answers = options.map((option) => {
     const id = option.id;
     const value = option.value;
+    const label = option.label;
     const isSelected = option.isSelected;
 
     return (
       <RadioOption
         key={id}
-        id={name}
+        id={value}
         name={name}
         value={value}
-        label={value}
+        label={label}
         isSelected={isSelected}
         updateInputValue={updateInputValue}
       />

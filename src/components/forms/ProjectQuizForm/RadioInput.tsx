@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 import { MultiDirectionWithScaleTransition } from "../../../animations/transitions/MultiDirectionWithScaleTransition";
@@ -16,10 +15,7 @@ interface RadioInputProps {
   updateInputValue: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  nextQuestionId: number;
-  prevQuestionId: number;
-  handleNextQuestion: (questionId: number) => void;
-  handlePrevQuestion: (questionId: number) => void;
+  handlePrevQuestion: () => void;
 }
 
 const InputContainer = styled.div`
@@ -37,9 +33,6 @@ export const RadioInput: React.FC<RadioInputProps> = ({
   inputLabel,
   options,
   updateInputValue,
-  nextQuestionId,
-  prevQuestionId,
-  handleNextQuestion,
   handlePrevQuestion,
 }) => {
   return (
@@ -55,12 +48,7 @@ export const RadioInput: React.FC<RadioInputProps> = ({
           options={options}
           updateInputValue={updateInputValue}
         />
-        <InputControls
-          nextQuestionId={nextQuestionId}
-          prevQuestionId={prevQuestionId}
-          handleNextQuestion={handleNextQuestion}
-          handlePrevQuestion={handlePrevQuestion}
-        />
+        <InputControls handlePrevQuestion={handlePrevQuestion} />
       </InputContainer>
     </MultiDirectionWithScaleTransition>
   );

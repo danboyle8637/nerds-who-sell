@@ -20,11 +20,12 @@ import {
 export interface AnswerOption {
   id: number;
   value: string;
+  label: string;
   isSelected: boolean;
   nextQuestion: number;
 }
 
-interface QuizRadioInputValue {
+export interface QuizRadioInputValue {
   value: string;
   nextQuestion: number;
   options: AnswerOption[];
@@ -64,252 +65,10 @@ export interface TextQuestion {
   options: AnswerInputOptions;
 }
 
-export const questions: (RadioQuestion | TextQuestion)[] = [
-  {
-    id: 0,
-    question: "Do you have a website?",
-    options: [
-      {
-        id: 0,
-        value: "yes",
-        isSelected: false,
-        nextQuestion: 9,
-      },
-      {
-        id: 1,
-        value: "no",
-        isSelected: false,
-        nextQuestion: 1,
-      },
-    ],
-  },
-  {
-    id: 1,
-    question: "Do you have a timeline?",
-    options: [
-      {
-        id: 0,
-        value: "yes",
-        isSelected: false,
-        nextQuestion: 10,
-      },
-      {
-        id: 1,
-        value: "no",
-        isSelected: false,
-        nextQuestion: 10,
-      },
-    ],
-  },
-  {
-    id: 2,
-    question: "Do you have a budget?",
-    options: [
-      {
-        id: 0,
-        value: "yes",
-        isSelected: false,
-        nextQuestion: 3,
-      },
-      {
-        id: 1,
-        value: "no",
-        isSelected: false,
-        nextQuestion: 3,
-      },
-    ],
-  },
-  {
-    id: 3,
-    question: "Do you have images for your website?",
-    options: [
-      {
-        id: 0,
-        value: "yes",
-        isSelected: false,
-        nextQuestion: 4,
-      },
-      {
-        id: 1,
-        value: "no",
-        isSelected: false,
-        nextQuestion: 4,
-      },
-    ],
-  },
-  {
-    id: 4,
-    question: "Do you have a plan for how to use your website?",
-    options: [
-      {
-        id: 0,
-        value: "yes",
-        isSelected: false,
-        nextQuestion: 8,
-      },
-      {
-        id: 1,
-        value: "no",
-        isSelected: false,
-        nextQuestion: 8,
-      },
-    ],
-  },
-  {
-    id: 5,
-    question: "How many products or services are you going to sell?",
-    options: [
-      {
-        id: 0,
-        value: "1 to 10",
-        isSelected: false,
-        nextQuestion: 0,
-      },
-      {
-        id: 1,
-        value: "11 to 50",
-        isSelected: false,
-        nextQuestion: 0,
-      },
-      {
-        id: 2,
-        value: "51 to 100",
-        isSelected: false,
-        nextQuestion: 0,
-      },
-      {
-        id: 3,
-        value: "Over 101 products",
-        isSelected: false,
-        nextQuestion: 0,
-      },
-    ],
-  },
-  {
-    id: 7,
-    question: "What is the sales copy for?",
-    options: [
-      {
-        id: 0,
-        value: "Website rewrite",
-        isSelected: false,
-        nextQuestion: 8,
-      },
-      {
-        id: 1,
-        value: "Emails",
-        isSelected: false,
-        nextQuestion: 8,
-      },
-      {
-        id: 2,
-        value: "E-comm product copy",
-        isSelected: false,
-        nextQuestion: 8,
-      },
-      {
-        id: 3,
-        value: "Sales page / landing page copy",
-        isSelected: false,
-        nextQuestion: 8,
-      },
-    ],
-  },
-  {
-    id: 8,
-    question: "Optional: Add more initial details...",
-    input: {
-      value: "",
-      valid: false,
-    },
-    options: {
-      initial: true,
-      touched: false,
-      nextQuestion: 99,
-    },
-  },
-  {
-    id: 9,
-    question: "What is the address (url)?",
-    input: {
-      value: "",
-      valid: false,
-    },
-    options: {
-      initial: true,
-      touched: false,
-      nextQuestion: 1,
-    },
-  },
-  {
-    id: 10,
-    question: "When would you like to have your website live?",
-    options: [
-      {
-        id: 0,
-        value: "2 weeks",
-        isSelected: false,
-        nextQuestion: 2,
-      },
-      {
-        id: 0,
-        value: "3 weeks",
-        isSelected: false,
-        nextQuestion: 2,
-      },
-      {
-        id: 0,
-        value: "No more than 4 weeks",
-        isSelected: false,
-        nextQuestion: 2,
-      },
-      {
-        id: 0,
-        value: "I need it NOW!",
-        isSelected: false,
-        nextQuestion: 2,
-      },
-    ],
-  },
-  {
-    id: 11,
-    question: "What are you primarily interested in?",
-    options: [
-      {
-        id: 0,
-        value: "New website or redesign",
-        isSelected: false,
-        nextQuestion: 0,
-      },
-      {
-        id: 1,
-        value: "E-commerce Website",
-        isSelected: false,
-        nextQuestion: 5,
-      },
-      {
-        id: 2,
-        value: "A targeted landing page",
-        isSelected: false,
-        nextQuestion: 9,
-      },
-      {
-        id: 3,
-        value: "Copywriting help",
-        isSelected: false,
-        nextQuestion: 9,
-      },
-      {
-        id: 4,
-        value: "SEO and marketing",
-        isSelected: false,
-        nextQuestion: 9,
-      },
-    ],
-  },
-];
-
 export const useProjectQuizForm = () => {
+  const [nextQuestionId, setNextQuestionId] = useState<number>(11);
+  const [prevQuestionId, setPrevQuestionId] = useState<number>(0);
+
   const [haveWebsite, setHaveWebsite] = useState<QuizRadioInputValue>({
     value: "",
     nextQuestion: 0,
@@ -418,6 +177,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(haveTimelineQuestion.id);
+        setNextQuestionId(nextQuestion);
         setHaveTimeline({
           value: value,
           nextQuestion: nextQuestion,
@@ -431,6 +192,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(haveBudgetQuestion.id);
+        setNextQuestionId(nextQuestion);
         setHaveBudget({
           value: value,
           nextQuestion: nextQuestion,
@@ -444,6 +207,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(haveImagesQuestion.id);
+        setNextQuestionId(nextQuestion);
         setHaveImages({
           value: value,
           nextQuestion: nextQuestion,
@@ -457,6 +222,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(haveMarketingPlanQuestion.id);
+        setNextQuestionId(nextQuestion);
         setHaveMarketingPlan({
           value: value,
           nextQuestion: nextQuestion,
@@ -470,6 +237,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(howManyProductsQuestion.id);
+        setNextQuestionId(nextQuestion);
         setNumberOfProducts({
           value: value,
           nextQuestion: nextQuestion,
@@ -483,6 +252,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(salesCopyPurposeQuestion.id);
+        setNextQuestionId(nextQuestion);
         setSalesCopyPurpose({
           value: value,
           nextQuestion: nextQuestion,
@@ -511,6 +282,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(timelineQuestion.id);
+        setNextQuestionId(nextQuestion);
         setIdealTimeline({
           value: value,
           nextQuestion: nextQuestion,
@@ -524,6 +297,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(primaryInterestQuestion.id);
+        setNextQuestionId(nextQuestion);
         setPrimaryInterest({
           value: value,
           nextQuestion: nextQuestion,
@@ -595,6 +370,8 @@ export const useProjectQuizForm = () => {
   };
 
   return {
+    nextQuestionId,
+    prevQuestionId,
     haveWebsite,
     haveTimeline,
     haveBudget,
@@ -610,5 +387,6 @@ export const useProjectQuizForm = () => {
     primaryInterest,
     updateInputValue,
     updateInputOptions,
+    setNextQuestionId,
   };
 };
