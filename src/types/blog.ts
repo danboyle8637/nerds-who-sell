@@ -21,3 +21,5 @@ export interface BlogPostCard {
 export interface BlogPostListPage {
   posts: BlogPostCard[];
 }
+
+export type BlogCategory = "marketing" | "web-design" | "conversion" | "coding";
