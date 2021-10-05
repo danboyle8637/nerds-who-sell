@@ -1,18 +1,14 @@
-import { useMemo } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import fs from "fs";
 import path from "path";
-import { bundleMDX } from "mdx-bundler";
-import { getMDXComponent } from "mdx-bundler/client";
-import { PostSlug, PostSlugs } from "../../src/types/api";
+import { serialize } from "next-mdx-remote/serialize";
+import matter from "gray-matter";
 import { PostProps } from "../../src/types/pages";
 
 const Post: React.FC<PostProps> = ({ code, frontmatter }) => {
-  const Component = useMemo(() => getMDXComponent(code), [code]);
-
   return (
     <div style={{ width: "100%" }}>
-      <Component />
+      <h1>BLog post cards here...</h1>
     </div>
   );
 };
@@ -20,7 +16,7 @@ const Post: React.FC<PostProps> = ({ code, frontmatter }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug || "";
 
-  const POSTS_PATH = path.join(process.cwd(), "data/blog");
+  const POSTS_PATH = path.join(process.cwd(), "data/blog/2021");
 
   const getSourceOfFile = (filename: string) => {
     return fs.readFileSync(path.join(POSTS_PATH, filename), "utf8");
@@ -29,17 +25,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const getSinglePost = async (slug: string) => {
     const source = getSourceOfFile(`${slug}.mdx`);
 
-    const { code, frontmatter } = await bundleMDX(source, {
-      cwd: POSTS_PATH,
-      esbuildOptions: (options) => {
-        options.platform = "node";
-        return options;
-      },
-    });
+    const { content, data } = matter(source);
+    const mdxString = await serialize(content);
 
     return {
-      frontmatter,
-      code,
+      frontmatter: data,
+      code: mdxString,
     };
   };
 
@@ -54,7 +45,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const POSTS_PATH = path.join(process.cwd(), "data/blog");
+  const currentYear = new Date().getFullYear();
+
+  const POSTS_PATH = path.join(process.cwd(), `data/blog/${currentYear}`);
 
   const getSourceOfFile = (filename: string) => {
     return fs.readFileSync(path.join(POSTS_PATH, filename), "utf8");

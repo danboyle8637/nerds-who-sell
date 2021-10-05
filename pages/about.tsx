@@ -17,6 +17,10 @@ const About: React.FC<AboutPageProps> = ({
     <AboutView
       headerHeadline={headerContent.frontmatter.headline as string}
       introBodyCopy={whoContent}
+      authenticCopy={qualitiesContent.authentic}
+      clearCopy={qualitiesContent.clear}
+      overdeliverCopy={qualitiesContent.overdeliver}
+      ctaCopy={callToActionContent}
     />
   );
 };
@@ -43,7 +47,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const headerContent = await getContent("header", contentPath);
   const whoContent = await getContent("who", contentPath);
-  const honest = await getContent("honest", contentPath);
+  const authentic = await getContent("authentic", contentPath);
   const clear = await getContent("clear", contentPath);
   const overdeliver = await getContent("overdeliver", contentPath);
   const callToActionContent = await getContent(
@@ -56,7 +60,7 @@ export const getStaticProps: GetStaticProps = async () => {
       headerContent,
       whoContent,
       qualitiesContent: {
-        honest,
+        authentic,
         clear,
         overdeliver,
       },

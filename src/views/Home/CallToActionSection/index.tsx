@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import { Header } from "./Header";
 import { CopySection } from "./CopySection";
@@ -7,7 +8,7 @@ import { ActionButton } from "../../../components/buttons/ActionButton";
 interface CallToActionProps {
   preHeadline: string;
   headline: string;
-  bodyCopy: string;
+  bodyCopy: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
 
 const SectionContainer = styled.section`

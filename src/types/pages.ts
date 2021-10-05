@@ -29,7 +29,7 @@ export interface HomePageProps {
 }
 
 interface Qualities {
-  honest: Markdown;
+  authentic: Markdown;
   clear: Markdown;
   overdeliver: Markdown;
 }

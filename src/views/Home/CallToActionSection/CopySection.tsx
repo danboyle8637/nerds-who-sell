@@ -1,12 +1,16 @@
-import React, { useMemo } from "react";
 import styled from "styled-components";
-import { getMDXComponent } from "mdx-bundler/client";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import { Paragraph, Strong } from "../../../components/mdx";
 
 interface CopySectionProps {
-  bodyCopy: string;
+  bodyCopy: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
+
+const components = {
+  p: (props: any) => <Paragraph {...props} />,
+  strong: (props: any) => <Strong {...props} />,
+};
 
 const ContentContainer = styled.div`
   display: grid;
@@ -19,11 +23,9 @@ const ContentContainer = styled.div`
 `;
 
 export const CopySection: React.FC<CopySectionProps> = ({ bodyCopy }) => {
-  const CTAComponent = useMemo(() => getMDXComponent(bodyCopy), [bodyCopy]);
-
   return (
     <ContentContainer>
-      <CTAComponent components={{ p: Paragraph, strong: Strong }} />
+      <MDXRemote {...bodyCopy} components={components} />
     </ContentContainer>
   );
 };
