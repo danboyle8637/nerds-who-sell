@@ -8,12 +8,12 @@ import { CharacterCountChip } from "../../chips/CharacterCountChip";
 import { darkFormTheme } from "../../../styles/themes/forms";
 import { InputStatusTransition } from "../../../animations/transitions/InputStatusTransition";
 import { moveLabelAboveTextareaAni } from "../../../animations/forms";
-import { ContactFormInput } from "../../../types/forms";
+import { ContactFormInput, ProjectQuizFormInput } from "../../../types/forms";
 
 interface TextareaProps {
-  name: ContactFormInput;
+  name: ContactFormInput | ProjectQuizFormInput;
   labelName: string;
-  labelFor: ContactFormInput;
+  labelFor: ContactFormInput | ProjectQuizFormInput;
   labelError?: string;
   labelInstructions?: string;
   placeholder?: string;

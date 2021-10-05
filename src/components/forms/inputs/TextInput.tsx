@@ -7,13 +7,13 @@ import { InputActiveIcon } from "../InputActiveIcon";
 import { darkFormTheme } from "../../../styles/themes/forms";
 import { InputStatusTransition } from "../../../animations/transitions/InputStatusTransition";
 import { moveLabelAboveInputAni } from "../../../animations/forms";
-import { ContactFormInput } from "../../../types/forms";
+import { ContactFormInput, ProjectQuizFormInput } from "../../../types/forms";
 
 interface TextInputProps {
   inputType: string;
-  inputName: ContactFormInput;
+  inputName: ContactFormInput | ProjectQuizFormInput;
   labelName: string;
-  labelFor: ContactFormInput;
+  labelFor: ContactFormInput | ProjectQuizFormInput;
   labelError?: string;
   labelInstructions?: string;
   placeholder?: string;

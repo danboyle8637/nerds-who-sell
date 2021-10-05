@@ -17,9 +17,12 @@ export const baseButtonStyles = css`
   outline: none;
   width: 300px;
   box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.3);
+  cursor: pointer;
   &:focus {
-  }
-  &:hover {
+    outline-color: var(--accent-2);
+    outline-width: 2px;
+    outline-offset: 8px;
+    outline-style: dotted;
   }
   ${sizes.aboveMobile} {
     width: 340px;

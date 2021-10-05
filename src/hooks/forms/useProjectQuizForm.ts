@@ -9,7 +9,7 @@ import {
   howManyProductsQuestion,
   primaryInterestQuestion,
   salesCopyPurposeQuestion,
-  timelineQuestion,
+  idealTimelineQuestion,
 } from "./projectQuizData";
 import { ProjectQuizFormInput } from "../../types/forms";
 import {
@@ -142,7 +142,7 @@ export const useProjectQuizForm = () => {
   const [idealTimeline, setIdealTimeline] = useState<QuizRadioInputValue>({
     value: "",
     nextQuestion: 0,
-    options: timelineQuestion.options,
+    options: idealTimelineQuestion.options,
   });
 
   const [primaryInterest, setPrimaryInterest] = useState<QuizRadioInputValue>({
@@ -164,6 +164,8 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
+        setPrevQuestionId(haveWebsiteQuestion.id);
+        setNextQuestionId(nextQuestion);
         setHaveWebsite({
           value: value,
           nextQuestion: nextQuestion,
@@ -278,11 +280,11 @@ export const useProjectQuizForm = () => {
       }
       case "idealTimeline": {
         const newOptions = updateProjectQuizOptions(
-          timelineQuestion.options,
+          idealTimelineQuestion.options,
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(timelineQuestion.id);
+        setPrevQuestionId(idealTimelineQuestion.id);
         setNextQuestionId(nextQuestion);
         setIdealTimeline({
           value: value,

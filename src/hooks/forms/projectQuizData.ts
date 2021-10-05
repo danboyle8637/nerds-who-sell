@@ -203,7 +203,7 @@ export const whatIsUrlQuestion = {
   },
 };
 
-export const timelineQuestion: RadioQuestion = {
+export const idealTimelineQuestion: RadioQuestion = {
   id: 10,
   question: "When would you like to have your website live?",
   options: [
@@ -215,21 +215,21 @@ export const timelineQuestion: RadioQuestion = {
       nextQuestion: 2,
     },
     {
-      id: 0,
+      id: 1,
       value: "3 weeks",
       label: "3 weeks or less",
       isSelected: false,
       nextQuestion: 2,
     },
     {
-      id: 0,
+      id: 2,
       value: "No more than 4 weeks",
       label: "No more than 4 weeks",
       isSelected: false,
       nextQuestion: 2,
     },
     {
-      id: 0,
+      id: 3,
       value: "I need it NOW!",
       label: "I'm in a crunch I need it now",
       isSelected: false,

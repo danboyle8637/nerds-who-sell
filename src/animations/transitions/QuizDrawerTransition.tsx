@@ -12,6 +12,7 @@ export const QuizDrawerTransition: React.FC<QuizTransitionProps> = ({
   const menuEnter = (node: HTMLElement): void => {
     if (isOpen) {
       gsap.to(node, {
+        duration: 0.1,
         autoAlpha: 1,
       });
     }
@@ -20,7 +21,9 @@ export const QuizDrawerTransition: React.FC<QuizTransitionProps> = ({
   const menuExit = (node: HTMLElement): void => {
     if (!isOpen) {
       gsap.to(node, {
-        autoAlpha: 1,
+        duration: 0.1,
+        autoAlpha: 0,
+        delay: 0.4,
       });
     }
   };

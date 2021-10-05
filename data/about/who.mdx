@@ -1,0 +1,36 @@
+---
+title: who
+---
+
+import { InternalLink } from "../../src/components/mdx/Link.tsx";
+import { Code } from "../../src/components/mdx/Code.tsx";
+
+I'm Dan... the main nerd who sells.
+
+I love to code and build unique... great looking websites and apps.
+
+(If you have an app idea and need a developer...<InternalLink slug="/contact">let's talk'</InternalLink>!)
+
+**My special skill set taking ideas and building them online**... for fun and profit.
+
+I've owned three businesses of my own in the past:
+
+1. Freelance web design and copywriting (now I'm back)
+2. An importing and ecommerce store
+3. And a private fitness studio we still own today
+
+I know what it takes to work with clients... be **honest**... **clean**... and **overdeliver for results**.
+
+```
+export const AboutView: React.FC<AboutViewProps> = ({
+  headerHeadline,
+  introBodyCopy,
+}) => {
+  return (
+    <ViewContainer>
+      <HeaderSection headline={headerHeadline} />
+      <IntroSection bodyCopy={introBodyCopy.code} />
+    </ViewContainer>
+  );
+};
+```

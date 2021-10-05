@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import { TextInput } from "../inputs/TextInput";
-import { Textarea } from "../inputs/TextArea";
+import { ProjectQuizTextInpu } from "./TextInput";
+import { ProjectQuizTextArea } from "./TextArea";
 import { RadioInput } from "./RadioInput";
 import { useProjectQuizForm } from "../../../hooks/forms/useProjectQuizForm";
 import {
+  additionalDetailsQuestion,
   haveBudgetQuestion,
   haveImagesQuestion,
   haveMarketingPlanQuestion,
   haveTimelineQuestion,
   haveWebsiteQuestion,
   howManyProductsQuestion,
+  idealTimelineQuestion,
   primaryInterestQuestion,
   salesCopyPurposeQuestion,
+  whatIsUrlQuestion,
 } from "../../../hooks/forms/projectQuizData";
 
 const FormContainer = styled.form`
@@ -59,11 +62,8 @@ export const ProjectQuizForm = () => {
     };
   }, []);
 
-  const handleNextQuestion = () => {
-    setQuestionId((prevValue) => ({
-      activeId: nextQuestionId,
-      prevId: prevValue.activeId,
-    }));
+  const handleNextQuestion = (questionId: number) => {
+    setNextQuestionId(questionId);
   };
 
   const handlePrevQuestion = () => {
@@ -142,6 +142,48 @@ export const ProjectQuizForm = () => {
         inputLabel="What do you need copy help with?"
         options={salesCopyPurpose.options}
         updateInputValue={updateInputValue}
+        handlePrevQuestion={handlePrevQuestion}
+      />
+      <RadioInput
+        activeId={nextQuestionId}
+        questionId={idealTimelineQuestion.id}
+        name="idealTimeline"
+        inputLabel="What is your ideal timeline?"
+        options={idealTimeline.options}
+        updateInputValue={updateInputValue}
+        handlePrevQuestion={handlePrevQuestion}
+      />
+      <ProjectQuizTextInpu
+        activeId={nextQuestionId}
+        questionId={whatIsUrlQuestion.id}
+        nextQuestionId={whatIsUrlQuestion.options.nextQuestion}
+        inputName="websiteUrl"
+        labelName="What is your website url (address)?"
+        labelFor="websiteUrl"
+        value={websiteUrlValue.value}
+        valid={websiteUrlValue.valid}
+        initial={websiteUrlOptions.initial}
+        touched={websiteUrlOptions.touched}
+        updateInputValue={updateInputValue}
+        updateInputOptions={updateInputOptions}
+        handleNextQuestion={handleNextQuestion}
+        handlePrevQuestion={handlePrevQuestion}
+      />
+      <ProjectQuizTextArea
+        activeId={nextQuestionId}
+        questionId={additionalDetailsQuestion.id}
+        nextQuestionId={additionalDetailsQuestion.options.nextQuestion}
+        name="moreDetails"
+        labelName="Optional: More details..."
+        maxLength={600}
+        rows={8}
+        value={additionalDetailsValue.value}
+        valid={additionalDetailsValue.valid}
+        initial={additionalDetailsOptions.initial}
+        touched={additionalDetailsOptions.touched}
+        updateInputValue={updateInputValue}
+        updateInputOptions={updateInputOptions}
+        handleNextQuestion={handleNextQuestion}
         handlePrevQuestion={handlePrevQuestion}
       />
     </FormContainer>

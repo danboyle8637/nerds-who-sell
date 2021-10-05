@@ -3,7 +3,6 @@ import fs from "fs";
 import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import { HomePageProps } from "../src/types/pages";
-import styled from "styled-components";
 
 import { HomeView } from "../src/views/Home";
 

@@ -1,5 +1,7 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+
 export interface Markdown {
-  code: string;
+  code: MDXRemoteSerializeResult<Record<string, unknown>>;
   frontmatter: {
     [key: string]: string | number;
   };
@@ -23,5 +25,18 @@ export interface HomePageProps {
   webDevServices: Services;
   copywritingContent: Markdown;
   copywritingServices: Services;
+  callToActionContent: Markdown;
+}
+
+interface Qualities {
+  honest: Markdown;
+  clear: Markdown;
+  overdeliver: Markdown;
+}
+
+export interface AboutPageProps {
+  headerContent: Markdown;
+  whoContent: Markdown;
+  qualitiesContent: Qualities;
   callToActionContent: Markdown;
 }

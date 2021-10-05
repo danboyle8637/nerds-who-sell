@@ -19,3 +19,5 @@ export interface BaseSVG {
   height?: string;
   className?: string;
 }
+
+export type ListType = "ol" | "ul";
