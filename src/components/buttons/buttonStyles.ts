@@ -14,7 +14,6 @@ export const baseButtonStyles = css`
   background-color: var(--base-button-background, var(--accent-1));
   border: none;
   border-radius: 12px;
-  outline: none;
   width: 300px;
   box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.3);
   cursor: pointer;

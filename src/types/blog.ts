@@ -4,9 +4,12 @@ interface BlogFrontmatter {
   pageDescription: string;
   author: string;
   featureImage: string;
+  altTag: string;
+  titleTag: string;
   headline: string;
   description: string;
-  tags: string[];
+  category: BlogCategory;
+  tags: BlogTag[];
   socialImage: string;
   socialHeadling: string;
   socialDescription: string;
@@ -23,3 +26,22 @@ export interface BlogPostListPage {
 }
 
 export type BlogCategory = "marketing" | "web-design" | "conversion" | "coding";
+
+export type BlogTag =
+  | "typescript"
+  | "javascript"
+  | "react"
+  | "faunadb"
+  | "cloudflare workers"
+  | "durable objects"
+  | "images"
+  | "node"
+  | "go"
+  | "swift"
+  | "dates"
+  | "book review"
+  | "opinion"
+  | "media buying"
+  | "copywriting"
+  | "email copy"
+  | "conversion";
