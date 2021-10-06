@@ -4,7 +4,6 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { AuthenticNerds } from "../../../../components/images/AuthenticNerds";
 import { bodyText, smallHeadline } from "../../../../styles/typography";
 import { Paragraph, Strong } from "../../../../components/mdx";
-import { sizes } from "../../../../styles/sizes";
 
 interface AboveMobileLayoutProps {
   headline: string;

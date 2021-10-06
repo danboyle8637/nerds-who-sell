@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import Global from "../styles/Global";
-import { MenuDrawer } from "../components/overlays/MenuDrawer";
+import { NavBar } from "../components/navigation/NavBar";
 import { Footer } from "../components/navigation/Footer";
 import { QuizOverlay } from "../components/overlays/QuizOverlay";
 import { Portal } from "../components/shared/Portal";
@@ -34,6 +34,7 @@ export const BaseLayout: React.FC = ({ children }) => {
     <>
       <BaseContainer>
         <Global />
+        <NavBar />
         <ContentContainer>{children}</ContentContainer>
         <Footer />
       </BaseContainer>

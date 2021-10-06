@@ -18,6 +18,12 @@ const MenuContainer = styled.button`
   border: none;
   cursor: pointer;
   width: 54px;
+  &:focus {
+    outline-color: var(--accent-2);
+    outline-width: 2px;
+    outline-offset: 20px;
+    outline-style: dotted;
+  }
 `;
 
 const TopContainer = styled.div`

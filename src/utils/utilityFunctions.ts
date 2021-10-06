@@ -22,3 +22,7 @@ export const useImageTransformations = (
   const fullUrl = [splitUrl[0], `2021/${progressive}`, splitUrl[1]].join("");
   return fullUrl;
 };
+
+export const randomValue = (max: number): number => {
+  return Math.floor(Math.random() * max);
+};
