@@ -1,15 +1,19 @@
-import { useMemo } from "react";
 import styled from "styled-components";
-import { getMDXComponent } from "mdx-bundler/client";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
-import { Paragraph } from "../../mdx/Paragraph";
+import { Paragraph, Strong } from "../../mdx";
 import { smallHeadline } from "../../../styles/typography";
 import { sizes } from "../../../styles/sizes";
 
 interface CardContentProps {
   headline: string;
-  description: string;
+  description: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
+
+const components = {
+  p: (props: any) => <Paragraph {...props} />,
+  strong: (props: any) => <Strong {...props} />,
+};
 
 const Container = styled.div`
   padding: 24px 16px 16px 16px;
@@ -34,15 +38,10 @@ export const CardContent: React.FC<CardContentProps> = ({
   headline,
   description,
 }) => {
-  const Description = useMemo(
-    () => getMDXComponent(description),
-    [description]
-  );
-
   return (
     <Container>
       <Headline>{headline}</Headline>
-      <Description components={{ p: Paragraph }} />
+      <MDXRemote {...description} components={components} />
     </Container>
   );
 };

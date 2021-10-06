@@ -1,11 +1,12 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-import { BlogCardImage } from "../../images/BlogCardImage";
+import { BlogCardImage } from "../../images/blog/BlogCardImage";
 import { CategoryIcon } from "./CategoryIcon";
 import { BlogPostTagButton } from "../../buttons/BlogPostTagButton";
 import { bodyText, smallHeadline } from "../../../styles/typography";
 import { BlogCategory, BlogTag } from "../../../types/blog";
+import { sizes } from "../../../styles/sizes";
 
 interface BlogCardProps {
   featureImage: string;
@@ -40,11 +41,16 @@ const CardContainer = styled.a`
   cursor: pointer;
   box-shadow: 0 4px 4px 0 hsla(0, 0%, 0%, 0.3);
   overflow: hidden;
+  transition: transform, box-shadow, 300ms ease-in-out;
   &:focus {
     outline-color: var(--accent-2);
     outline-width: 2px;
     outline-offset: 8px;
     outline-style: dotted;
+  }
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 18px 2px hsla(0, 0%, 0%, 0.18);
   }
 `;
 
@@ -65,12 +71,28 @@ const ContentContainer = styled.div`
 
 const CardHeadline = styled.h2`
   ${smallHeadline}
-  font-size: 3.8rem;
+  font-size: 2.6rem;
+  line-height: 1.4;
+  ${sizes.aboveMobile} {
+    font-size: 2.6rem;
+    line-height: 1.4;
+  }
+  ${sizes.aboveTablet} {
+    font-size: 3.8rem;
+  }
 `;
 
 const CardDescription = styled.p`
   ${bodyText}
+  font-size: 1.4rem;
   line-height: 1.5;
+  ${sizes.aboveMobile} {
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+  ${sizes.aboveTablet} {
+    font-size: 1.6rem;
+  }
 `;
 
 const CategoryContainer = styled.div`
@@ -80,11 +102,9 @@ const CategoryContainer = styled.div`
 `;
 
 const TagContainer = styled.div`
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: 1fr;
+  display: flex;
+  justify-content: flex-end;
   gap: 10px;
-  justify-items: end;
   width: 100%;
 `;
 
@@ -106,9 +126,13 @@ export const BlogCard: React.FC<BlogCardProps> = ({
     return <BlogPostTagButton key={i} tag={tag} handleClick={handleTagClick} />;
   });
 
+  const styles = {
+    "--blog-card-background": "hsl(0, 0%, 9%)",
+  } as React.CSSProperties;
+
   return (
-    <Link href={slug} passHref={true}>
-      <CardComplexContainer aria-label={headline}>
+    <CardComplexContainer style={styles} aria-label={headline}>
+      <Link href={`/blog/${slug}`} passHref={true}>
         <CardContainer>
           <ImageContainer>
             <BlogCardImage
@@ -125,8 +149,8 @@ export const BlogCard: React.FC<BlogCardProps> = ({
             <CardDescription>{description}</CardDescription>
           </ContentContainer>
         </CardContainer>
-        <TagContainer>{postTags}</TagContainer>
-      </CardComplexContainer>
-    </Link>
+      </Link>
+      <TagContainer>{postTags}</TagContainer>
+    </CardComplexContainer>
   );
 };

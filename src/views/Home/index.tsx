@@ -5,24 +5,14 @@ import { ProblemSection } from "./ProblemSection";
 import { IntroductionSection } from "./IntroductionSection";
 import { ServicesSection } from "./ServicesSection";
 import { CallToActionSection } from "./CallToActionSection";
-import { Markdown } from "../../types/pages";
+import { Markdown, Services } from "../../types/pages";
 
 interface HomeViewProps {
-  webDevPreHeadline: string;
-  webDevHeadline: string;
-  webDevBodyCopy: string;
-  webDevService1: Markdown;
-  webDevService2: Markdown;
-  webDevService3: Markdown;
-  copywritingPreHeadline: string;
-  copywritingHeadline: string;
-  copywritingBodyCopy: string;
-  copywritingService1: Markdown;
-  copywritingService2: Markdown;
-  copywritingService3: Markdown;
-  ctaPreHeadline: string;
-  ctaHeadline: string;
-  ctaBodyCopy: string;
+  webDevContent: Markdown;
+  webDevServices: Services;
+  copywritingContent: Markdown;
+  copywritingServices: Services;
+  ctaContent: Markdown;
 }
 
 const ViewContainer = styled.div`
@@ -34,22 +24,14 @@ const ViewContainer = styled.div`
 `;
 
 export const HomeView: React.FC<HomeViewProps> = ({
-  webDevPreHeadline,
-  webDevHeadline,
-  webDevBodyCopy,
-  webDevService1,
-  webDevService2,
-  webDevService3,
-  copywritingPreHeadline,
-  copywritingHeadline,
-  copywritingBodyCopy,
-  copywritingService1,
-  copywritingService2,
-  copywritingService3,
-  ctaPreHeadline,
-  ctaHeadline,
-  ctaBodyCopy,
+  webDevContent,
+  webDevServices,
+  copywritingContent,
+  copywritingServices,
+  ctaContent,
 }) => {
+  const { service1, service2, service3 } = webDevServices;
+
   return (
     <ViewContainer>
       <HeaderSection />
@@ -57,26 +39,26 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <IntroductionSection />
       <ServicesSection
         serviceType="web-dev"
-        preHeadline={webDevPreHeadline}
-        headline={webDevHeadline}
-        bodyCopy={webDevBodyCopy}
-        service1={webDevService1}
-        service2={webDevService2}
-        service3={webDevService3}
+        preHeadline={webDevContent.frontmatter.preHeadline as string}
+        headline={webDevContent.frontmatter.headline as string}
+        bodyCopy={webDevContent.code}
+        service1={service1}
+        service2={service2}
+        service3={service3}
       />
       <ServicesSection
         serviceType="copywriting"
-        preHeadline={copywritingPreHeadline}
-        headline={copywritingHeadline}
-        bodyCopy={copywritingBodyCopy}
-        service1={copywritingService1}
-        service2={copywritingService2}
-        service3={copywritingService3}
+        preHeadline={copywritingContent.frontmatter.preHeadline as string}
+        headline={copywritingContent.frontmatter.headline as string}
+        bodyCopy={copywritingContent.code}
+        service1={copywritingServices.service1}
+        service2={copywritingServices.service2}
+        service3={copywritingServices.service3}
       />
       <CallToActionSection
-        preHeadline={ctaPreHeadline}
-        headline={ctaHeadline}
-        bodyCopy={ctaBodyCopy}
+        preHeadline={ctaContent.frontmatter.preHeadline as string}
+        headline={ctaContent.frontmatter.headline as string}
+        bodyCopy={ctaContent.code}
       />
     </ViewContainer>
   );

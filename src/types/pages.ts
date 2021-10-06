@@ -8,13 +8,13 @@ export interface Markdown {
 }
 
 export interface PostProps {
-  code: string;
+  code: MDXRemoteSerializeResult<Record<string, unknown>>;
   frontmatter: {
     [key: string]: any;
   };
 }
 
-interface Services {
+export interface Services {
   service1: Markdown;
   service2: Markdown;
   service3: Markdown;

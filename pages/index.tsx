@@ -1,7 +1,8 @@
 import { GetStaticProps } from "next";
 import fs from "fs";
 import path from "path";
-import { bundleMDX } from "mdx-bundler";
+import { serialize } from "next-mdx-remote/serialize";
+import matter from "gray-matter";
 import { HomePageProps } from "../src/types/pages";
 
 import { HomeView } from "../src/views/Home";
@@ -15,23 +16,11 @@ const Home: React.FC<HomePageProps> = ({
 }) => {
   return (
     <HomeView
-      webDevPreHeadline={webDevContent.frontmatter.preHeadline as string}
-      webDevHeadline={webDevContent.frontmatter.headline as string}
-      webDevBodyCopy={webDevContent.code}
-      webDevService1={webDevServices.service1}
-      webDevService2={webDevServices.service2}
-      webDevService3={webDevServices.service3}
-      copywritingPreHeadline={
-        copywritingContent.frontmatter.preHeadline as string
-      }
-      copywritingHeadline={copywritingContent.frontmatter.headline as string}
-      copywritingBodyCopy={copywritingContent.code}
-      copywritingService1={copywritingServices.service1}
-      copywritingService2={copywritingServices.service2}
-      copywritingService3={copywritingServices.service3}
-      ctaPreHeadline={callToActionContent.frontmatter.preHeadline as string}
-      ctaHeadline={callToActionContent.frontmatter.headline as string}
-      ctaBodyCopy={callToActionContent.code}
+      webDevContent={webDevContent}
+      webDevServices={webDevServices}
+      copywritingContent={copywritingContent}
+      copywritingServices={copywritingServices}
+      ctaContent={callToActionContent}
     />
   );
 };
@@ -39,38 +28,42 @@ const Home: React.FC<HomePageProps> = ({
 export const getStaticProps: GetStaticProps = async () => {
   const contentPath = path.join(process.cwd(), "data/home");
 
-  const getSourceOfFile = (filename: string) => {
-    return fs.readFileSync(path.join(contentPath, filename), "utf8");
+  const getSourceOfFile = (filename: string, sourcePath: string) => {
+    return fs.readFileSync(path.join(sourcePath, filename), "utf8");
   };
 
-  const getContent = async (filename: string) => {
-    const source = getSourceOfFile(`${filename}.mdx`);
+  const getContent = async (filename: string, sourcePath: string) => {
+    const source = getSourceOfFile(`${filename}.mdx`, sourcePath);
 
-    const { code, frontmatter } = await bundleMDX(source, {
-      cwd: contentPath,
-      esbuildOptions: (options) => {
-        options.platform = "node";
-        return options;
-      },
-    });
+    const { content, data } = matter(source);
+    const mdxString = await serialize(content);
 
     return {
-      code,
-      frontmatter,
+      frontmatter: data,
+      code: mdxString,
     };
   };
 
-  const webDevContent = await getContent("web-dev");
-  const webDevService1 = await getContent("web-dev-new-site");
-  const webDevService2 = await getContent("web-dev-landing-page");
-  const webDevService3 = await getContent("web-dev-ecom");
+  const webDevContent = await getContent("web-dev", contentPath);
+  const webDevService1 = await getContent("web-dev-new-site", contentPath);
+  const webDevService2 = await getContent("web-dev-landing-page", contentPath);
+  const webDevService3 = await getContent("web-dev-ecom", contentPath);
 
-  const copywritingContent = await getContent("copywriting");
-  const copywritingService1 = await getContent("copywriting-rewrite");
-  const copywritingService2 = await getContent("copywriting-emails");
-  const copywritingService3 = await getContent("copywriting-facebook-ads");
+  const copywritingContent = await getContent("copywriting", contentPath);
+  const copywritingService1 = await getContent(
+    "copywriting-rewrite",
+    contentPath
+  );
+  const copywritingService2 = await getContent(
+    "copywriting-emails",
+    contentPath
+  );
+  const copywritingService3 = await getContent(
+    "copywriting-facebook-ads",
+    contentPath
+  );
 
-  const callToActionContent = await getContent("call-to-action");
+  const callToActionContent = await getContent("call-to-action", contentPath);
 
   return {
     props: {

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { smallHeadline, largeHeadline } from "../../../../styles/typography";
 import { ConversationWordBubbles } from "../../../../components/images/ConversationBubbles";
+import { sizes } from "../../../../styles/sizes";
 
 interface HeaderProps {
   preHeadline: string;
@@ -18,8 +19,12 @@ const ConversationImage = styled.div`
   position: absolute;
   top: 0;
   left: 50%;
-  width: 360px;
-  transform: translate(-50%, -240px);
+  width: 280px;
+  transform: translate(-50%, -200px);
+  ${sizes.aboveMobile} {
+    width: 360px;
+    transform: translate(-50%, -240px);
+  }
 `;
 
 const HeadlineContainer = styled.div`

@@ -8,8 +8,6 @@ import { BlogPostListPage } from "../../src/types/blog";
 import { BlogCard } from "../../src/components/cards/BlogCard";
 
 const Blog: React.FC<BlogPostListPage> = ({ posts }) => {
-  console.log(posts);
-
   const blogPosts = posts.map((post) => {
     const id = post.frontmatter.id;
     const featureImage = post.frontmatter.featureImage;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import { CopySection } from "./CopySection";
 import { ServiceCards } from "./ServiceCards";
@@ -11,7 +12,7 @@ interface WebDevSectionProps {
   serviceType: ServiceType;
   preHeadline: string;
   headline: string;
-  bodyCopy: string;
+  bodyCopy: MDXRemoteSerializeResult;
   service1: Markdown;
   service2: Markdown;
   service3: Markdown;

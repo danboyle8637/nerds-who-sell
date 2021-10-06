@@ -4,12 +4,13 @@ import path from "path";
 import { serialize } from "next-mdx-remote/serialize";
 import matter from "gray-matter";
 import { PostProps } from "../../src/types/pages";
+import { BlogFrontmatter } from "../../src/types/blog";
+
+import { BlogPostView } from "../../src/views/Blog";
 
 const Post: React.FC<PostProps> = ({ code, frontmatter }) => {
   return (
-    <div style={{ width: "100%" }}>
-      <h1>BLog post cards here...</h1>
-    </div>
+    <BlogPostView frontmatter={frontmatter as BlogFrontmatter} content={code} />
   );
 };
 

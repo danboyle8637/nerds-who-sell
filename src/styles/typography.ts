@@ -24,3 +24,5 @@ export const bodyText = css`
     font-size: 1.8rem;
   }
 `;
+
+export const anchorText = css``;

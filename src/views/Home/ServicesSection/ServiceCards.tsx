@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 import { ServiceCard } from "../../../components/cards/ServiceCard";
-import { useMatchMedia } from "../../../hooks/componets/useMatchMedia";
 import { Markdown } from "../../../types/pages";
 import { ServiceImage, ServiceType } from "../../../types/components";
 import { sizes } from "../../../styles/sizes";

@@ -1,4 +1,4 @@
-interface BlogFrontmatter {
+export interface BlogFrontmatter {
   id: string;
   pageTitle: string;
   pageDescription: string;

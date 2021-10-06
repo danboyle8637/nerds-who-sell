@@ -1,6 +1,5 @@
-import { useMemo } from "react";
 import styled from "styled-components";
-import { getMDXComponent } from "mdx-bundler/client";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import { Headline } from "./Headline";
 import { Paragraph, Strong } from "../../../components/mdx";
@@ -9,8 +8,13 @@ import { sizes } from "../../../styles/sizes";
 interface CopySectionProps {
   preHeadline: string;
   headline: string;
-  bodyCopy: string;
+  bodyCopy: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
+
+const components = {
+  p: (props: any) => <Paragraph {...props} />,
+  strong: (props: any) => <Strong {...props} />,
+};
 
 const SectionContainer = styled.section`
   padding: 0 12px;
@@ -45,13 +49,11 @@ export const CopySection: React.FC<CopySectionProps> = ({
   headline,
   bodyCopy,
 }) => {
-  const WebDevComponent = useMemo(() => getMDXComponent(bodyCopy), [bodyCopy]);
-
   return (
     <SectionContainer>
       <Headline preHeadline={preHeadline} headline={headline} />
       <ContentContainer>
-        <WebDevComponent components={{ p: Paragraph, strong: Strong }} />
+        <MDXRemote {...bodyCopy} components={components} />
       </ContentContainer>
     </SectionContainer>
   );

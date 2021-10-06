@@ -40,7 +40,10 @@ const TagLabel = styled.p`
   letter-spacing: 0.1rem;
 `;
 
-export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({ tag }) => {
+export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
+  tag,
+  handleClick,
+}) => {
   const renderTagColor = useCallback(() => {
     switch (tag) {
       case "conversion":
@@ -88,7 +91,7 @@ export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({ tag }) => {
   } as React.CSSProperties;
 
   return (
-    <TagContainer style={styles}>
+    <TagContainer style={styles} type="button" onClick={handleClick}>
       <TagLabel>{tag}</TagLabel>
     </TagContainer>
   );

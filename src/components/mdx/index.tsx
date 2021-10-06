@@ -6,6 +6,7 @@ import { CodeSandboxEmbed } from "./CodeSandboxEmbed";
 import { List } from "./List";
 import { ListItem } from "./ListItem";
 import { Code } from "./Code";
+import { CallOutBox } from "./CallOutBox";
 
 export {
   Paragraph,
@@ -16,4 +17,5 @@ export {
   List,
   ListItem,
   Code,
+  CallOutBox,
 };

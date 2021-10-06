@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import { CardHeader } from "./CardHeader";
 import { CardContent } from "./CardContent";
@@ -9,7 +10,7 @@ import { sizes } from "../../../styles/sizes";
 interface ServiceCardProps {
   imageType: ServiceImage;
   headline: string;
-  description: string;
+  description: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
 
 const CardContainer = styled.div`
