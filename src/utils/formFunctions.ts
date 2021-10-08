@@ -7,7 +7,7 @@ export const updateOptions = (
 ): Option[] => {
   return optionsArray.map((option) => {
     if (option.value === value) {
-      option.isChecked = !option.isChecked;
+      option.isChecked = true;
       return option;
     } else if (option.isChecked) {
       option.isChecked = !option.isChecked;
@@ -23,7 +23,7 @@ export const updateProjectQuizOptions = (
 ): AnswerOption[] => {
   return optionsArray.map((option) => {
     if (option.value === value) {
-      option.isSelected = !option.isSelected;
+      option.isSelected = true;
       return option;
     } else if (option.isSelected) {
       option.isSelected = !option.isSelected;
@@ -31,6 +31,15 @@ export const updateProjectQuizOptions = (
     }
     return option;
   });
+};
+
+export const resetProjectQuizOptions = (
+  optionsArray: AnswerOption[]
+): AnswerOption[] => {
+  return optionsArray.map((option) => ({
+    ...option,
+    isSelected: false,
+  }));
 };
 
 export const findNextQuestion = (options: AnswerOption[]) => {

@@ -1,6 +1,15 @@
 import { css } from "styled-components";
 import { sizes } from "../../styles/sizes";
 
+export const buttonFocus = css`
+  &:focus {
+    outline-color: var(--accent-2);
+    outline-width: 2px;
+    outline-offset: 8px;
+    outline-style: dotted;
+  }
+`;
+
 export const baseButtonStyles = css`
   padding: 16px 20px;
   display: flex;

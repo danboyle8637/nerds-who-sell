@@ -19,11 +19,14 @@ interface RadioInputProps {
 }
 
 const InputContainer = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 40px;
   justify-items: center;
+  width: 100%;
 `;
 
 export const RadioInput: React.FC<RadioInputProps> = ({

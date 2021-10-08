@@ -19,7 +19,8 @@ const InputContainer = styled.div`
   grid-auto-rows: min-content;
   gap: 20px;
   justify-items: start;
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
 `;
 
 const OptionContainer = styled.div`

@@ -4,6 +4,7 @@ import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { Header } from "./Header";
 import { CopySection } from "./CopySection";
 import { ActionButton } from "../../../components/buttons/ActionButton";
+import { nerdsWhoSellStore } from "../../../../lib/store";
 
 interface CallToActionProps {
   preHeadline: string;
@@ -27,8 +28,12 @@ export const CallToActionSection: React.FC<CallToActionProps> = ({
   headline,
   bodyCopy,
 }) => {
+  const toggleQuizOverlay = nerdsWhoSellStore(
+    (state) => state.toggleQuizOverlay
+  );
+
   const handleButtonClick = () => {
-    console.log("Open up the question overlay");
+    toggleQuizOverlay();
   };
 
   return (

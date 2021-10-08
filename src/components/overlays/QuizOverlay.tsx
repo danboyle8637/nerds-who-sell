@@ -6,12 +6,42 @@ import {
   navDrawerOpenAni,
   navDrawerClosedAni,
 } from "../../animations/navigation";
+import { quizCloseButtonEnterAni } from "../../animations/buttons";
 import { ProjectQuizForm } from "../forms/ProjectQuizForm";
+import { CloseIcon } from "../images/CloseIcon";
+import { buttonFocus } from "../buttons/buttonStyles";
+import {
+  QuizRadioInputValue,
+  QuizeTextInputOptions,
+  QuizTextInputValue,
+} from "../../hooks/forms/useProjectQuizForm";
 import { sizes } from "../../styles/sizes";
 
 interface QuizOverlayProps {
   isOpen: boolean;
   toggleOverlay: () => void;
+  nextQuestionId: number;
+  prevQuestionId: number;
+  primaryInterest: QuizRadioInputValue;
+  haveWebsite: QuizRadioInputValue;
+  haveTimeline: QuizRadioInputValue;
+  haveBudget: QuizRadioInputValue;
+  haveImages: QuizRadioInputValue;
+  haveMarketingPlan: QuizRadioInputValue;
+  numberOfProducts: QuizRadioInputValue;
+  salesCopyPurpose: QuizRadioInputValue;
+  additionalDetailsValue: QuizTextInputValue;
+  additionalDetailsOptions: QuizeTextInputOptions;
+  websiteUrlValue: QuizTextInputValue;
+  websiteUrlOptions: QuizeTextInputOptions;
+  idealTimeline: QuizRadioInputValue;
+  updateInputValue: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  updateInputOptions: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  setNextQuestionId: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const BackgroundOverlay = styled.div`
@@ -65,17 +95,49 @@ const DrawerContainer = styled.nav`
   }
 `;
 
+const Close = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  width: 38px;
+  cursor: pointer;
+  ${buttonFocus}
+`;
+
 export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   isOpen,
   toggleOverlay,
+  nextQuestionId,
+  prevQuestionId,
+  primaryInterest,
+  haveWebsite,
+  haveTimeline,
+  haveBudget,
+  haveImages,
+  haveMarketingPlan,
+  numberOfProducts,
+  salesCopyPurpose,
+  additionalDetailsValue,
+  additionalDetailsOptions,
+  websiteUrlValue,
+  websiteUrlOptions,
+  idealTimeline,
+  updateInputValue,
+  updateInputOptions,
+  setNextQuestionId,
 }) => {
-  const navRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const nav = navRef.current;
+    const closeButton = closeButtonRef.current;
 
-    if (nav && isOpen) {
+    if (nav && closeButton && isOpen) {
       navDrawerOpenAni(nav);
+      quizCloseButtonEnterAni(closeButton);
     }
 
     if (nav && !isOpen) {
@@ -87,7 +149,34 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
     <QuizDrawerTransition isOpen={isOpen}>
       <BackgroundOverlay>
         <DrawerContainer ref={navRef}>
-          <ProjectQuizForm />
+          <ProjectQuizForm
+            nextQuestionId={nextQuestionId}
+            prevQuestionId={prevQuestionId}
+            primaryInterest={primaryInterest}
+            haveWebsite={haveWebsite}
+            haveTimeline={haveTimeline}
+            haveBudget={haveBudget}
+            haveImages={haveImages}
+            haveMarketingPlan={haveMarketingPlan}
+            numberOfProducts={numberOfProducts}
+            salesCopyPurpose={salesCopyPurpose}
+            additionalDetailsValue={additionalDetailsValue}
+            additionalDetailsOptions={additionalDetailsOptions}
+            websiteUrlValue={websiteUrlValue}
+            websiteUrlOptions={websiteUrlOptions}
+            idealTimeline={idealTimeline}
+            updateInputValue={updateInputValue}
+            updateInputOptions={updateInputOptions}
+            setNextQuestionId={setNextQuestionId}
+          />
+          <Close
+            ref={closeButtonRef}
+            type="button"
+            aria-label="Close quiz overlay"
+            onClick={toggleOverlay}
+          >
+            <CloseIcon />
+          </Close>
         </DrawerContainer>
         <ClickLayer onClick={toggleOverlay} />
       </BackgroundOverlay>

@@ -43,8 +43,13 @@ export const ServiceCallToAction: React.FC<ServiceCallToActionProps> = ({
     toggleQuizOverlay();
   };
 
+  const styles = {
+    "--base-button-background": "var(--accent-2)",
+    "--base-button-text-color": "var(--primary-background)",
+  } as React.CSSProperties;
+
   return (
-    <CallToActionContainer>
+    <CallToActionContainer style={styles}>
       <Copy>{cta}</Copy>
       <ActionButton handleClick={handleButtonClick}>{buttonText}</ActionButton>
     </CallToActionContainer>

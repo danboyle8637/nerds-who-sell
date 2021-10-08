@@ -1,4 +1,4 @@
-import { gsap, Power2 } from "gsap";
+import { gsap, Power2, Linear } from "gsap";
 import { randomValue } from "../utils/utilityFunctions";
 
 export const navDrawerOpenAni = (drawer: HTMLElement) => {
@@ -48,19 +48,74 @@ export const navPixelsOpenAni = (pixel: HTMLDivElement) => {
     autoAlpha: o,
     scale: s,
     backgroundColor: bg,
-    stagger: 0.1,
-  }).to(
-    pixel,
+    ease: Power2.easeOut,
+  });
+};
+
+export const navPixelCloseAni = (pixel: HTMLDivElement, kill: boolean) => {
+  const delayArray = [0.4, 0.42, 0.44, 0.46, 0.48, 0.47, 0.49, 0.5];
+
+  const delay = delayArray[randomValue(8)];
+
+  const tl = gsap.timeline();
+
+  if (kill) {
+    tl.kill();
+  }
+
+  tl.to(pixel, {
+    duration: 0.3,
+    x: 0,
+    y: 0,
+    autoAlpha: 0,
+    scale: 0,
+    ease: Power2.easeIn,
+    delay: delay,
+  });
+};
+
+export const closeIconEnterAni = (icon: HTMLButtonElement) => {
+  gsap.fromTo(
+    icon,
+    {
+      scale: 0,
+      autoAlpha: 0,
+    },
     {
       duration: 0.3,
-      x: tX * -1,
-      y: tY,
-      autoAlpha: 0,
-      scale: s * 2,
-      stagger: 0.1,
-    },
-    "-=0.05"
+      transformOrigin: "100% 0%",
+      scale: 1,
+      autoAlpha: 1,
+      delay: 0.15,
+    }
   );
 };
 
-export const navPixelCloseAni = (pixel: HTMLDivElement) => {};
+export const closeIconExitAni = (icon: HTMLButtonElement) => {
+  gsap.to(icon, {
+    duration: 0.3,
+    transformOrigin: "100% 0%",
+    scale: 0,
+    autoAlpha: 0,
+    delay: 0.1,
+  });
+};
+
+export const navItemsEnterAni = (navItems: HTMLDivElement[]) => {
+  gsap.fromTo(
+    navItems,
+    {
+      scale: 0,
+      autoAlpha: 0,
+    },
+    {
+      duration: 0.3,
+      transformOrigin: "50% 0%",
+      scale: 1,
+      autoAlpha: 1,
+      ease: Power2.easeOut,
+      stagger: 0.05,
+      delay: 0.3,
+    }
+  );
+};

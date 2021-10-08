@@ -1,4 +1,4 @@
-import { gsap, Linear } from "gsap";
+import { gsap, Linear, Power3 } from "gsap";
 
 export const buttonBoostersOnAni = (booster: HTMLDivElement) => {
   const tl = gsap.timeline();
@@ -32,4 +32,21 @@ export const buttonBoostersOffAni = (booster: HTMLDivElement) => {
     autoAlpha: 0,
     ease: Linear.easeNone,
   });
+};
+
+export const quizCloseButtonEnterAni = (button: HTMLButtonElement) => {
+  gsap.fromTo(
+    button,
+    {
+      x: "100%",
+      autoAlpha: 0,
+    },
+    {
+      duration: 0.2,
+      x: 0,
+      autoAlpha: 1,
+      ease: Power3.easeOut,
+      delay: 0.4,
+    }
+  );
 };

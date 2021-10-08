@@ -1,67 +1,72 @@
-import { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { ProjectQuizTextInpu } from "./TextInput";
 import { ProjectQuizTextArea } from "./TextArea";
 import { RadioInput } from "./RadioInput";
-import { useProjectQuizForm } from "../../../hooks/forms/useProjectQuizForm";
 import {
-  additionalDetailsQuestion,
-  haveBudgetQuestion,
-  haveImagesQuestion,
-  haveMarketingPlanQuestion,
-  haveTimelineQuestion,
-  haveWebsiteQuestion,
-  howManyProductsQuestion,
-  idealTimelineQuestion,
-  primaryInterestQuestion,
-  salesCopyPurposeQuestion,
-  whatIsUrlQuestion,
-} from "../../../hooks/forms/projectQuizData";
+  QuizRadioInputValue,
+  QuizeTextInputOptions,
+  QuizTextInputValue,
+} from "../../../hooks/forms/useProjectQuizForm";
+
+interface ProjectQuizFormProps {
+  nextQuestionId: number;
+  prevQuestionId: number;
+  primaryInterest: QuizRadioInputValue;
+  haveWebsite: QuizRadioInputValue;
+  haveTimeline: QuizRadioInputValue;
+  haveBudget: QuizRadioInputValue;
+  haveImages: QuizRadioInputValue;
+  haveMarketingPlan: QuizRadioInputValue;
+  numberOfProducts: QuizRadioInputValue;
+  salesCopyPurpose: QuizRadioInputValue;
+  additionalDetailsValue: QuizTextInputValue;
+  additionalDetailsOptions: QuizeTextInputOptions;
+  websiteUrlValue: QuizTextInputValue;
+  websiteUrlOptions: QuizeTextInputOptions;
+  idealTimeline: QuizRadioInputValue;
+  updateInputValue: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  updateInputOptions: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  setNextQuestionId: React.Dispatch<React.SetStateAction<number>>;
+}
 
 const FormContainer = styled.form`
   position: relative;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  justify-items: center;
   align-items: center;
   background-color: none;
   width: 100%;
   height: 100vh;
 `;
 
-export const ProjectQuizForm = () => {
-  const [questionId, setQuestionId] = useState({
-    activeId: 11,
-    prevId: 0,
-  });
-
-  const {
-    nextQuestionId,
-    prevQuestionId,
-    primaryInterest,
-    haveWebsite,
-    haveTimeline,
-    haveBudget,
-    haveImages,
-    haveMarketingPlan,
-    numberOfProducts,
-    salesCopyPurpose,
-    additionalDetailsValue,
-    additionalDetailsOptions,
-    websiteUrlValue,
-    websiteUrlOptions,
-    idealTimeline,
-    updateInputValue,
-    updateInputOptions,
-    setNextQuestionId,
-  } = useProjectQuizForm();
-
-  useEffect(() => {
-    return () => {
-      console.log("Clear out the form data if they close it.");
-    };
-  }, []);
-
+export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
+  nextQuestionId,
+  prevQuestionId,
+  primaryInterest,
+  haveWebsite,
+  haveTimeline,
+  haveBudget,
+  haveImages,
+  haveMarketingPlan,
+  numberOfProducts,
+  salesCopyPurpose,
+  additionalDetailsValue,
+  additionalDetailsOptions,
+  websiteUrlValue,
+  websiteUrlOptions,
+  idealTimeline,
+  updateInputValue,
+  updateInputOptions,
+  setNextQuestionId,
+}) => {
   const handleNextQuestion = (questionId: number) => {
     setNextQuestionId(questionId);
   };
@@ -74,7 +79,7 @@ export const ProjectQuizForm = () => {
     <FormContainer>
       <RadioInput
         activeId={nextQuestionId}
-        questionId={primaryInterestQuestion.id}
+        questionId={11}
         name="primaryInterest"
         inputLabel="What is your primary goal?"
         options={primaryInterest.options}
@@ -83,7 +88,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={haveWebsiteQuestion.id}
+        questionId={0}
         name="haveWebsite"
         inputLabel="Do you currently have a website?"
         options={haveWebsite.options}
@@ -92,7 +97,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={haveTimelineQuestion.id}
+        questionId={1}
         name="haveTimeline"
         inputLabel="Do you have a timeline?"
         options={haveTimeline.options}
@@ -101,7 +106,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={haveBudgetQuestion.id}
+        questionId={2}
         name="haveBudget"
         inputLabel="Do you have a budget?"
         options={haveBudget.options}
@@ -110,7 +115,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={haveImagesQuestion.id}
+        questionId={3}
         name="haveImages"
         inputLabel="Do you have website images?"
         options={haveImages.options}
@@ -119,7 +124,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={haveMarketingPlanQuestion.id}
+        questionId={4}
         name="haveMarketingPlan"
         inputLabel="Do you have website marketing plan?"
         options={haveMarketingPlan.options}
@@ -128,7 +133,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={howManyProductsQuestion.id}
+        questionId={5}
         name="howManyProducts"
         inputLabel="How many products or services do you have?"
         options={numberOfProducts.options}
@@ -137,7 +142,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={salesCopyPurposeQuestion.id}
+        questionId={7}
         name="salesCopyPurpose"
         inputLabel="What do you need copy help with?"
         options={salesCopyPurpose.options}
@@ -146,7 +151,7 @@ export const ProjectQuizForm = () => {
       />
       <RadioInput
         activeId={nextQuestionId}
-        questionId={idealTimelineQuestion.id}
+        questionId={10}
         name="idealTimeline"
         inputLabel="What is your ideal timeline?"
         options={idealTimeline.options}
@@ -155,10 +160,10 @@ export const ProjectQuizForm = () => {
       />
       <ProjectQuizTextInpu
         activeId={nextQuestionId}
-        questionId={whatIsUrlQuestion.id}
-        nextQuestionId={whatIsUrlQuestion.options.nextQuestion}
+        questionId={9}
+        nextQuestionId={1}
         inputName="websiteUrl"
-        labelName="What is your website url (address)?"
+        labelName="Your website url (address)?"
         labelFor="websiteUrl"
         value={websiteUrlValue.value}
         valid={websiteUrlValue.valid}
@@ -171,8 +176,8 @@ export const ProjectQuizForm = () => {
       />
       <ProjectQuizTextArea
         activeId={nextQuestionId}
-        questionId={additionalDetailsQuestion.id}
-        nextQuestionId={additionalDetailsQuestion.options.nextQuestion}
+        questionId={8}
+        nextQuestionId={99}
         name="moreDetails"
         labelName="Optional: More details..."
         maxLength={600}

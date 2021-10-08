@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { NavLink } from "./NavLink";
 import { navigation } from "../../../../data/nav";
+import { sizes } from "../../../styles/sizes";
 
 const NavContainer = styled.nav`
   display: grid;
@@ -9,7 +10,12 @@ const NavContainer = styled.nav`
   grid-auto-rows: min-content;
   column-gap: 60px;
   row-gap: 40px;
+  justify-items: start;
   width: fit-content;
+  ${sizes.aboveMobile} {
+    grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
+  }
 `;
 
 export const NavLinks = () => {

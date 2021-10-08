@@ -28,6 +28,8 @@ interface TextInputProps {
 }
 
 const InputContainer = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;

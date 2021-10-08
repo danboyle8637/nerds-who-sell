@@ -4,7 +4,7 @@ import { Header } from "./Header";
 import { NavLinks } from "./NavLinks";
 
 const FooterContainer = styled.footer`
-  padding: 120px 12px 30px 12px;
+  padding: 120px 12px;
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -14,7 +14,6 @@ const FooterContainer = styled.footer`
   align-items: center;
   background-color: var(--section-background-4);
   width: 100%;
-  height: 500px;
   isolation: isolate;
 `;
 
