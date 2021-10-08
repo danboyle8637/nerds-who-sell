@@ -2,6 +2,13 @@ import { useEffect, useState, useRef, forwardRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
+import {
+  buttonBoostersOnAni,
+  buttonBoostersOffAni,
+} from "../../../animations/buttons";
+import { useIsHovering } from "../../../hooks/componets/useIsHovering";
+import { buttonFocus } from "../../buttons/buttonStyles";
+
 interface NavLinkProps {
   navLabel: string;
   slug: string;
@@ -9,10 +16,7 @@ interface NavLinkProps {
 }
 
 const NavLinkContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: min-content;
-  gap: 2px;
+  position: relative;
   width: fit-content;
 `;
 
@@ -22,49 +26,62 @@ const Label = styled.a`
   color: var(--base-text-color);
   text-decoration: none;
   text-transform: capitalize;
+  border-radius: 4px;
+  ${buttonFocus}
 `;
 
-const UnderlineContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
+const LabelBooster = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background-image: linear-gradient(to bottom, #cff5ff, #1ab5de);
+  border-radius: 600px;
   width: 100%;
-`;
-
-const Pixel = styled.div`
-  background-color: var(--pixel-color);
-  width: 4px;
-  height: 4px;
+  height: 80px;
+  filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
 `;
 
 export const NavLink: React.FC<NavLinkProps> = ({ navLabel, slug, width }) => {
-  const [pixelArray, setPixelArray] = useState<number[]>([]);
-  const pixelRefArray = useRef<HTMLDivElement[]>([]);
+  const pixelArrayRef = useRef<HTMLDivElement | null>(null);
+
+  const { isHovering, toggleIsHovering } = useIsHovering();
 
   useEffect(() => {
-    let pixelArray: number[] = [];
-    for (let i = 0; i < width / 4; i++) {
-      pixelArray[i] = i;
-    }
-    setPixelArray(pixelArray);
-  }, [width]);
+    const pixelArray = pixelArrayRef.current;
 
-  const pixels = pixelArray.map((pixel, i) => (
-    <Pixel
-      key={pixel}
-      ref={(el: HTMLDivElement) => (pixelRefArray.current[i] = el)}
-    />
-  ));
+    if (pixelArray) {
+      buttonBoostersOffAni(pixelArray);
+    }
+  }, []);
+
+  useEffect(() => {
+    const pixelArray = pixelArrayRef.current;
+
+    if (pixelArray && isHovering) {
+      buttonBoostersOnAni(pixelArray);
+    }
+
+    if (pixelArray && !isHovering) {
+      buttonBoostersOffAni(pixelArray);
+    }
+  }, [isHovering]);
 
   const styles = {
     "--pixel-color": "var(--accent-2)",
   } as React.CSSProperties;
 
   return (
-    <NavLinkContainer>
+    <NavLinkContainer
+      onMouseOver={toggleIsHovering}
+      onMouseLeave={toggleIsHovering}
+    >
       <Link href={slug} passHref={true}>
         <Label>{navLabel}</Label>
       </Link>
-      <UnderlineContainer style={styles}>{pixels}</UnderlineContainer>
+      <LabelBooster ref={pixelArrayRef} />
     </NavLinkContainer>
   );
 };

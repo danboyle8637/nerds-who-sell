@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 import { Header } from "./Header";
 import { NavLinks } from "./NavLinks";
+import { Legal } from "./Legal";
 
 const FooterContainer = styled.footer`
-  padding: 120px 12px;
+  position: relative;
+  padding: 120px 12px 200px 12px;
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -13,6 +15,9 @@ const FooterContainer = styled.footer`
   justify-items: center;
   align-items: center;
   background-color: var(--section-background-4);
+  background-image: url("/footer-background.svg");
+  background-repeat: repeat;
+  background-size: 200px 200px;
   width: 100%;
   isolation: isolate;
 `;
@@ -23,6 +28,7 @@ export const Footer = () => {
       <FooterContainer>
         <Header />
         <NavLinks />
+        <Legal />
       </FooterContainer>
     </>
   );

@@ -27,6 +27,8 @@ const Global = createGlobalStyle`
   html {
     font-size: 62.5%;
     box-sizing: border-box;
+    scrollbar-width: thin;
+    /* scrollbar-color: var(--accent-blue); */
   }
 
   *,
@@ -41,6 +43,20 @@ const Global = createGlobalStyle`
     background: var(--primary-background);
     width: 100%;
     min-height: 100vh;
+  }
+
+  body::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: var(--section-background-5);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--accent-1) ;
+    border-radius: 6px;
+    border: none;
   }
 
   section {

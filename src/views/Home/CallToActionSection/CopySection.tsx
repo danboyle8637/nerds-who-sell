@@ -27,7 +27,7 @@ const ContentContainer = styled.div`
   }
   ${sizes.aboveTablet} {
     padding: 0 24px;
-    justify-self: start;
+    justify-self: center;
     width: 100%;
   }
 `;

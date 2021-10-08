@@ -20,8 +20,8 @@ const LinkContainer = styled.span`
 
 const A = styled.a`
   position: relative;
-  font-size: inherit;
-  font-weight: 800;
+  font-size: 1.6rem;
+  font-weight: 700;
   color: var(--accent-2);
   text-decoration: none;
   &:before {

@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import {
-  InternalLink,
   Paragraph,
   Strong,
+  InternalLink,
   List,
   ListItem,
-} from "../../../components/mdx";
-import { sizes } from "../../../styles/sizes";
+} from "../../components/mdx";
+import { largeHeadline } from "../../styles/typography";
+import { sizes } from "../../styles/sizes";
 
 const components = {
   p: (props: any) => <Paragraph {...props} />,
@@ -16,30 +17,42 @@ const components = {
   a: (props: any) => <InternalLink {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ul: (props: any) => <List type="ul" {...props} />,
-  ol: (props: any) => <List type="ol" {...props} />,
   li: (props: any) => <ListItem {...props} />,
 };
 
-interface IntroSectionProps {
+interface PrivacyViewProps {
+  headline: string;
   bodyCopy: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
 
-const SectionContainer = styled.section`
-  padding: 0 12px;
+const ViewContainer = styled.section`
+  padding: 80px 12px;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
-  gap: 20px;
+  gap: 40px;
   width: 100%;
+  max-width: 800px;
   ${sizes.aboveMobile} {
-    width: 660px;
+    padding: 120px 26px;
+  }
+  ${sizes.aboveTablet} {
+    padding: 120px 0;
   }
 `;
 
-export const IntroSection: React.FC<IntroSectionProps> = ({ bodyCopy }) => {
+const Headline = styled.h1`
+  ${largeHeadline}
+`;
+
+export const PrivacyView: React.FC<PrivacyViewProps> = ({
+  headline,
+  bodyCopy,
+}) => {
   return (
-    <SectionContainer>
+    <ViewContainer>
+      <Headline>{headline}</Headline>
       <MDXRemote {...bodyCopy} components={components} />
-    </SectionContainer>
+    </ViewContainer>
   );
 };

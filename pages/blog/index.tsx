@@ -2,19 +2,33 @@ import { GetStaticProps } from "next";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
 
 import { BlogPostList } from "../../src/views/Blog/BlogPostList";
 import { BlogPostListPage } from "../../src/types/blog";
 
-const Blog: React.FC<BlogPostListPage> = ({ posts }) => {
-  return <BlogPostList posts={posts} />;
+const Blog: React.FC<BlogPostListPage> = ({ posts, ctaContent }) => {
+  return <BlogPostList posts={posts} ctaContent={ctaContent} />;
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   const POSTS_PATH_2021 = path.join(process.cwd(), "data/blog/2021");
+  const contentPath = path.join(process.cwd(), "data/home");
 
   const getSourceOfFile = (postsPath: string, filename: string) => {
     return fs.readFileSync(path.join(postsPath, filename), "utf8");
+  };
+
+  const getContent = async (filename: string, sourcePath: string) => {
+    const source = getSourceOfFile(sourcePath, `${filename}.mdx`);
+
+    const { content, data } = matter(source);
+    const mdxString = await serialize(content);
+
+    return {
+      frontmatter: data,
+      code: mdxString,
+    };
   };
 
   const getAllPosts = (postsPath: string) => {
@@ -33,6 +47,8 @@ export const getStaticProps: GetStaticProps = async () => {
       });
   };
 
+  const ctaContent = await getContent("call-to-action", contentPath);
+
   const posts2021 = getAllPosts(POSTS_PATH_2021);
 
   const allPosts = [...posts2021];
@@ -40,6 +56,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       posts: allPosts,
+      ctaContent: ctaContent,
     },
   };
 };

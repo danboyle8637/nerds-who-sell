@@ -40,3 +40,7 @@ export interface AboutPageProps {
   qualitiesContent: Qualities;
   callToActionContent: Markdown;
 }
+
+export interface PrivacyViewProps {
+  privacyCopy: Markdown;
+}

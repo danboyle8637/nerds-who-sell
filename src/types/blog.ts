@@ -1,3 +1,5 @@
+import { Markdown } from "./pages";
+
 export interface BlogFrontmatter {
   id: string;
   pageTitle: string;
@@ -23,6 +25,7 @@ export interface BlogPostCard {
 
 export interface BlogPostListPage {
   posts: BlogPostCard[];
+  ctaContent: Markdown;
 }
 
 export type BlogCategory = "marketing" | "web-design" | "conversion" | "coding";
