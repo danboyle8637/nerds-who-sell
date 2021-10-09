@@ -26,3 +26,12 @@ export const useImageTransformations = (
 export const randomValue = (max: number): number => {
   return Math.floor(Math.random() * max);
 };
+
+export const randomNegOne = () => {
+  const rand = Math.random();
+  if (rand > 0.5) {
+    return -1;
+  } else {
+    return 1;
+  }
+};

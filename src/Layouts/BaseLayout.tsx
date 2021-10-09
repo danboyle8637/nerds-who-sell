@@ -32,13 +32,14 @@ export const BaseLayout: React.FC = ({ children }) => {
   );
 
   const {
+    currentQuestion,
+    setCurrentQuestion,
     nextQuestionId,
     prevQuestionId,
     primaryInterest,
     haveWebsite,
     haveTimeline,
     haveBudget,
-    haveImages,
     haveMarketingPlan,
     numberOfProducts,
     salesCopyPurpose,
@@ -64,13 +65,14 @@ export const BaseLayout: React.FC = ({ children }) => {
         <QuizOverlay
           isOpen={isQuizOverlayOpen}
           toggleOverlay={toggleQuizOverlay}
+          currentQuestion={currentQuestion}
+          setCurrentQuestion={setCurrentQuestion}
           nextQuestionId={nextQuestionId}
           prevQuestionId={prevQuestionId}
           primaryInterest={primaryInterest}
           haveWebsite={haveWebsite}
           haveTimeline={haveTimeline}
           haveBudget={haveBudget}
-          haveImages={haveImages}
           haveMarketingPlan={haveMarketingPlan}
           numberOfProducts={numberOfProducts}
           salesCopyPurpose={salesCopyPurpose}

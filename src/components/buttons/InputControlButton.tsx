@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { buttonFocus } from "./buttonStyles";
+
 type ButtonControlType = "back" | "next";
 
 interface InputControlButtonProps {
@@ -15,16 +17,18 @@ const Button = styled.button`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.4rem;
-  color: var(--base-text-color);
+  color: var(--primary-background);
   text-transform: uppercase;
   letter-spacing: 0.08rem;
-  background-color: var(--accent-1);
+  background-color: var(--accent-2);
   border: none;
   border-radius: 6px;
   outline: none;
   width: 100px;
   height: 32px;
   box-shadow: 0 4px 4px 0 hsla(0, 0%, 0%, 0.25);
+  cursor: pointer;
+  ${buttonFocus}
 `;
 
 export const InputControlButton: React.FC<InputControlButtonProps> = ({

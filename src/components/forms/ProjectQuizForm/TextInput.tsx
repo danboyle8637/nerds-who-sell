@@ -74,6 +74,7 @@ export const ProjectQuizTextInpu: React.FC<TextInputProps> = ({
           onBlur={updateInputOptions}
         />
         <InputControls
+          activeId={activeId}
           nextQuestionId={nextQuestionId}
           handleNextQuestion={handleNextQuestion}
           handlePrevQuestion={handlePrevQuestion}

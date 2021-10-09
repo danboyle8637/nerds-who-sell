@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { QuizDrawerTransition } from "../../animations/transitions/QuizDrawerTransition";
@@ -8,6 +8,7 @@ import {
 } from "../../animations/navigation";
 import { quizCloseButtonEnterAni } from "../../animations/buttons";
 import { ProjectQuizForm } from "../forms/ProjectQuizForm";
+import { ProgressBar } from "../forms/ProjectQuizForm/ProgressBar";
 import { CloseIcon } from "../images/CloseIcon";
 import { buttonFocus } from "../buttons/buttonStyles";
 import {
@@ -20,13 +21,14 @@ import { sizes } from "../../styles/sizes";
 interface QuizOverlayProps {
   isOpen: boolean;
   toggleOverlay: () => void;
+  currentQuestion: number;
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
   nextQuestionId: number;
   prevQuestionId: number;
   primaryInterest: QuizRadioInputValue;
   haveWebsite: QuizRadioInputValue;
   haveTimeline: QuizRadioInputValue;
   haveBudget: QuizRadioInputValue;
-  haveImages: QuizRadioInputValue;
   haveMarketingPlan: QuizRadioInputValue;
   numberOfProducts: QuizRadioInputValue;
   salesCopyPurpose: QuizRadioInputValue;
@@ -70,12 +72,11 @@ const DrawerContainer = styled.nav`
   right: 0;
   bottom: 0;
   padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: min-content;
-  gap: 6px;
-  justify-items: center;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
   background-color: var(--section-background-4);
   outline: none;
   overflow: hidden;
@@ -85,9 +86,6 @@ const DrawerContainer = styled.nav`
   transform: translateX(108%);
   &:focus {
     box-shadow: 0 0 0 8px var(--accent-2);
-  }
-  ${sizes.aboveIphone11Pro} {
-    gap: 12px;
   }
   ${sizes.aboveMobile} {
     left: unset;
@@ -109,13 +107,14 @@ const Close = styled.button`
 export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   isOpen,
   toggleOverlay,
+  currentQuestion,
+  setCurrentQuestion,
   nextQuestionId,
   prevQuestionId,
   primaryInterest,
   haveWebsite,
   haveTimeline,
   haveBudget,
-  haveImages,
   haveMarketingPlan,
   numberOfProducts,
   salesCopyPurpose,
@@ -149,14 +148,18 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
     <QuizDrawerTransition isOpen={isOpen}>
       <BackgroundOverlay>
         <DrawerContainer ref={navRef}>
+          <ProgressBar
+            currentQuestion={currentQuestion}
+            nextQuestionId={nextQuestionId}
+          />
           <ProjectQuizForm
+            setCurrentQuestion={setCurrentQuestion}
             nextQuestionId={nextQuestionId}
             prevQuestionId={prevQuestionId}
             primaryInterest={primaryInterest}
             haveWebsite={haveWebsite}
             haveTimeline={haveTimeline}
             haveBudget={haveBudget}
-            haveImages={haveImages}
             haveMarketingPlan={haveMarketingPlan}
             numberOfProducts={numberOfProducts}
             salesCopyPurpose={salesCopyPurpose}

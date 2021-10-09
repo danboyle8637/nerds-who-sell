@@ -3,9 +3,16 @@ import React, { useState, useEffect } from "react";
 import { ProjectQuizFormInput } from "../../types/forms";
 import {
   updateProjectQuizOptions,
-  resetProjectQuizOptions,
   findNextQuestion,
 } from "../../utils/formFunctions";
+import { capitalizeName } from "../../utils/utilityFunctions";
+import {
+  formValidator,
+  isRequiredValidationRules,
+  emailValidationRules,
+} from "../../utils/formValidation";
+
+export type NextQuestionId = 11 | 0 | 1 | 2 | 4 | 5 | 7 | 10 | 9 | 8;
 
 export interface AnswerOption {
   id: number;
@@ -106,33 +113,12 @@ const haveBudgetQuestion: RadioQuestion = {
       value: "yes",
       label: "Yes I have a budget",
       isSelected: false,
-      nextQuestion: 3,
-    },
-    {
-      id: 1,
-      value: "no",
-      label: "No not yet",
-      isSelected: false,
-      nextQuestion: 3,
-    },
-  ],
-};
-
-const haveImagesQuestion: RadioQuestion = {
-  id: 3,
-  question: "Do you have images for your website?",
-  options: [
-    {
-      id: 0,
-      value: "yes",
-      label: "Yes I have images already",
-      isSelected: false,
       nextQuestion: 4,
     },
     {
       id: 1,
       value: "no",
-      label: "No I don't have images",
+      label: "No not yet",
       isSelected: false,
       nextQuestion: 4,
     },
@@ -308,8 +294,31 @@ const primaryInterestQuestion: RadioQuestion = {
 };
 
 export const useProjectQuizForm = () => {
+  const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const [nextQuestionId, setNextQuestionId] = useState<number>(11);
   const [prevQuestionId, setPrevQuestionId] = useState<number>(0);
+
+  const [firstName, setFirstName] = useState<QuizTextInputValue>({
+    value: "",
+    valid: false,
+  });
+
+  const [firstNameOptions, setFirstNameOptions] =
+    useState<QuizeTextInputOptions>({
+      initial: true,
+      touched: false,
+    });
+
+  const [emailAddress, setEmailAddress] = useState<QuizTextInputValue>({
+    value: "",
+    valid: false,
+  });
+
+  const [emailAddressOptions, setEmailAddressOptions] =
+    useState<QuizeTextInputOptions>({
+      initial: true,
+      touched: false,
+    });
 
   const [haveWebsite, setHaveWebsite] = useState<QuizRadioInputValue>({
     value: "",
@@ -327,12 +336,6 @@ export const useProjectQuizForm = () => {
     value: "",
     nextQuestion: 0,
     options: haveBudgetQuestion.options,
-  });
-
-  const [haveImages, setHaveImages] = useState<QuizRadioInputValue>({
-    value: "",
-    nextQuestion: 0,
-    options: haveImagesQuestion.options,
   });
 
   const [haveMarketingPlan, setHaveMarketingPlan] =
@@ -400,7 +403,26 @@ export const useProjectQuizForm = () => {
     const inputName = event.target.name as ProjectQuizFormInput;
 
     switch (inputName) {
+      case "firstName": {
+        const value = capitalizeName(firstName.value);
+        const valid = formValidator(value, isRequiredValidationRules);
+        setFirstName({
+          value: value,
+          valid: valid,
+        });
+        break;
+      }
+      case "emailAddress": {
+        const value = emailAddress.value.trim();
+        const valid = formValidator(value, emailValidationRules);
+        setEmailAddress({
+          value: value,
+          valid: valid,
+        });
+        break;
+      }
       case "haveWebsite": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           haveWebsiteQuestion.options,
           value
@@ -416,6 +438,7 @@ export const useProjectQuizForm = () => {
         break;
       }
       case "haveTimeline": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           haveTimelineQuestion.options,
           value
@@ -431,6 +454,7 @@ export const useProjectQuizForm = () => {
         break;
       }
       case "haveBudget": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           haveBudgetQuestion.options,
           value
@@ -445,22 +469,8 @@ export const useProjectQuizForm = () => {
         });
         break;
       }
-      case "haveImages": {
-        const newOptions = updateProjectQuizOptions(
-          haveImagesQuestion.options,
-          value
-        );
-        const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(haveImagesQuestion.id);
-        setNextQuestionId(nextQuestion);
-        setHaveImages({
-          value: value,
-          nextQuestion: nextQuestion,
-          options: newOptions,
-        });
-        break;
-      }
       case "haveMarketingPlan": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           haveMarketingPlanQuestion.options,
           value
@@ -476,6 +486,7 @@ export const useProjectQuizForm = () => {
         break;
       }
       case "howManyProducts": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           howManyProductsQuestion.options,
           value
@@ -491,6 +502,7 @@ export const useProjectQuizForm = () => {
         break;
       }
       case "salesCopyPurpose": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           salesCopyPurposeQuestion.options,
           value
@@ -521,6 +533,7 @@ export const useProjectQuizForm = () => {
         break;
       }
       case "idealTimeline": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           idealTimelineQuestion.options,
           value
@@ -536,6 +549,7 @@ export const useProjectQuizForm = () => {
         break;
       }
       case "primaryInterest": {
+        setCurrentQuestion((prevValue) => prevValue + 1);
         const newOptions = updateProjectQuizOptions(
           primaryInterest.options,
           value
@@ -564,25 +578,18 @@ export const useProjectQuizForm = () => {
     const inputName = event.target.name as ProjectQuizFormInput;
 
     switch (inputName) {
-      case "haveWebsite": {
+      case "firstName": {
+        setFirstNameOptions(({ touched }) => ({
+          initial: false,
+          touched: !touched,
+        }));
         break;
       }
-      case "haveTimeline": {
-        break;
-      }
-      case "haveBudget": {
-        break;
-      }
-      case "haveImages": {
-        break;
-      }
-      case "haveMarketingPlan": {
-        break;
-      }
-      case "howManyProducts": {
-        break;
-      }
-      case "salesCopyPurpose": {
+      case "emailAddress": {
+        setEmailAddressOptions(({ touched }) => ({
+          initial: false,
+          touched: !touched,
+        }));
         break;
       }
       case "moreDetails": {
@@ -599,12 +606,6 @@ export const useProjectQuizForm = () => {
         }));
         break;
       }
-      case "idealTimeline": {
-        break;
-      }
-      case "primaryInterest": {
-        break;
-      }
       default: {
         throw new Error(
           "You did not handle all possible inputs in the Project Quiz form hook."
@@ -614,12 +615,13 @@ export const useProjectQuizForm = () => {
   };
 
   return {
+    currentQuestion,
+    setCurrentQuestion,
     nextQuestionId,
     prevQuestionId,
     haveWebsite,
     haveTimeline,
     haveBudget,
-    haveImages,
     haveMarketingPlan,
     numberOfProducts,
     salesCopyPurpose,
@@ -632,5 +634,9 @@ export const useProjectQuizForm = () => {
     updateInputValue,
     updateInputOptions,
     setNextQuestionId,
+    firstName,
+    firstNameOptions,
+    emailAddress,
+    emailAddressOptions,
   };
 };

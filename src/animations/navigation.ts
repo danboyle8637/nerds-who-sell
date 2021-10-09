@@ -1,5 +1,5 @@
 import { gsap, Power2, Linear } from "gsap";
-import { randomValue } from "../utils/utilityFunctions";
+import { randomValue, randomNegOne } from "../utils/utilityFunctions";
 
 export const navDrawerOpenAni = (drawer: HTMLElement) => {
   const tl = gsap.timeline();
@@ -118,4 +118,62 @@ export const navItemsEnterAni = (navItems: HTMLDivElement[]) => {
       delay: 0.3,
     }
   );
+};
+
+export const footerNavPixelSpreadAni = (
+  pixel: HTMLDivElement,
+  kill: boolean
+) => {
+  const translateX = [5, 10, 20, 30, 40, 50, 60, 70];
+  const translateY = [5, 8, 11, 13, 15, 17, 19, 21];
+  const scalePixel = [1.05, 1.08, 1.1, 1.15, 1.18, 1.2];
+  const opacity = [0.7, 0.6, 0.5, 0.3, 0.2, 0.1, 0.05];
+  const colorArray = [
+    "hsl(176, 92%, 53%)",
+    "hsl(176, 92%, 73%)",
+    "hsl(176, 92%, 83%)",
+    "hsl(176, 92%, 93%)",
+  ];
+
+  const tX = translateX[randomValue(translateX.length)];
+  const tY = translateY[randomValue(translateY.length)];
+  const s = scalePixel[randomValue(scalePixel.length)];
+  const o = opacity[randomValue(opacity.length)];
+  const bg = colorArray[randomValue(colorArray.length)];
+
+  const tl = gsap.timeline();
+
+  if (kill) {
+    tl.kill();
+  }
+
+  tl.to(pixel, {
+    duration: 0.3,
+    x: tX * randomNegOne(),
+    y: tY * randomNegOne(),
+    autoAlpha: o,
+    scale: s,
+    backgroundColor: bg,
+    ease: Power2.easeOut,
+  });
+};
+
+export const footerNavPixelsReturnAni = (
+  pixel: HTMLDivElement,
+  kill: boolean
+) => {
+  const tl = gsap.timeline();
+
+  if (kill) {
+    tl.kill();
+  }
+
+  tl.to(pixel, {
+    duration: 0.3,
+    x: 0,
+    y: 0,
+    autoAlpha: 0,
+    scale: 0,
+    ease: Power2.easeIn,
+  });
 };

@@ -8,7 +8,7 @@ const NavContainer = styled.nav`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: min-content;
-  column-gap: 60px;
+  column-gap: 30px;
   row-gap: 40px;
   justify-items: start;
   width: fit-content;

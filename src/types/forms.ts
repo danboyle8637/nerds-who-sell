@@ -35,4 +35,6 @@ export type ProjectQuizFormInput =
   | "moreDetails"
   | "websiteUrl"
   | "idealTimeline"
-  | "primaryInterest";
+  | "primaryInterest"
+  | "firstName"
+  | "emailAddress";

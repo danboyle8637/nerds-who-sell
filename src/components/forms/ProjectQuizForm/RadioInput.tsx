@@ -51,7 +51,10 @@ export const RadioInput: React.FC<RadioInputProps> = ({
           options={options}
           updateInputValue={updateInputValue}
         />
-        <InputControls handlePrevQuestion={handlePrevQuestion} />
+        <InputControls
+          activeId={activeId}
+          handlePrevQuestion={handlePrevQuestion}
+        />
       </InputContainer>
     </MultiDirectionWithScaleTransition>
   );

@@ -11,13 +11,13 @@ import {
 } from "../../../hooks/forms/useProjectQuizForm";
 
 interface ProjectQuizFormProps {
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
   nextQuestionId: number;
   prevQuestionId: number;
   primaryInterest: QuizRadioInputValue;
   haveWebsite: QuizRadioInputValue;
   haveTimeline: QuizRadioInputValue;
   haveBudget: QuizRadioInputValue;
-  haveImages: QuizRadioInputValue;
   haveMarketingPlan: QuizRadioInputValue;
   numberOfProducts: QuizRadioInputValue;
   salesCopyPurpose: QuizRadioInputValue;
@@ -48,13 +48,13 @@ const FormContainer = styled.form`
 `;
 
 export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
+  setCurrentQuestion,
   nextQuestionId,
   prevQuestionId,
   primaryInterest,
   haveWebsite,
   haveTimeline,
   haveBudget,
-  haveImages,
   haveMarketingPlan,
   numberOfProducts,
   salesCopyPurpose,
@@ -67,16 +67,37 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
   updateInputOptions,
   setNextQuestionId,
 }) => {
+  const handleFormSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const quizResults = {
+      primaryInterest: primaryInterest.value,
+      haveWebsite: haveWebsite.value,
+      websiteUrl: websiteUrlValue.value,
+      haveTimeline: haveTimeline.value,
+      haveBudget: haveBudget.value,
+      haveMarketingPlan: haveMarketingPlan.value,
+      numberOfProducts: numberOfProducts.value,
+      salesCopyPurpose: salesCopyPurpose.value,
+      idealTimeline: idealTimeline.value,
+      additionalDetails: additionalDetailsValue.value,
+    };
+
+    console.log(quizResults);
+  };
+
   const handleNextQuestion = (questionId: number) => {
+    setCurrentQuestion((prevValue) => prevValue + 1);
     setNextQuestionId(questionId);
   };
 
   const handlePrevQuestion = () => {
+    setCurrentQuestion((prevValue) => prevValue - 1);
     setNextQuestionId(prevQuestionId);
   };
 
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleFormSubmit}>
       <RadioInput
         activeId={nextQuestionId}
         questionId={11}
@@ -110,15 +131,6 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
         name="haveBudget"
         inputLabel="Do you have a budget?"
         options={haveBudget.options}
-        updateInputValue={updateInputValue}
-        handlePrevQuestion={handlePrevQuestion}
-      />
-      <RadioInput
-        activeId={nextQuestionId}
-        questionId={3}
-        name="haveImages"
-        inputLabel="Do you have website images?"
-        options={haveImages.options}
         updateInputValue={updateInputValue}
         handlePrevQuestion={handlePrevQuestion}
       />

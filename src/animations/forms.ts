@@ -79,3 +79,13 @@ export const basicRadioIsChecked = (dot: HTMLDivElement) => {
 export const basicRadioIsNotChecked = (dot: HTMLDivElement) => {
   gsap.to(dot, { duration: 0.2, scale: 0, autoAlpha: 0, ease: Power3.easeIn });
 };
+
+export const quizProgressAni = (
+  progressBar: HTMLDivElement,
+  progress: number
+) => {
+  gsap.to(progressBar, {
+    x: `${-100 + progress}%`,
+    ease: Linear.easeNone,
+  });
+};

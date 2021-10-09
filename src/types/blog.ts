@@ -47,4 +47,5 @@ export type BlogTag =
   | "media buying"
   | "copywriting"
   | "email copy"
-  | "conversion";
+  | "conversion"
+  | "portfolio";

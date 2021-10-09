@@ -34,10 +34,11 @@ const OptionContainer = styled.div`
 
 const InputLabel = styled.p`
   padding-left: 14px;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #f8f8f8;
   text-transform: uppercase;
+  line-height: 1.4;
   letter-spacing: 0.15rem;
 `;
 
