@@ -80,6 +80,8 @@ export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
         return "#7351F6";
       case "cloudflare workers":
         return "#F8B63C";
+      case "portfolio":
+        return "#A9006A";
       default: {
         throw new Error("You did not handle all possible blog tags.");
       }

@@ -8,6 +8,7 @@ import {
   List,
   ListItem,
   CallOutBox,
+  PostImage,
 } from "../mdx";
 import { sizes } from "../../styles/sizes";
 
@@ -24,6 +25,7 @@ const components = {
   ol: (props: any) => <List type="ol" {...props} />,
   li: (props: any) => <ListItem {...props} />,
   CallOutBox,
+  PostImage,
 };
 
 const ContentContainer = styled.div`

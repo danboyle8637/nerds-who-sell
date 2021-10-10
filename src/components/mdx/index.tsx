@@ -1,7 +1,7 @@
 import { Paragraph } from "./Paragraph";
 import { Strong } from "./Strong";
 import { InternalLink } from "./Link";
-import { TestImage } from "./TestImage";
+import { PostImage } from "./PostImage";
 import { CodeSandboxEmbed } from "./CodeSandboxEmbed";
 import { List } from "./List";
 import { ListItem } from "./ListItem";
@@ -12,7 +12,7 @@ export {
   Paragraph,
   Strong,
   InternalLink,
-  TestImage,
+  PostImage,
   CodeSandboxEmbed,
   List,
   ListItem,
