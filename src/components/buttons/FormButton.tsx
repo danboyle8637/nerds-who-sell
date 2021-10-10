@@ -17,6 +17,8 @@ export const FormButton: React.FC<FormButtonProps> = ({
   isDisabled,
   children,
 }) => {
+  console.log(isDisabled);
+
   const styles = {
     "--base-button-text-color": isDisabled
       ? "var(--base-text-color)"

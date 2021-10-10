@@ -8,6 +8,7 @@ interface InputControlsProps {
   nextQuestionId?: number;
   handleNextQuestion?: (questionId: number) => void;
   handlePrevQuestion: () => void;
+  valid?: boolean;
 }
 
 const ControlsContainer = styled.div`
@@ -15,6 +16,7 @@ const ControlsContainer = styled.div`
   justify-content: center;
   gap: 20px;
   width: fit-content;
+  height: 56px;
 `;
 
 export const InputControls: React.FC<InputControlsProps> = ({
@@ -22,9 +24,9 @@ export const InputControls: React.FC<InputControlsProps> = ({
   nextQuestionId,
   handleNextQuestion,
   handlePrevQuestion,
+  valid = true,
 }) => {
-  const showControls = activeId === 11 || activeId === 8 ? false : true;
-  const showNext = nextQuestionId && handleNextQuestion;
+  const showControls = activeId === 11 || activeId === 12 ? false : true;
 
   return (
     <ControlsContainer>
@@ -43,7 +45,9 @@ export const InputControls: React.FC<InputControlsProps> = ({
         </>
       ) : null}
       {nextQuestionId === 99 ? (
-        <FormButton isDisabled={false}>Let's Schedule a Talk!</FormButton>
+        <FormButton isDisabled={!valid}>
+          {!valid ? "Finish Last Step" : "Let's Talk!"}
+        </FormButton>
       ) : null}
     </ControlsContainer>
   );

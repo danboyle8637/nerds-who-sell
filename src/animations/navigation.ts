@@ -1,5 +1,6 @@
 import { gsap, Power2, Linear } from "gsap";
 import { randomValue, randomNegOne } from "../utils/utilityFunctions";
+import { NavColor } from "../types/components";
 
 export const navDrawerOpenAni = (drawer: HTMLElement) => {
   const tl = gsap.timeline();
@@ -122,24 +123,34 @@ export const navItemsEnterAni = (navItems: HTMLDivElement[]) => {
 
 export const footerNavPixelSpreadAni = (
   pixel: HTMLDivElement,
+  color: NavColor,
   kill: boolean
 ) => {
   const translateX = [5, 10, 20, 30, 40, 50, 60, 70];
   const translateY = [5, 8, 11, 13, 15, 17, 19, 21];
   const scalePixel = [1.05, 1.08, 1.1, 1.15, 1.18, 1.2];
   const opacity = [0.7, 0.6, 0.5, 0.3, 0.2, 0.1, 0.05];
-  const colorArray = [
+  const blueArray = [
     "hsl(176, 92%, 53%)",
     "hsl(176, 92%, 73%)",
     "hsl(176, 92%, 83%)",
     "hsl(176, 92%, 93%)",
+  ];
+  const purpleArray = [
+    "hsl(246, 59%, 62%)",
+    "hsl(246, 59%, 72%)",
+    "hsl(246, 59%, 82%)",
+    "hsl(246, 59%, 92%)",
   ];
 
   const tX = translateX[randomValue(translateX.length)];
   const tY = translateY[randomValue(translateY.length)];
   const s = scalePixel[randomValue(scalePixel.length)];
   const o = opacity[randomValue(opacity.length)];
-  const bg = colorArray[randomValue(colorArray.length)];
+  const bg =
+    color === "blue"
+      ? blueArray[randomValue(blueArray.length)]
+      : purpleArray[randomValue(purpleArray.length)];
 
   const tl = gsap.timeline();
 

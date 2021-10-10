@@ -296,7 +296,7 @@ const primaryInterestQuestion: RadioQuestion = {
 export const useProjectQuizForm = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const [nextQuestionId, setNextQuestionId] = useState<number>(11);
-  const [prevQuestionId, setPrevQuestionId] = useState<number>(0);
+  const [pastQuestionArray, setPastQuestionArray] = useState<number[]>([]);
 
   const [firstName, setFirstName] = useState<QuizTextInputValue>({
     value: "",
@@ -404,19 +404,19 @@ export const useProjectQuizForm = () => {
 
     switch (inputName) {
       case "firstName": {
-        const value = capitalizeName(firstName.value);
+        const name = capitalizeName(value);
         const valid = formValidator(value, isRequiredValidationRules);
         setFirstName({
-          value: value,
+          value: name,
           valid: valid,
         });
         break;
       }
       case "emailAddress": {
-        const value = emailAddress.value.trim();
+        const email = value.trim();
         const valid = formValidator(value, emailValidationRules);
         setEmailAddress({
-          value: value,
+          value: email,
           valid: valid,
         });
         break;
@@ -428,7 +428,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(haveWebsiteQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          haveWebsiteQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setHaveWebsite({
           value: value,
@@ -444,7 +447,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(haveTimelineQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          haveTimelineQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setHaveTimeline({
           value: value,
@@ -460,7 +466,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(haveBudgetQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          haveBudgetQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setHaveBudget({
           value: value,
@@ -476,7 +485,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(haveMarketingPlanQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          haveMarketingPlanQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setHaveMarketingPlan({
           value: value,
@@ -492,7 +504,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(howManyProductsQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          howManyProductsQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setNumberOfProducts({
           value: value,
@@ -508,7 +523,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(salesCopyPurposeQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          salesCopyPurposeQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setSalesCopyPurpose({
           value: value,
@@ -539,7 +557,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(idealTimelineQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          idealTimelineQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setIdealTimeline({
           value: value,
@@ -555,7 +576,10 @@ export const useProjectQuizForm = () => {
           value
         );
         const nextQuestion = findNextQuestion(newOptions);
-        setPrevQuestionId(primaryInterestQuestion.id);
+        setPastQuestionArray((preValue) => [
+          ...preValue,
+          primaryInterestQuestion.id,
+        ]);
         setNextQuestionId(nextQuestion);
         setPrimaryInterest({
           value: value,
@@ -618,7 +642,6 @@ export const useProjectQuizForm = () => {
     currentQuestion,
     setCurrentQuestion,
     nextQuestionId,
-    prevQuestionId,
     haveWebsite,
     haveTimeline,
     haveBudget,
@@ -638,5 +661,7 @@ export const useProjectQuizForm = () => {
     firstNameOptions,
     emailAddress,
     emailAddressOptions,
+    pastQuestionArray,
+    setPastQuestionArray,
   };
 };

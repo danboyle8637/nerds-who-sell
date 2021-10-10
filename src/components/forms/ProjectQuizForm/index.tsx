@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import { ProjectQuizTextInpu } from "./TextInput";
+import { TextInput } from "../inputs/TextInput";
+import { ProjectQuizTextInput } from "./TextInput";
 import { ProjectQuizTextArea } from "./TextArea";
 import { RadioInput } from "./RadioInput";
+import { NameEmailInput } from "./NameEmailInput";
+import { SavingData } from "./SavingData";
 import {
   QuizRadioInputValue,
   QuizeTextInputOptions,
@@ -13,7 +15,8 @@ import {
 interface ProjectQuizFormProps {
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
   nextQuestionId: number;
-  prevQuestionId: number;
+  pastQuestionArray: number[];
+  setPastQuestionArray: React.Dispatch<React.SetStateAction<number[]>>;
   primaryInterest: QuizRadioInputValue;
   haveWebsite: QuizRadioInputValue;
   haveTimeline: QuizRadioInputValue;
@@ -26,6 +29,10 @@ interface ProjectQuizFormProps {
   websiteUrlValue: QuizTextInputValue;
   websiteUrlOptions: QuizeTextInputOptions;
   idealTimeline: QuizRadioInputValue;
+  firstName: QuizTextInputValue;
+  firstNameOptions: QuizeTextInputOptions;
+  emailAddress: QuizTextInputValue;
+  emailAddressOptions: QuizeTextInputOptions;
   updateInputValue: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -50,7 +57,8 @@ const FormContainer = styled.form`
 export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
   setCurrentQuestion,
   nextQuestionId,
-  prevQuestionId,
+  pastQuestionArray,
+  setPastQuestionArray,
   primaryInterest,
   haveWebsite,
   haveTimeline,
@@ -63,6 +71,10 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
   websiteUrlValue,
   websiteUrlOptions,
   idealTimeline,
+  firstName,
+  firstNameOptions,
+  emailAddress,
+  emailAddressOptions,
   updateInputValue,
   updateInputOptions,
   setNextQuestionId,
@@ -70,7 +82,11 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    setNextQuestionId(99);
+
     const quizResults = {
+      firstName: firstName.value,
+      emailAddress: emailAddress.value,
       primaryInterest: primaryInterest.value,
       haveWebsite: haveWebsite.value,
       websiteUrl: websiteUrlValue.value,
@@ -88,12 +104,15 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
 
   const handleNextQuestion = (questionId: number) => {
     setCurrentQuestion((prevValue) => prevValue + 1);
+    setPastQuestionArray((prevValue) => [...prevValue, questionId]);
     setNextQuestionId(questionId);
   };
 
   const handlePrevQuestion = () => {
     setCurrentQuestion((prevValue) => prevValue - 1);
-    setNextQuestionId(prevQuestionId);
+    const lastQuestion = pastQuestionArray.pop();
+    setPastQuestionArray((prevValue) => prevValue.slice(0, -1));
+    setNextQuestionId(lastQuestion ?? 11);
   };
 
   return (
@@ -170,7 +189,7 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
         updateInputValue={updateInputValue}
         handlePrevQuestion={handlePrevQuestion}
       />
-      <ProjectQuizTextInpu
+      <ProjectQuizTextInput
         activeId={nextQuestionId}
         questionId={9}
         nextQuestionId={1}
@@ -189,7 +208,7 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
       <ProjectQuizTextArea
         activeId={nextQuestionId}
         questionId={8}
-        nextQuestionId={99}
+        nextQuestionId={12}
         name="moreDetails"
         labelName="Optional: More details..."
         maxLength={600}
@@ -203,6 +222,42 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
         handleNextQuestion={handleNextQuestion}
         handlePrevQuestion={handlePrevQuestion}
       />
+      <NameEmailInput
+        activeId={nextQuestionId}
+        questionId={12}
+        nextQuestionId={99}
+        handleNextQuestion={handleNextQuestion}
+        handlePrevQuestion={handlePrevQuestion}
+        valid={firstName.valid && emailAddress.valid}
+      >
+        <TextInput
+          inputType="text"
+          inputName="firstName"
+          labelFor="firstName"
+          labelName="First Name"
+          value={firstName.value}
+          valid={firstName.valid}
+          initial={firstNameOptions.initial}
+          touched={firstNameOptions.touched}
+          onChange={updateInputValue}
+          onFocus={updateInputOptions}
+          onBlur={updateInputOptions}
+        />
+        <TextInput
+          inputType="text"
+          inputName="emailAddress"
+          labelFor="emailAddress"
+          labelName="Email Address"
+          value={emailAddress.value}
+          valid={emailAddress.valid}
+          initial={emailAddressOptions.initial}
+          touched={emailAddressOptions.touched}
+          onChange={updateInputValue}
+          onFocus={updateInputOptions}
+          onBlur={updateInputOptions}
+        />
+      </NameEmailInput>
+      <SavingData activeId={nextQuestionId} questionId={99} />
     </FormContainer>
   );
 };

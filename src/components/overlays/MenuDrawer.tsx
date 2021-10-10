@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { CloseIcon } from "../images/CloseIcon";
-import { MobileNavigation } from "../navigation/MobileNavigation";
+import { NavList } from "../navigation/MobileNavigation/NavList";
 import { MobileNavDrawerTransition } from "../../animations/transitions/MobileNavDrawerTransition";
 import {
   closeIconEnterAni,
@@ -95,7 +95,7 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
         >
           <CloseIcon />
         </Close>
-        <MobileNavigation
+        <NavList
           isOpen={isOpen}
           toggleNavDrawer={toggleNavDrawer}
           activePage={activePage}

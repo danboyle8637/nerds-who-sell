@@ -76,4 +76,31 @@ export const makeSalesAni = (
   );
 };
 
-export const serviceImageAni = (image: HTMLDivElement) => {};
+export const codingLoaderAni = (codeLines: HTMLDivElement[], kill: boolean) => {
+  const tl = gsap.timeline({ repeat: -1 });
+
+  if (kill) {
+    tl.kill();
+  }
+
+  tl.fromTo(
+    codeLines,
+    {
+      x: "-100%",
+      autoAlpha: 0,
+    },
+    {
+      duration: 0.2,
+      x: 12,
+      autoAlpha: 1,
+      ease: Linear.easeNone,
+      stagger: 0.2,
+    }
+  ).to(codeLines, {
+    duration: 0.2,
+    y: 4,
+    autoAlpha: 0,
+    stagger: 0.2,
+    ease: Linear.easeNone,
+  });
+};

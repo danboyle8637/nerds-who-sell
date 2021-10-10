@@ -21,3 +21,5 @@ export interface BaseSVG {
 }
 
 export type ListType = "ol" | "ul";
+
+export type NavColor = "blue" | "purple";

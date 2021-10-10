@@ -58,15 +58,15 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
   useEffect(() => {
     if (currentQuestion === 2 && nextQuestionId === 9) {
-      setTotalQuestions(9);
+      setTotalQuestions(10);
     }
 
     if (currentQuestion === 3 && nextQuestionId === 1) {
-      setTotalQuestions(8);
+      setTotalQuestions(9);
     }
 
     if (currentQuestion === 3 && nextQuestionId === 9) {
-      setTotalQuestions(10);
+      setTotalQuestions(11);
     }
   }, [nextQuestionId, currentQuestion]);
 

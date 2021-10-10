@@ -24,7 +24,8 @@ interface QuizOverlayProps {
   currentQuestion: number;
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
   nextQuestionId: number;
-  prevQuestionId: number;
+  pastQuestionArray: number[];
+  setPastQuestionArray: React.Dispatch<React.SetStateAction<number[]>>;
   primaryInterest: QuizRadioInputValue;
   haveWebsite: QuizRadioInputValue;
   haveTimeline: QuizRadioInputValue;
@@ -37,6 +38,10 @@ interface QuizOverlayProps {
   websiteUrlValue: QuizTextInputValue;
   websiteUrlOptions: QuizeTextInputOptions;
   idealTimeline: QuizRadioInputValue;
+  firstName: QuizTextInputValue;
+  firstNameOptions: QuizeTextInputOptions;
+  emailAddress: QuizTextInputValue;
+  emailAddressOptions: QuizeTextInputOptions;
   updateInputValue: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -110,7 +115,8 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   currentQuestion,
   setCurrentQuestion,
   nextQuestionId,
-  prevQuestionId,
+  pastQuestionArray,
+  setPastQuestionArray,
   primaryInterest,
   haveWebsite,
   haveTimeline,
@@ -123,6 +129,10 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   websiteUrlValue,
   websiteUrlOptions,
   idealTimeline,
+  firstName,
+  firstNameOptions,
+  emailAddress,
+  emailAddressOptions,
   updateInputValue,
   updateInputOptions,
   setNextQuestionId,
@@ -155,7 +165,8 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
           <ProjectQuizForm
             setCurrentQuestion={setCurrentQuestion}
             nextQuestionId={nextQuestionId}
-            prevQuestionId={prevQuestionId}
+            pastQuestionArray={pastQuestionArray}
+            setPastQuestionArray={setPastQuestionArray}
             primaryInterest={primaryInterest}
             haveWebsite={haveWebsite}
             haveTimeline={haveTimeline}
@@ -168,6 +179,10 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
             websiteUrlValue={websiteUrlValue}
             websiteUrlOptions={websiteUrlOptions}
             idealTimeline={idealTimeline}
+            firstName={firstName}
+            firstNameOptions={firstNameOptions}
+            emailAddress={emailAddress}
+            emailAddressOptions={emailAddressOptions}
             updateInputValue={updateInputValue}
             updateInputOptions={updateInputOptions}
             setNextQuestionId={setNextQuestionId}

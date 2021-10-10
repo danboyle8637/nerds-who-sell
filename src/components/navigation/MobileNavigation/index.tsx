@@ -1,63 +1,95 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import styled from "styled-components";
 
-import { NavItem } from "./NavItem";
-import { navItemsEnterAni } from "../../../animations/navigation";
-import { navigation } from "../../../../data/nav";
+import { HamburgerIcon } from "../HamburgerIcon";
+import { MenuDrawer } from "../../overlays/MenuDrawer";
+import { useActivePage } from "../../../hooks/componets/useActivePage";
+import { Portal } from "../../shared/Portal";
+import {
+  navPixelsOpenAni,
+  navPixelCloseAni,
+} from "../../../animations/navigation";
 
-interface MobileNavigationProps {
-  activePage: string;
-  isOpen: boolean;
-  toggleNavDrawer: () => void;
-}
-
-const NavListContainer = styled.nav`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: min-content;
-  gap: 40px;
-  justify-items: center;
-  width: 100%;
+const NavContainer = styled.div`
+  position: relative;
+  padding: 12px 20px 0 0;
+  display: flex;
 `;
 
-export const MobileNavigation: React.FC<MobileNavigationProps> = ({
-  activePage,
-  isOpen,
-  toggleNavDrawer,
-}) => {
-  const navItemsRef = useRef<HTMLDivElement[]>([]);
+const Pixel = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--pixel-color);
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+`;
+
+export const MobileNav = () => {
+  const pixelArray = [1, 2, 3, 4, 5, 6, 7, 8];
+
+  const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
+
+  const pixelArrayRef = useRef<HTMLDivElement[]>([]);
+
+  const activePage = useActivePage();
+
+  const pixels = useMemo(() => {
+    return pixelArray.map((pixel, i) => (
+      <Pixel
+        key={pixel}
+        ref={(el: HTMLDivElement) => (pixelArrayRef.current[i] = el)}
+      />
+    ));
+  }, [pixelArray]);
 
   useEffect(() => {
-    const navItems = navItemsRef.current;
+    // kill tweens if we go to a landing page where we don't want to show the navbar
+    const pixels = pixelArrayRef.current;
 
-    if (navItems && isOpen) {
-      navItemsEnterAni(navItems);
+    return () => {
+      if (pixels.length > 0) {
+        for (let i = 0; i < pixelArray.length; i++) {
+          navPixelCloseAni(pixels[i], true);
+        }
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const pixels = pixelArrayRef.current;
+
+    if (pixels && isNavOpen) {
+      for (let i = 0; i < pixelArray.length; i++) {
+        navPixelsOpenAni(pixels[i]);
+      }
     }
-  }, [isOpen]);
 
-  const handleToggleNavDrawer = () => {
-    toggleNavDrawer();
+    if (pixels && !isNavOpen) {
+      for (let i = 0; i < pixelArray.length; i++) {
+        navPixelCloseAni(pixels[i], false);
+      }
+    }
+  }, [isNavOpen]);
+
+  const toggleNavDrawer = () => {
+    setIsNavOpen((prevValue) => !prevValue);
   };
 
-  const navLinks = navigation.map((item, i) => {
-    const id = item.id;
-    const label = item.label;
-    const slug = item.slug;
-
-    const isActive =
-      label === activePage || (label === "home" && activePage === "");
-
-    return (
-      <NavItem
-        key={id}
-        ref={(el: HTMLDivElement) => (navItemsRef.current[i] = el)}
-        isActive={isActive}
-        label={label}
-        slug={slug}
-        handleToggleNavDrawer={handleToggleNavDrawer}
-      />
-    );
-  });
-
-  return <NavListContainer>{navLinks}</NavListContainer>;
+  return (
+    <>
+      <NavContainer>
+        <HamburgerIcon handleClick={toggleNavDrawer} />
+        {pixels}
+      </NavContainer>
+      <Portal>
+        <MenuDrawer
+          isOpen={isNavOpen}
+          toggleNavDrawer={toggleNavDrawer}
+          activePage={activePage}
+        />
+      </Portal>
+    </>
+  );
 };

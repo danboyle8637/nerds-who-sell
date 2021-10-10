@@ -35,7 +35,6 @@ export const BaseLayout: React.FC = ({ children }) => {
     currentQuestion,
     setCurrentQuestion,
     nextQuestionId,
-    prevQuestionId,
     primaryInterest,
     haveWebsite,
     haveTimeline,
@@ -48,9 +47,15 @@ export const BaseLayout: React.FC = ({ children }) => {
     websiteUrlValue,
     websiteUrlOptions,
     idealTimeline,
+    firstName,
+    firstNameOptions,
+    emailAddress,
+    emailAddressOptions,
     updateInputValue,
     updateInputOptions,
     setNextQuestionId,
+    pastQuestionArray,
+    setPastQuestionArray,
   } = useProjectQuizForm();
 
   return (
@@ -68,7 +73,6 @@ export const BaseLayout: React.FC = ({ children }) => {
           currentQuestion={currentQuestion}
           setCurrentQuestion={setCurrentQuestion}
           nextQuestionId={nextQuestionId}
-          prevQuestionId={prevQuestionId}
           primaryInterest={primaryInterest}
           haveWebsite={haveWebsite}
           haveTimeline={haveTimeline}
@@ -81,9 +85,15 @@ export const BaseLayout: React.FC = ({ children }) => {
           websiteUrlValue={websiteUrlValue}
           websiteUrlOptions={websiteUrlOptions}
           idealTimeline={idealTimeline}
+          firstName={firstName}
+          firstNameOptions={firstNameOptions}
+          emailAddress={emailAddress}
+          emailAddressOptions={emailAddressOptions}
           updateInputValue={updateInputValue}
           updateInputOptions={updateInputOptions}
           setNextQuestionId={setNextQuestionId}
+          pastQuestionArray={pastQuestionArray}
+          setPastQuestionArray={setPastQuestionArray}
         />
       </Portal>
     </>

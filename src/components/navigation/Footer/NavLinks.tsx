@@ -23,9 +23,8 @@ export const NavLinks = () => {
     const id = el.id;
     const label = el.label;
     const slug = el.slug;
-    const width = el.width;
 
-    return <NavLink key={id} navLabel={label} slug={slug} width={width} />;
+    return <NavLink key={id} navLabel={label} slug={slug} color="blue" />;
   });
 
   return <NavContainer>{links}</NavContainer>;

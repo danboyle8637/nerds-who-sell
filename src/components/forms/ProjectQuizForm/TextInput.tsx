@@ -38,7 +38,7 @@ const InputContainer = styled.div`
   width: 100%;
 `;
 
-export const ProjectQuizTextInpu: React.FC<TextInputProps> = ({
+export const ProjectQuizTextInput: React.FC<TextInputProps> = ({
   activeId,
   questionId,
   nextQuestionId,

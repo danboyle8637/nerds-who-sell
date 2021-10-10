@@ -9,11 +9,12 @@ import {
 import { useIsHovering } from "../../../hooks/componets/useIsHovering";
 import { useActivePage } from "../../../hooks/componets/useActivePage";
 import { buttonFocus } from "../../buttons/buttonStyles";
+import { NavColor } from "../../../types/components";
 
 interface NavLinkProps {
   navLabel: string;
   slug: string;
-  width: number;
+  color: NavColor;
 }
 
 const NavLinkContainer = styled.a`
@@ -48,7 +49,7 @@ const Pixel = styled.div`
   pointer-events: none;
 `;
 
-export const NavLink: React.FC<NavLinkProps> = ({ navLabel, slug, width }) => {
+export const NavLink: React.FC<NavLinkProps> = ({ navLabel, slug, color }) => {
   const numPixels = [0, 1, 2, 3, 4, 5, 6, 7];
   const pixelArrayRef = useRef<HTMLDivElement[]>([]);
 
@@ -63,7 +64,7 @@ export const NavLink: React.FC<NavLinkProps> = ({ navLabel, slug, width }) => {
 
     if (pixelArray && isHovering) {
       for (let i = 0; i < pixelArray.length; i++) {
-        footerNavPixelSpreadAni(pixelArray[i], false);
+        footerNavPixelSpreadAni(pixelArray[i], color, false);
       }
     }
 

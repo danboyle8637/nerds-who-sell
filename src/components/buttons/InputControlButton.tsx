@@ -17,10 +17,10 @@ const Button = styled.button`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.4rem;
-  color: var(--primary-background);
+  color: var(--button-label-color);
   text-transform: uppercase;
   letter-spacing: 0.08rem;
-  background-color: var(--accent-2);
+  background-color: var(--button-background);
   border: none;
   border-radius: 6px;
   outline: none;
@@ -37,8 +37,19 @@ export const InputControlButton: React.FC<InputControlButtonProps> = ({
 }) => {
   const label = controlType === "back" ? "back" : "next";
 
+  const styles = {
+    "--button-label-color":
+      controlType === "back"
+        ? "var(--base-text-color)"
+        : "var(--primary-background)",
+    "--button-background":
+      controlType === "back"
+        ? "var(--secondary-background)"
+        : "var(--accent-2)",
+  } as React.CSSProperties;
+
   return (
-    <Button type="button" onClick={handleClick}>
+    <Button style={styles} type="button" onClick={handleClick}>
       {label}
     </Button>
   );
