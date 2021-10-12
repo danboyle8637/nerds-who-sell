@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { largeHeadline } from "../../../styles/typography";
 import { BlogHeaderImage } from "../../../components/images/blog/BlogHeaderLogo";
+import { sizes } from "../../../styles/sizes";
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -10,6 +11,9 @@ const HeaderContainer = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   width: fit-content;
+  ${sizes.aboveIpadPro} {
+    padding-top: 80px;
+  }
 `;
 
 const HeaderImage = styled.div`

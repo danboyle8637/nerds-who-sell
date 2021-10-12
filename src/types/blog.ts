@@ -28,7 +28,14 @@ export interface BlogPostListPage {
   ctaContent: Markdown;
 }
 
-export type BlogCategory = "marketing" | "web-design" | "conversion" | "coding";
+export type Headline4Type = "normal" | "call out";
+
+export type BlogCategory =
+  | "marketing"
+  | "web-design"
+  | "conversion"
+  | "coding"
+  | "portfolio";
 
 export type BlogTag =
   | "typescript"

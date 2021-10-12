@@ -53,9 +53,15 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const allPosts = [...posts2021];
 
+  const publishedPosts = allPosts.filter((post) => {
+    const isDraft = post.frontmatter.draft;
+
+    return !isDraft;
+  });
+
   return {
     props: {
-      posts: allPosts,
+      posts: publishedPosts,
       ctaContent: ctaContent,
     },
   };

@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import {
+  Headline3,
+  Headline4,
+  Headline5,
   Paragraph,
   InternalLink,
   Strong,
@@ -9,6 +12,7 @@ import {
   ListItem,
   CallOutBox,
   PostImage,
+  YouTubeEmbed,
 } from "../mdx";
 import { sizes } from "../../styles/sizes";
 
@@ -17,6 +21,9 @@ interface PostContentProps {
 }
 
 const components = {
+  h3: (props: any) => <Headline3 {...props} />,
+  h4: (props: any) => <Headline4 {...props} />,
+  h5: (props: any) => <Headline5 {...props} />,
   p: (props: any) => <Paragraph {...props} />,
   InternalLink,
   a: (props: any) => <InternalLink {...props} />,
@@ -26,12 +33,19 @@ const components = {
   li: (props: any) => <ListItem {...props} />,
   CallOutBox,
   PostImage,
+  YouTubeEmbed,
 };
 
-const ContentContainer = styled.div`
+const BaseContainer = styled.div`
   padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: 800px;
+  & p {
+    padding-bottom: 4rem;
+  }
   ${sizes.aboveMobile} {
     padding: 0 26px;
   }
@@ -42,8 +56,8 @@ const ContentContainer = styled.div`
 
 export const PostContent: React.FC<PostContentProps> = ({ postContent }) => {
   return (
-    <ContentContainer>
+    <BaseContainer>
       <MDXRemote {...postContent} components={components} />
-    </ContentContainer>
+    </BaseContainer>
   );
 };

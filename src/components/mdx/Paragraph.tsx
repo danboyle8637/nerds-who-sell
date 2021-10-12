@@ -1,11 +1,17 @@
-import React from "react";
+import styled from "styled-components";
+
+const Para = styled.p`
+  padding-bottom: 2rem;
+  font-size: 1.6rem;
+  color: var(--base-text-color);
+  line-height: 1.8;
+  text-align: left;
+  width: 100%;
+  &:last-child {
+    padding-bottom: 0;
+  }
+`;
 
 export const Paragraph: React.FC = (props) => {
-  const styles = {
-    fontSize: "1.6rem",
-    color: "var(--base-text-color)",
-    lineHeight: "1.8",
-  };
-
-  return <p style={styles} {...props} />;
+  return <Para {...props} />;
 };

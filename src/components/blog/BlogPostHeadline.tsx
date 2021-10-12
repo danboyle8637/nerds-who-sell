@@ -19,6 +19,7 @@ const HeadlineContainer = styled.div`
   gap: 20px;
   justify-items: center;
   width: 100%;
+  max-width: 800px;
   ${sizes.aboveMobile} {
     grid-template-columns: min-content 1fr;
     justify-items: start;
@@ -73,6 +74,8 @@ export const BlogPostHeadline: React.FC<BlogPostHeadlineProps> = ({
         return "marketing";
       case "web-design":
         return "design";
+      case "portfolio":
+        return "portfolio";
       default: {
         throw new Error(
           "You are missing a category in the blog post headline."

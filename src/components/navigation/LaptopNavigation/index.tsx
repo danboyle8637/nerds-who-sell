@@ -4,7 +4,7 @@ import { NavLink } from "../Footer/NavLink";
 import { navigation } from "../../../../data/nav";
 
 const NavContainer = styled.div`
-  padding-top: 20px;
+  padding-top: 10px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;

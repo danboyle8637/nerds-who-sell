@@ -4,6 +4,7 @@ import { MarketingCategory } from "../../images/MarketingCategory";
 import { CodingCategory } from "../../images/CodingCategory";
 import { ConversionCategory } from "../../images/ConversionCategory";
 import { WebDesignCategory } from "../../images/WebDesignCategory";
+import { PortfolioCategory } from "../../images/PortfolioCategory";
 import { BlogCategory } from "../../../types/blog";
 import { useCallback } from "react";
 
@@ -39,6 +40,10 @@ const WebDesignIcon = styled.div`
   width: 40px;
 `;
 
+const PortfolioIcon = styled.div`
+  width: 46px;
+`;
+
 export const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
   const renderIconImage = useCallback(() => {
     switch (category) {
@@ -68,6 +73,13 @@ export const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
           <WebDesignIcon>
             <WebDesignCategory />
           </WebDesignIcon>
+        );
+      }
+      case "portfolio": {
+        return (
+          <PortfolioIcon>
+            <PortfolioCategory />
+          </PortfolioIcon>
         );
       }
       default: {

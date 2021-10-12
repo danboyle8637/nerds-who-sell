@@ -19,6 +19,7 @@ const HeaderContainer = styled.div`
   grid-auto-rows: min-content;
   gap: 30px;
   width: 100%;
+  max-width: 800px;
 `;
 
 const PostImage = styled.div`

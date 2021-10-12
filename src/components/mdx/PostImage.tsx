@@ -3,8 +3,9 @@ import styled from "styled-components";
 
 interface ImageProps {
   url: string;
-  width: number;
-  height: number;
+  imageWidth: number;
+  imageHeight: number;
+  containerWidth: number;
   alt: string;
   title: string;
 }
@@ -12,14 +13,16 @@ interface ImageProps {
 const ImageContainer = styled.div`
   background-color: none;
   border-radius: 12px;
-  width: 100%;
+  width: var(--container-width, 100%);
+  max-width: 1000px;
   overflow: hidden;
 `;
 
 export const PostImage: React.FC<ImageProps> = ({
   url,
-  width,
-  height,
+  imageWidth,
+  imageHeight,
+  containerWidth,
   alt,
   title,
 }) => {
@@ -27,8 +30,8 @@ export const PostImage: React.FC<ImageProps> = ({
     <ImageContainer>
       <Image
         src={url}
-        width={width}
-        height={height}
+        width={imageWidth}
+        height={imageHeight}
         layout="responsive"
         alt={alt}
         title={title}

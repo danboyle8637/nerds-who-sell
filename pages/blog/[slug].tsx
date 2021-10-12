@@ -6,7 +6,7 @@ import matter from "gray-matter";
 import { PostProps } from "../../src/types/pages";
 import { BlogFrontmatter } from "../../src/types/blog";
 
-import { BlogPostView } from "../../src/views/Blog";
+import { BlogPostView } from "../../src/views/Blog/BlogPost";
 
 const Post: React.FC<PostProps> = ({ code, frontmatter }) => {
   return (

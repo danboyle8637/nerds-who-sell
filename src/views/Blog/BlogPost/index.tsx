@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
-import { BlogPostHeader } from "../../components/blog/BlogPostHeader";
-import { BlogPostHeadline } from "../../components/blog/BlogPostHeadline";
-import { PostContent } from "../../components/blog/PostContent";
-import { BlogFrontmatter } from "../../types/blog";
-import { sizes } from "../../styles/sizes";
+import { BlogPostHeader } from "../../../components/blog/BlogPostHeader";
+import { BlogPostHeadline } from "../../../components/blog/BlogPostHeadline";
+import { PostContent } from "../../../components/blog/PostContent";
+import { WebDevCallToAction } from "./WebDevCallToAction";
+import { BlogFrontmatter } from "../../../types/blog";
+import { sizes } from "../../../styles/sizes";
 
 interface BlogPostViewProps {
   frontmatter: BlogFrontmatter;
@@ -18,10 +19,13 @@ const ViewContainer = styled.div`
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
   gap: 60px;
+  justify-items: center;
   width: 100%;
-  max-width: 800px;
   ${sizes.aboveTablet} {
-    padding: 40px 0;
+    padding: 40px 0 0 0;
+  }
+  ${sizes.aboveIpadPro} {
+    padding: 80px 0 0 0;
   }
 `;
 
@@ -47,6 +51,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         category={frontmatter.category}
       />
       <PostContent postContent={content} />
+      <WebDevCallToAction />
     </ViewContainer>
   );
 };

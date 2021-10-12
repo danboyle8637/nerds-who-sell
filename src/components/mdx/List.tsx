@@ -8,7 +8,7 @@ interface ListProps {
 
 const list = css`
   margin: 0;
-  padding: 40px 0 40px 40px;
+  padding: 0 0 40px 40px;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;

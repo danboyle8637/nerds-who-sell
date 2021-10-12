@@ -12,18 +12,18 @@ export const BlogPostImage: React.FC<BlogPostImageProps> = ({
   titleTag,
 }) => {
   const splitUrl = url.split("2021");
-  const blurred = "tr:w-10,bl-2";
   const progressive = "tr:pr-true";
   const fullUrl = [splitUrl[0], `2021/${progressive}`, splitUrl[1]].join("");
   return (
     <Image
       src={fullUrl}
-      width={800}
-      height={320}
+      width={1200}
+      height={525}
       alt={altTag}
       title={titleTag}
       layout="responsive"
       quality={90}
+      priority={true}
     />
   );
 };
