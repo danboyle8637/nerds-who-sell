@@ -44,3 +44,7 @@ export interface AboutPageProps {
 export interface PrivacyViewProps {
   privacyCopy: Markdown;
 }
+
+export interface ThankYouPageProps {
+  content: Markdown;
+}

@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { NavLink } from "../Footer/NavLink";
 import { navigation } from "../../../../data/nav";
 
-const NavContainer = styled.div`
+const NavContainer = styled.nav`
   padding-top: 10px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
+  justify-items: center;
   align-items: center;
   width: fit-content;
 `;
