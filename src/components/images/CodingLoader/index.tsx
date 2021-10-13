@@ -48,6 +48,7 @@ const Blue2 = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  padding-left: 14px;
   width: 100%;
   transform: translate(16px, 10px);
   z-index: 1;
@@ -57,6 +58,7 @@ const Blue3 = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  padding-left: 14px;
   width: 100%;
   transform: translate(16px, 20px);
   z-index: 1;
@@ -66,6 +68,7 @@ const Blue4 = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  padding-left: 14px;
   width: 100%;
   transform: translate(16px, 30px);
   z-index: 1;
@@ -94,6 +97,7 @@ const Pink2 = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  padding-left: 14px;
   transform: translate(16px, 60px);
   z-index: 1;
 `;

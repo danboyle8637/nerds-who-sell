@@ -30,7 +30,7 @@ const Headline = styled.h1`
   z-index: 1;
 `;
 
-export const Header = () => {
+export const BlogHeader = () => {
   return (
     <HeaderContainer>
       <HeaderImage>

@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
 import { List } from "./List";
-import { Header } from "./Header";
+import { BlogHeader } from "./BlogHeader";
+import { CategoryHeader } from "../PostCategoryHeader";
 import { BlogPostCard } from "../../../types/blog";
 import { CallToActionSection } from "../../Home/CallToActionSection";
 import { Markdown } from "../../../types/pages";
+import { BlogCategory } from "../../../types/blog";
 import { sizes } from "../../../styles/sizes";
 
 interface BlogPostListProps {
   posts: BlogPostCard[];
   ctaContent: Markdown;
+  category?: BlogCategory;
 }
 
 const ViewContainer = styled.div`
@@ -28,10 +31,11 @@ const ViewContainer = styled.div`
 export const BlogPostList: React.FC<BlogPostListProps> = ({
   posts,
   ctaContent,
+  category,
 }) => {
   return (
     <ViewContainer>
-      <Header />
+      {category ? <CategoryHeader category={category} /> : <BlogHeader />}
       <List posts={posts} />
       <CallToActionSection
         preHeadline={ctaContent.frontmatter.preHeadline as string}

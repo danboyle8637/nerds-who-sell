@@ -49,10 +49,12 @@ export type BlogTag =
   | "go"
   | "swift"
   | "dates"
-  | "book review"
-  | "opinion"
+  | "marketing book review"
+  | "coding book review"
   | "media buying"
   | "copywriting"
   | "email copy"
   | "conversion"
-  | "portfolio";
+  | "portfolio"
+  | "web dev"
+  | "all";

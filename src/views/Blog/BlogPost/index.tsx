@@ -4,7 +4,7 @@ import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { BlogPostHeader } from "../../../components/blog/BlogPostHeader";
 import { BlogPostHeadline } from "../../../components/blog/BlogPostHeadline";
 import { PostContent } from "../../../components/blog/PostContent";
-import { WebDevCallToAction } from "./WebDevCallToAction";
+import { CallToActionSection } from "./CallToActionSection";
 import { BlogFrontmatter } from "../../../types/blog";
 import { sizes } from "../../../styles/sizes";
 
@@ -29,6 +29,11 @@ const ViewContainer = styled.div`
   }
 `;
 
+const CallToActionContainer = styled.div`
+  padding: 80px 0 0 0;
+  width: 100%;
+`;
+
 export const BlogPostView: React.FC<BlogPostViewProps> = ({
   frontmatter,
   content,
@@ -51,7 +56,9 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         category={frontmatter.category}
       />
       <PostContent postContent={content} />
-      <WebDevCallToAction />
+      <CallToActionContainer>
+        <CallToActionSection type={frontmatter.category} />
+      </CallToActionContainer>
     </ViewContainer>
   );
 };

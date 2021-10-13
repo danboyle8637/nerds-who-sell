@@ -1,4 +1,5 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
+import Link from "next/link";
 import styled from "styled-components";
 
 import { BlogTag } from "../../types/blog";
@@ -8,11 +9,17 @@ interface BlogPostTagChipProps {
   handleClick: () => void;
 }
 
-const TagContainer = styled.button`
+const TagContainer = styled.a`
   padding: 0 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--base-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
   background-color: var(--tag-background-color);
   border: none;
   border-radius: 8px;
@@ -30,14 +37,6 @@ const TagContainer = styled.button`
     transform: translateY(-4px) scale(1.04);
     box-shadow: 0 4px 8px 1px hsla(0, 0%, 0%, 0.2);
   }
-`;
-
-const TagLabel = styled.p`
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--base-text-color);
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
 `;
 
 export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
@@ -82,10 +81,16 @@ export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
         return "#F8B63C";
       case "portfolio":
         return "#A9006A";
+      case "web dev":
+        return "#6063a7";
       default: {
         throw new Error("You did not handle all possible blog tags.");
       }
     }
+  }, [tag]);
+
+  const formattedTag = useMemo(() => {
+    return tag.split(" ").join("-");
   }, [tag]);
 
   const styles = {
@@ -93,8 +98,16 @@ export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
   } as React.CSSProperties;
 
   return (
-    <TagContainer style={styles} type="button" onClick={handleClick}>
-      <TagLabel>{tag}</TagLabel>
-    </TagContainer>
+    <Link
+      href={{
+        pathname: "/blog/tag",
+        query: { tag: formattedTag },
+      }}
+      passHref={true}
+    >
+      <TagContainer style={styles} type="button" onClick={handleClick}>
+        {tag}
+      </TagContainer>
+    </Link>
   );
 };
