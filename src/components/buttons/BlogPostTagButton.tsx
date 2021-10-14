@@ -67,16 +67,16 @@ export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
         return "#5CC1F2";
       case "node":
         return "#22E62F";
-      case "opinion":
-        return "#F63B69";
       case "react":
         return "#3D83D4";
       case "swift":
         return "#EB5D36";
       case "typescript":
         return "#2C58D4";
-      case "book review":
+      case "coding book review":
         return "#7351F6";
+      case "marketing book review":
+        return "#F63B69";
       case "cloudflare workers":
         return "#F8B63C";
       case "portfolio":

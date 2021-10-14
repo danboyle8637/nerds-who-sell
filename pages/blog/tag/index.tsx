@@ -17,7 +17,11 @@ import {
   BlogTag,
 } from "../../../src/types/blog";
 
-const TagPostList: React.FC<BlogPostListPage> = ({ posts, ctaContent }) => {
+const TagPostList: React.FC<BlogPostListPage> = ({
+  posts,
+  ctaContent,
+  totalPages,
+}) => {
   const [tag, setTag] = useState<BlogTag>("all");
   const [filteredPosts, setFilteredPosts] = useState<BlogPostCard[]>([]);
 
@@ -51,6 +55,7 @@ const TagPostList: React.FC<BlogPostListPage> = ({ posts, ctaContent }) => {
       posts={filteredPosts}
       ctaContent={ctaContent}
       category={filterBlogCategory(tag)}
+      totalPages={totalPages}
     />
   );
 };
@@ -99,14 +104,18 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const publishedPosts = allPosts.filter((post) => {
     const isDraft = post.frontmatter.draft;
-
     return !isDraft;
   });
+
+  const totalPosts = publishedPosts.length;
+  const postsPerPage = 8;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   return {
     props: {
       posts: publishedPosts,
       ctaContent: ctaContent,
+      totalPages: totalPages,
     },
   };
 };

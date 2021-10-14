@@ -65,7 +65,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const publishedPosts = allPosts.filter((post) => {
     const isDraft = post.frontmatter.draft;
-
     return !isDraft;
   });
 
