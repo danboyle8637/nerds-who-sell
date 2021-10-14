@@ -7,8 +7,18 @@ import { serialize } from "next-mdx-remote/serialize";
 import { BlogPostList } from "../../src/views/Blog/BlogPostList";
 import { BlogPostListPage } from "../../src/types/blog";
 
-const Blog: React.FC<BlogPostListPage> = ({ posts, ctaContent }) => {
-  return <BlogPostList posts={posts} ctaContent={ctaContent} />;
+const Blog: React.FC<BlogPostListPage> = ({
+  posts,
+  ctaContent,
+  totalPages,
+}) => {
+  return (
+    <BlogPostList
+      posts={posts}
+      ctaContent={ctaContent}
+      totalPages={totalPages}
+    />
+  );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -59,11 +69,17 @@ export const getStaticProps: GetStaticProps = async () => {
     return !isDraft;
   });
 
+  const totalPosts = publishedPosts.length;
+  const postsPerPage = 8;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
+
   return {
     props: {
       posts: publishedPosts,
       ctaContent: ctaContent,
+      totalPages: totalPages,
     },
+    revalidate: 1,
   };
 };
 

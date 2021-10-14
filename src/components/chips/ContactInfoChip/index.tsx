@@ -1,9 +1,10 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 
-import { smallHeadline } from "../../../styles/typography";
+import { bodyText } from "../../../styles/typography";
 import { RenderContactIcon } from "./RenderContactIcon";
 import { Icon } from "../../../types/components";
-import { useCallback } from "react";
+import { sizes } from "../../../styles/sizes";
 
 interface ContactInfoChipProps {
   icon: Icon;
@@ -11,6 +12,7 @@ interface ContactInfoChipProps {
 }
 
 const ChipContainer = styled.div`
+  padding: 8px;
   display: grid;
   grid-template-columns: 48px 1fr;
   gap: 12px;
@@ -20,26 +22,31 @@ const ChipContainer = styled.div`
   border-radius: 12px;
   width: 350px;
   height: 72px;
+  ${sizes.aboveTablet} {
+    width: 100%;
+  }
 `;
 
 const InfoContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
-  gap: 6px;
+  gap: 4px;
   justify-items: start;
   width: 100%;
 `;
 
 const ContactLabel = styled.p`
-  ${smallHeadline}
+  ${bodyText}
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 1.06rem;
+  letter-spacing: 0.6rem;
 `;
 
 const ContactInfo = styled.p`
-  ${smallHeadline}
+  ${bodyText}
   font-size: 2.2rem;
+  font-weight: 400;
 `;
 
 export const ContactInfoChip: React.FC<ContactInfoChipProps> = ({
@@ -52,6 +59,8 @@ export const ContactInfoChip: React.FC<ContactInfoChipProps> = ({
         return "Email";
       case "phone":
         return "Phone";
+      case "twitter":
+        return "Twitter";
       default: {
         throw new Error("You did not handle all possible icon.");
       }

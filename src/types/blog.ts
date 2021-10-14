@@ -26,6 +26,7 @@ export interface BlogPostCard {
 export interface BlogPostListPage {
   posts: BlogPostCard[];
   ctaContent: Markdown;
+  totalPages: number;
 }
 
 export type Headline4Type = "normal" | "call out";

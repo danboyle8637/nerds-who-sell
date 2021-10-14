@@ -7,7 +7,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import { BasicThankYou } from "../../src/views/ThankYou/Basic";
 import { ThankYouPageProps } from "../../src/types/pages";
 
-const QuizForm: React.FC<ThankYouPageProps> = ({ content }) => {
+const Contact: React.FC<ThankYouPageProps> = ({ content }) => {
   return (
     <BasicThankYou
       headline={content.frontmatter.headline as string}
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   };
 
-  const thankYouContent = await getContent("quiz-form", contentPath);
+  const thankYouContent = await getContent("contact", contentPath);
 
   return {
     props: {
@@ -47,4 +47,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default QuizForm;
+export default Contact;

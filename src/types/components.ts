@@ -24,4 +24,4 @@ export type ListType = "ol" | "ul";
 
 export type NavColor = "blue" | "purple";
 
-export type Icon = "email" | "phone";
+export type Icon = "email" | "phone" | "twitter";

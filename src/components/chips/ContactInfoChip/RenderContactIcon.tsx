@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { EmailIcon } from "../../images/icons/EmailIcon";
 import { PhoneIcon } from "../../images/icons/PhoneIcon";
+import { TwitterIcon } from "../../images/icons/TwitterIcon";
 import { Icon } from "../../../types/components";
 
 interface RenderIconProps {
@@ -14,6 +15,10 @@ const Email = styled.div`
 
 const Phone = styled.div`
   width: 32px;
+`;
+
+const Twitter = styled.div`
+  width: 42px;
 `;
 
 export const RenderContactIcon: React.FC<RenderIconProps> = ({ icon }) => {
@@ -30,6 +35,13 @@ export const RenderContactIcon: React.FC<RenderIconProps> = ({ icon }) => {
         <Phone>
           <PhoneIcon />
         </Phone>
+      );
+    }
+    case "twitter": {
+      return (
+        <Twitter>
+          <TwitterIcon />
+        </Twitter>
       );
     }
     default: {
