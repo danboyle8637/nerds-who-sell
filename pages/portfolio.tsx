@@ -6,6 +6,8 @@ import { serialize } from "next-mdx-remote/serialize";
 
 import { BlogPostList } from "../src/views/Blog/BlogPostList";
 import { BlogPostListPage } from "../src/types/blog";
+import { Seo } from "../src/Seo";
+import { seo } from "../src/Seo/data";
 
 const Portgolio: React.FC<BlogPostListPage> = ({
   posts,
@@ -13,12 +15,22 @@ const Portgolio: React.FC<BlogPostListPage> = ({
   totalPages,
 }) => {
   return (
-    <BlogPostList
-      posts={posts}
-      ctaContent={ctaContent}
-      category="portfolio"
-      totalPages={totalPages}
-    />
+    <>
+      <Seo
+        title={seo.portfolio.title}
+        description={seo.portfolio.description}
+        socialHeadline={seo.portfolio.socialHeadline}
+        socialDescription={seo.portfolio.socialDescription}
+        socialImage={seo.portfolio.socialImage}
+        socialSlug={seo.portfolio.socialSlug}
+      />
+      <BlogPostList
+        posts={posts}
+        ctaContent={ctaContent}
+        category="portfolio"
+        totalPages={totalPages}
+      />
+    </>
   );
 };
 

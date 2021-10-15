@@ -6,6 +6,8 @@ import matter from "gray-matter";
 import { AboutPageProps } from "../src/types/pages";
 
 import { AboutView } from "../src/views/About";
+import { Seo } from "../src/Seo";
+import { seo } from "../src/Seo/data";
 
 const About: React.FC<AboutPageProps> = ({
   headerContent,
@@ -14,14 +16,24 @@ const About: React.FC<AboutPageProps> = ({
   callToActionContent,
 }) => {
   return (
-    <AboutView
-      headerHeadline={headerContent.frontmatter.headline as string}
-      introBodyCopy={whoContent}
-      authenticCopy={qualitiesContent.authentic}
-      clearCopy={qualitiesContent.clear}
-      overdeliverCopy={qualitiesContent.overdeliver}
-      ctaCopy={callToActionContent}
-    />
+    <>
+      <Seo
+        title={seo.about.title}
+        description={seo.about.description}
+        socialHeadline={seo.about.socialHeadline}
+        socialDescription={seo.about.socialDescription}
+        socialImage={seo.about.socialImage}
+        socialSlug={seo.about.socialSlug}
+      />
+      <AboutView
+        headerHeadline={headerContent.frontmatter.headline as string}
+        introBodyCopy={whoContent}
+        authenticCopy={qualitiesContent.authentic}
+        clearCopy={qualitiesContent.clear}
+        overdeliverCopy={qualitiesContent.overdeliver}
+        ctaCopy={callToActionContent}
+      />
+    </>
   );
 };
 

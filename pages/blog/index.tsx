@@ -6,6 +6,8 @@ import { serialize } from "next-mdx-remote/serialize";
 
 import { BlogPostList } from "../../src/views/Blog/BlogPostList";
 import { BlogPostListPage } from "../../src/types/blog";
+import { Seo } from "../../src/Seo";
+import { seo } from "../../src/Seo/data";
 
 const Blog: React.FC<BlogPostListPage> = ({
   posts,
@@ -13,11 +15,21 @@ const Blog: React.FC<BlogPostListPage> = ({
   totalPages,
 }) => {
   return (
-    <BlogPostList
-      posts={posts}
-      ctaContent={ctaContent}
-      totalPages={totalPages}
-    />
+    <>
+      <Seo
+        title={seo.blog.title}
+        description={seo.blog.description}
+        socialHeadline={seo.blog.socialHeadline}
+        socialDescription={seo.blog.socialDescription}
+        socialImage={seo.blog.socialImage}
+        socialSlug={seo.blog.socialSlug}
+      />
+      <BlogPostList
+        posts={posts}
+        ctaContent={ctaContent}
+        totalPages={totalPages}
+      />
+    </>
   );
 };
 

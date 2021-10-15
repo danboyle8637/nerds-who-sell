@@ -53,6 +53,7 @@ const InputLabel = styled.label`
 const InputField = styled.input`
   margin: 0;
   padding: 12px 12px;
+  font-family: inherit;
   font-size: 1.8rem;
   font-weight: 500;
   color: var(--input-text-color);

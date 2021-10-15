@@ -16,6 +16,7 @@ import {
   BlogPostCard,
   BlogTag,
 } from "../../../src/types/blog";
+import { Seo } from "../../../src/Seo";
 
 const TagPostList: React.FC<BlogPostListPage> = ({
   posts,
@@ -51,12 +52,18 @@ const TagPostList: React.FC<BlogPostListPage> = ({
   }, [isReady, query, posts]);
 
   return (
-    <BlogPostList
-      posts={filteredPosts}
-      ctaContent={ctaContent}
-      category={filterBlogCategory(tag)}
-      totalPages={totalPages}
-    />
+    <>
+      <Seo
+        title={`Blog Posts Matching the ${tag} Tag`}
+        description={`Learn more about all posts with the ${tag} tag and go deep.`}
+      />
+      <BlogPostList
+        posts={filteredPosts}
+        ctaContent={ctaContent}
+        category={filterBlogCategory(tag)}
+        totalPages={totalPages}
+      />
+    </>
   );
 };
 

@@ -6,6 +6,8 @@ import matter from "gray-matter";
 import { HomePageProps } from "../src/types/pages";
 
 import { HomeView } from "../src/views/Home";
+import { Seo } from "../src/Seo";
+import { seo } from "../src/Seo/data";
 
 const Home: React.FC<HomePageProps> = ({
   webDevContent,
@@ -15,13 +17,23 @@ const Home: React.FC<HomePageProps> = ({
   callToActionContent,
 }) => {
   return (
-    <HomeView
-      webDevContent={webDevContent}
-      webDevServices={webDevServices}
-      copywritingContent={copywritingContent}
-      copywritingServices={copywritingServices}
-      ctaContent={callToActionContent}
-    />
+    <>
+      <Seo
+        title={seo.home.title}
+        description={seo.home.description}
+        socialHeadline={seo.home.socialHeadline}
+        socialDescription={seo.home.socialDescription}
+        socialImage={seo.home.socialImage}
+        socialSlug={seo.home.socialSlug}
+      />
+      <HomeView
+        webDevContent={webDevContent}
+        webDevServices={webDevServices}
+        copywritingContent={copywritingContent}
+        copywritingServices={copywritingServices}
+        ctaContent={callToActionContent}
+      />
+    </>
   );
 };
 

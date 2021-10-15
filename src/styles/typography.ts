@@ -18,10 +18,10 @@ export const smallHeadline = css`
 `;
 
 export const bodyText = css`
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--body-text-color, var(--base-text-color));
   ${sizes.aboveMobile} {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 `;
 

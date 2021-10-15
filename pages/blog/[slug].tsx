@@ -7,10 +7,24 @@ import { PostProps } from "../../src/types/pages";
 import { BlogFrontmatter } from "../../src/types/blog";
 
 import { BlogPostView } from "../../src/views/Blog/BlogPost";
+import { Seo } from "../../src/Seo";
 
 const Post: React.FC<PostProps> = ({ code, frontmatter }) => {
   return (
-    <BlogPostView frontmatter={frontmatter as BlogFrontmatter} content={code} />
+    <>
+      <Seo
+        title={frontmatter.pageTitle}
+        description={frontmatter.pageDescription}
+        socialHeadline={frontmatter.socialHeadline}
+        socialDescription={frontmatter.socialDescription}
+        socialImage={frontmatter.socialImage}
+        socialSlug={frontmatter.socialSlug}
+      />
+      <BlogPostView
+        frontmatter={frontmatter as BlogFrontmatter}
+        content={code}
+      />
+    </>
   );
 };
 

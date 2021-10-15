@@ -7,7 +7,7 @@ export const CallOutIcon: React.FC = () => {
       width={69}
       height={69}
       alt="Call out icon to get your attention"
-      quality={90}
+      quality={100}
     />
   );
 };

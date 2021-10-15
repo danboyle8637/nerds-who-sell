@@ -1,40 +1,39 @@
 import { Transition } from "react-transition-group";
-import { gsap, Power3 } from "gsap";
+import { gsap, Back } from "gsap";
 
-interface FormMessageTransitionProps {
+interface BackButtonTransitionProps {
   isActive: boolean;
 }
 
-export const InputStatusTransition: React.FC<FormMessageTransitionProps> = ({
+export const BackButtonTransition: React.FC<BackButtonTransitionProps> = ({
   isActive,
   children,
 }) => {
-  const messageEnter = (node: HTMLElement): void => {
+  const buttonEnter = (node: HTMLElement): void => {
     if (isActive) {
       gsap.fromTo(
         node,
         {
-          scale: 0.9,
+          x: "-100%",
           autoAlpha: 0,
         },
         {
           duration: 0.4,
-          scale: 1,
+          x: 0,
           autoAlpha: 1,
-          ease: Power3.easeIn,
-          delay: 0.8,
+          ease: Back.easeIn,
         }
       );
     }
   };
 
-  const messageExit = (node: HTMLElement): void => {
+  const buttonExit = (node: HTMLElement): void => {
     if (!isActive) {
       gsap.to(node, {
         duration: 0.4,
-        scale: 0.9,
+        x: "-100%",
         autoAlpha: 0,
-        ease: Power3.easeOut,
+        ease: Back.easeOut,
       });
     }
   };
@@ -45,8 +44,8 @@ export const InputStatusTransition: React.FC<FormMessageTransitionProps> = ({
       timeout={800}
       mountOnEnter={true}
       unmountOnExit={true}
-      onEnter={(node: HTMLElement) => messageEnter(node)}
-      onExit={(node: HTMLElement) => messageExit(node)}
+      onEnter={(node: HTMLElement) => buttonEnter(node)}
+      onExit={(node: HTMLElement) => buttonExit(node)}
     >
       {children}
     </Transition>

@@ -22,7 +22,7 @@ export const BlogPostImage: React.FC<BlogPostImageProps> = ({
       alt={altTag}
       title={titleTag}
       layout="responsive"
-      quality={90}
+      quality={100}
       priority={true}
     />
   );
