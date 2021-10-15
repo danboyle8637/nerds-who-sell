@@ -6,7 +6,6 @@ import { MobileNav } from "./MobileNavigation";
 import { LaptopNav } from "./LaptopNavigation";
 import { BackChip } from "../chips/BackChip";
 import { useMatchMedia } from "../../hooks/componets/useMatchMedia";
-import { sizes } from "../../styles/sizes";
 
 const BarContainer = styled.div`
   position: fixed;
@@ -14,12 +13,19 @@ const BarContainer = styled.div`
   left: 0;
   right: 0;
   display: flex;
+  justify-content: center;
+  width: 100%;
+  z-index: 10;
+`;
+
+const ContentContainer = styled.div`
+  position: relative;
+  display: flex;
   justify-content: flex-end;
   background: none;
   width: 100%;
   max-width: 1440px;
   height: 50px;
-  z-index: 10;
 `;
 
 export const NavBar = () => {
@@ -49,11 +55,13 @@ export const NavBar = () => {
   return (
     <>
       <BarContainer>
-        <BackChip
-          showBackButton={showBackButton}
-          handleBackButtonClick={handleBackButtonClick}
-        />
-        {isAboveIpadPro ? <LaptopNav /> : <MobileNav />}
+        <ContentContainer>
+          <BackChip
+            showBackButton={showBackButton}
+            handleBackButtonClick={handleBackButtonClick}
+          />
+          {isAboveIpadPro ? <LaptopNav /> : <MobileNav />}
+        </ContentContainer>
       </BarContainer>
     </>
   );
