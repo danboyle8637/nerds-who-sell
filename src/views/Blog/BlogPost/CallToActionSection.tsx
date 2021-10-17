@@ -14,14 +14,11 @@ interface CallToActionSectionProps {
 }
 
 const SectionContainer = styled.div`
-  padding: 40px 12px 160px 12px;
+  padding: 100px 12px 160px 12px;
   display: flex;
   justify-content: center;
   background-color: var(--section-background-5);
   width: 100%;
-  ${sizes.aboveIphone11Pro} {
-    padding: 40px 12px 140px 12px;
-  }
 `;
 
 const ContentContainer = styled.div`
@@ -48,7 +45,7 @@ const TheNerd = styled.div`
   top: 0;
   left: 50%;
   width: 180px;
-  transform: translate(-50%, -80px);
+  transform: translate(-50%, -160px);
   ${sizes.aboveMobile} {
     top: unset;
     bottom: 0;

@@ -10,7 +10,7 @@ export const moveLabelAboveInputAni = (
     label,
     {
       x: 20,
-      y: "86%",
+      y: "100%",
       fontSize: "2rem",
       fontWeight: 700,
     },

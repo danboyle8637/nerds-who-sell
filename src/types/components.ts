@@ -25,3 +25,5 @@ export type ListType = "ol" | "ul";
 export type NavColor = "blue" | "purple";
 
 export type Icon = "email" | "phone" | "twitter";
+
+export type NotificationType = "success" | "info" | "warning" | "danger";

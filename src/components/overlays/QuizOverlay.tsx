@@ -21,6 +21,7 @@ import { sizes } from "../../styles/sizes";
 interface QuizOverlayProps {
   isOpen: boolean;
   toggleOverlay: () => void;
+  toggleNotificationCard: () => void;
   currentQuestion: number;
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
   nextQuestionId: number;
@@ -112,6 +113,7 @@ const Close = styled.button`
 export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   isOpen,
   toggleOverlay,
+  toggleNotificationCard,
   currentQuestion,
   setCurrentQuestion,
   nextQuestionId,
@@ -186,6 +188,7 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
             updateInputValue={updateInputValue}
             updateInputOptions={updateInputOptions}
             setNextQuestionId={setNextQuestionId}
+            toggleNotificationCard={toggleNotificationCard}
           />
           <Close
             ref={closeButtonRef}

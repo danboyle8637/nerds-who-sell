@@ -1,8 +1,10 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import Global from "../styles/Global";
 import { NavBar } from "../components/navigation/NavBar";
 import { Footer } from "../components/navigation/Footer";
+import { NotificationCard } from "../components/cards/NotificationCard";
 import { useProjectQuizForm } from "../hooks/forms/useProjectQuizForm";
 import { QuizOverlay } from "../components/overlays/QuizOverlay";
 import { Portal } from "../components/shared/Portal";
@@ -24,6 +26,8 @@ const ContentContainer = styled.div`
 `;
 
 export const BaseLayout: React.FC = ({ children }) => {
+  const [isErrorOpen, setIsErrorOpen] = useState<boolean>(false);
+
   const { isQuizOverlayOpen, toggleQuizOverlay } = nerdsWhoSellStore(
     (state) => ({
       isQuizOverlayOpen: state.isQuizOverlayOpen,
@@ -58,6 +62,10 @@ export const BaseLayout: React.FC = ({ children }) => {
     setPastQuestionArray,
   } = useProjectQuizForm();
 
+  const toggleNotificationCard = () => {
+    setIsErrorOpen(false);
+  };
+
   return (
     <>
       <BaseContainer>
@@ -70,6 +78,7 @@ export const BaseLayout: React.FC = ({ children }) => {
         <QuizOverlay
           isOpen={isQuizOverlayOpen}
           toggleOverlay={toggleQuizOverlay}
+          toggleNotificationCard={toggleNotificationCard}
           currentQuestion={currentQuestion}
           setCurrentQuestion={setCurrentQuestion}
           nextQuestionId={nextQuestionId}
@@ -94,6 +103,12 @@ export const BaseLayout: React.FC = ({ children }) => {
           setNextQuestionId={setNextQuestionId}
           pastQuestionArray={pastQuestionArray}
           setPastQuestionArray={setPastQuestionArray}
+        />
+        <NotificationCard
+          isActive={isErrorOpen}
+          type="danger"
+          message="Oh no. Something went wrong with the telemetry of the internet as we know it. Refresh the page and try again."
+          handleCloseNotification={toggleNotificationCard}
         />
       </Portal>
     </>

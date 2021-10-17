@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { TextInput } from "../inputs/TextInput";
@@ -11,6 +12,8 @@ import {
   QuizeTextInputOptions,
   QuizTextInputValue,
 } from "../../../hooks/forms/useProjectQuizForm";
+import { nerdsWhoSellStore } from "../../../../lib/store";
+import { QuizFormReqBody } from "../../../types/api";
 
 interface ProjectQuizFormProps {
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
@@ -40,6 +43,7 @@ interface ProjectQuizFormProps {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   setNextQuestionId: React.Dispatch<React.SetStateAction<number>>;
+  toggleNotificationCard: () => void;
 }
 
 const FormContainer = styled.form`
@@ -78,28 +82,60 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
   updateInputValue,
   updateInputOptions,
   setNextQuestionId,
+  toggleNotificationCard,
 }) => {
-  const handleFormSubmit = (event: React.FormEvent) => {
+  const toggleQuizOverlay = nerdsWhoSellStore(
+    (state) => state.toggleQuizOverlay
+  );
+
+  const { isReady, push } = useRouter();
+
+  const handleFormSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     setNextQuestionId(99);
 
-    const quizResults = {
+    const date = new Date().toLocaleDateString();
+
+    const quizResults: QuizFormReqBody = {
+      formType: "quiz",
+      date: date,
       firstName: firstName.value,
       emailAddress: emailAddress.value,
-      primaryInterest: primaryInterest.value,
+      primaryGoal: primaryInterest.value,
       haveWebsite: haveWebsite.value,
       websiteUrl: websiteUrlValue.value,
       haveTimeline: haveTimeline.value,
       haveBudget: haveBudget.value,
       haveMarketingPlan: haveMarketingPlan.value,
       numberOfProducts: numberOfProducts.value,
-      salesCopyPurpose: salesCopyPurpose.value,
+      copyHelp: salesCopyPurpose.value,
       idealTimeline: idealTimeline.value,
-      additionalDetails: additionalDetailsValue.value,
+      moreDetails: additionalDetailsValue.value,
     };
 
-    console.log(quizResults);
+    const url =
+      process.env.NODE_ENV === "development"
+        ? process.env.NEXT_PUBLIC_WORKER_BASE_URL
+        : process.env.WORKER_BASE_URL;
+
+    try {
+      await fetch(`${url}/airtable`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(quizResults),
+      });
+
+      toggleQuizOverlay();
+      if (isReady) {
+        push("/thank-you/quiz-form");
+      }
+    } catch {
+      toggleNotificationCard();
+      toggleQuizOverlay();
+    }
   };
 
   const handleNextQuestion = (questionId: number) => {

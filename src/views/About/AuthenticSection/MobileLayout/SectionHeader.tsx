@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 
 const HeaderContainer = styled.div`
   display: grid;
-  grid-template-columns: min-content 1fr;
+  grid-template-columns: 115px 1fr;
   gap: 6px;
   justify-items: start;
   align-items: center;
@@ -18,7 +18,7 @@ const HeaderContainer = styled.div`
 `;
 
 const TheNerd = styled.div`
-  width: max-content;
+  width: 100%;
 `;
 
 const HeadlineContainer = styled.div`
