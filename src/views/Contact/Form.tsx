@@ -81,7 +81,6 @@ export const Form = () => {
         ? process.env.NEXT_PUBLIC_WORKER_BASE_URL
         : process.env.WORKER_BASE_URL;
 
-    console.log(url);
     try {
       await fetch(`${url}/airtable`, {
         method: "POST",

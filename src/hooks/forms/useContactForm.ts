@@ -23,37 +23,37 @@ export const options: Option[] = [
   {
     id: 0,
     label: "Web Design or Re-design",
-    value: "web-design",
+    value: "website",
     isChecked: true,
   },
   {
     id: 1,
     label: "Build a Landing Page",
-    value: "landing-page",
+    value: "landing pages",
     isChecked: false,
   },
   {
     id: 2,
     label: "Ecommerce Site",
-    value: "ecommerce",
+    value: "e-commerce website",
     isChecked: false,
   },
   {
     id: 3,
     label: "Website Re-Write",
-    value: "website-rewrite",
+    value: "copywriting",
     isChecked: false,
   },
   {
     id: 4,
     label: "Email Writing",
-    value: "email-writing",
+    value: "copywriting",
     isChecked: false,
   },
   {
     id: 5,
     label: "Buying Ads",
-    value: "ads",
+    value: "seo and marketing",
     isChecked: false,
   },
 ];
