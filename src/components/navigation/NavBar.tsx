@@ -38,7 +38,9 @@ export const NavBar = () => {
   useEffect(() => {
     if (isReady) {
       const pathArray = asPath.split("/");
-      const isBlogPost = pathArray.length > 2 && !pathArray[2].includes("tag");
+      const isBlogPost =
+        pathArray.length > 2 &&
+        (!pathArray[2].includes("tag") || !pathArray[2].includes("thank-you"));
 
       if (isBlogPost) {
         setShowBackButton(true);
