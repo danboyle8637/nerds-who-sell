@@ -44,7 +44,7 @@ const ServiceMessageContainer = styled.div`
 `;
 
 export const Form = () => {
-  const [isErrorOpen, setIsErrorOpen] = useState<boolean>(true);
+  const [isErrorOpen, setIsErrorOpen] = useState<boolean>(false);
 
   const { isReady, push } = useRouter();
 
@@ -75,8 +75,6 @@ export const Form = () => {
       primaryGoal: serviceValue.value,
       moreDetails: contactMessage.value,
     };
-
-    console.log(contactData);
 
     const url =
       process.env.NODE_ENV === "development"
