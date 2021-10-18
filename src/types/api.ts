@@ -16,12 +16,12 @@ export interface QuizFormReqBody {
   firstName: string;
   emailAddress: string;
   primaryGoal: string;
-  haveWebsite: string;
+  haveWebsite: boolean;
   websiteUrl: string;
-  haveTimeline: string;
+  haveTimeline: boolean;
   idealTimeline: string;
-  haveBudget: string;
-  haveMarketingPlan: string;
+  haveBudget: boolean;
+  haveMarketingPlan: boolean;
   numberOfProducts: string;
   copyHelp: string;
   moreDetails: string;
@@ -29,6 +29,7 @@ export interface QuizFormReqBody {
 
 export interface ContactFormReqBody {
   formType: FormType;
+  date: string;
   firstName: string;
   emailAddress: string;
   primaryGoal: string;

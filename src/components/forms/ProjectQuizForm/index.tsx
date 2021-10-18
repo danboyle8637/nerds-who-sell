@@ -103,24 +103,26 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
       firstName: firstName.value,
       emailAddress: emailAddress.value,
       primaryGoal: primaryInterest.value,
-      haveWebsite: haveWebsite.value,
+      haveWebsite: haveWebsite.value === "yes" ? true : false,
       websiteUrl: websiteUrlValue.value,
-      haveTimeline: haveTimeline.value,
-      haveBudget: haveBudget.value,
-      haveMarketingPlan: haveMarketingPlan.value,
+      haveTimeline: haveTimeline.value === "yes" ? true : false,
+      haveBudget: haveBudget.value === "yes" ? true : false,
+      haveMarketingPlan: haveMarketingPlan.value === "yes" ? true : false,
       numberOfProducts: numberOfProducts.value,
       copyHelp: salesCopyPurpose.value,
       idealTimeline: idealTimeline.value,
       moreDetails: additionalDetailsValue.value,
     };
 
-    const url =
+    console.log(quizResults);
+
+    const baseUrl =
       process.env.NODE_ENV === "development"
-        ? process.env.NEXT_PUBLIC_WORKER_BASE_URL
-        : process.env.WORKER_BASE_URL;
+        ? "http://localhost:3000/api"
+        : "https://nerds-who-sell.vercel.app/api";
 
     try {
-      await fetch(`${url}/airtable`, {
+      const res = await fetch(`${baseUrl}/airtable`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -129,8 +131,10 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
       });
 
       toggleQuizOverlay();
-      if (isReady) {
-        push("/thank-you/quiz-form");
+      if (isReady && res.ok) {
+        setTimeout(() => {
+          push("/thank-you/quiz-form");
+        }, 1000);
       }
     } catch {
       toggleNotificationCard();

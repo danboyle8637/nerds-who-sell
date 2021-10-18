@@ -9,6 +9,7 @@ import { FormButton } from "../../components/buttons/FormButton";
 import { useContactForm, options } from "../../hooks/forms/useContactForm";
 import { NotificationCard } from "../../components/cards/NotificationCard";
 import { Portal } from "../../components/shared/Portal";
+import { FullPageLoadingOverlay } from "../../components/overlays/FullPageLoadingOverlay";
 import { ContactFormReqBody } from "../../types/api";
 import { sizes } from "../../styles/sizes";
 
@@ -44,6 +45,7 @@ const ServiceMessageContainer = styled.div`
 `;
 
 export const Form = () => {
+  const [isMakingRequest, setIsMakingRequest] = useState<boolean>(false);
   const [isErrorOpen, setIsErrorOpen] = useState<boolean>(false);
 
   const { isReady, push } = useRouter();
@@ -68,21 +70,24 @@ export const Form = () => {
   const handleFormSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    setIsMakingRequest(true);
+
     const contactData: ContactFormReqBody = {
       formType: "contact",
+      date: new Date().toLocaleDateString(),
       firstName: firstName.value,
       emailAddress: emailAddress.value,
       primaryGoal: serviceValue.value,
       moreDetails: contactMessage.value,
     };
 
-    const url =
+    const baseUrl =
       process.env.NODE_ENV === "development"
-        ? process.env.NEXT_PUBLIC_WORKER_BASE_URL
-        : process.env.WORKER_BASE_URL;
+        ? "http://localhost:3000/api"
+        : "https://nerds-who-sell.vercel.app/api";
 
     try {
-      await fetch(`${url}/airtable`, {
+      const res = await fetch(`${baseUrl}/airtable`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -90,11 +95,14 @@ export const Form = () => {
         body: JSON.stringify(contactData),
       });
 
-      if (isReady) {
-        setClearForm(true);
-        push("/thank-you/contact");
+      if (isReady && res.ok) {
+        setTimeout(() => {
+          setClearForm(true);
+          push("/thank-you/contact");
+        }, 1000);
       }
     } catch {
+      setIsMakingRequest(false);
       toggleErrorNotification();
     }
   };
@@ -166,6 +174,7 @@ export const Form = () => {
           message="Oh no! A squirrel must have been burying his nut and he clipped the internet optic cable. You know their only buried a couple inches deep. Hit refresh and try again."
           handleCloseNotification={toggleErrorNotification}
         />
+        <FullPageLoadingOverlay isOpen={isMakingRequest} />
       </Portal>
     </>
   );

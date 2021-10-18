@@ -47,7 +47,7 @@ export const options: Option[] = [
   {
     id: 4,
     label: "Email Writing",
-    value: "copywriting",
+    value: "emails",
     isChecked: false,
   },
   {
