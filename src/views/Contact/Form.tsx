@@ -84,7 +84,7 @@ export const Form = () => {
     const baseUrl =
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000/api"
-        : "https://nerds-who-sell.vercel.app/api";
+        : "https://nerdswhosell.com/api";
 
     try {
       const res = await fetch(`${baseUrl}/airtable`, {
