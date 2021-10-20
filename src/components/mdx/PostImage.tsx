@@ -11,10 +11,11 @@ interface ImageProps {
 }
 
 const ImageContainer = styled.div`
+  padding-bottom: 40px;
   background-color: none;
   border-radius: 12px;
   width: var(--container-width, 100%);
-  max-width: 1000px;
+  max-width: 800px;
   overflow: hidden;
 `;
 
@@ -32,7 +33,7 @@ export const PostImage: React.FC<ImageProps> = ({
         src={url}
         width={imageWidth}
         height={imageHeight}
-        layout="responsive"
+        layout="intrinsic"
         alt={alt}
         title={title}
         quality={90}
