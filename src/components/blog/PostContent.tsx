@@ -44,7 +44,7 @@ const BaseContainer = styled.div`
   width: 100%;
   max-width: 800px;
   & p {
-    padding-bottom: 4rem;
+    padding-bottom: var(--paragraph-padding-bottom, 4rem);
   }
   ${sizes.aboveMobile} {
     padding: 0 26px;

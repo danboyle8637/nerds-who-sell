@@ -11,12 +11,12 @@ const CallOutContainer = styled.div`
 
 const ContentContainer = styled.div`
   position: relative;
-  padding: 12px;
+  padding: 20px 12px 0 12px;
   background-color: var(--section-background-5);
   border-radius: 12px;
   width: 100%;
   & p {
-    padding-bottom: 12px;
+    --paragraph-padding-bottom: 2rem;
     color: hsl(225, 85%, 80%);
   }
 `;
@@ -24,10 +24,10 @@ const ContentContainer = styled.div`
 const Icon = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 50px;
   height: 50px;
-  transform: translate(-14px, -14px);
+  transform: translate(14px, -14px);
 `;
 
 export const CallOutBox: React.FC = ({ children }) => {
