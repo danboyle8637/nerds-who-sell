@@ -114,8 +114,6 @@ export const ProjectQuizForm: React.FC<ProjectQuizFormProps> = ({
       moreDetails: additionalDetailsValue.value,
     };
 
-    console.log(quizResults);
-
     const baseUrl =
       process.env.NODE_ENV === "development"
         ? "http://localhost:3000/api"

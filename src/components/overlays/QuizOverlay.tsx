@@ -10,6 +10,7 @@ import { quizCloseButtonEnterAni } from "../../animations/buttons";
 import { ProjectQuizForm } from "../forms/ProjectQuizForm";
 import { ProgressBar } from "../forms/ProjectQuizForm/ProgressBar";
 import { CloseIcon } from "../images/CloseIcon";
+import { useProjectQuizForm } from "../../hooks/forms/useProjectQuizForm";
 import { buttonFocus } from "../buttons/buttonStyles";
 import {
   QuizRadioInputValue,
@@ -22,34 +23,6 @@ interface QuizOverlayProps {
   isOpen: boolean;
   toggleOverlay: () => void;
   toggleNotificationCard: () => void;
-  currentQuestion: number;
-  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>;
-  nextQuestionId: number;
-  pastQuestionArray: number[];
-  setPastQuestionArray: React.Dispatch<React.SetStateAction<number[]>>;
-  primaryInterest: QuizRadioInputValue;
-  haveWebsite: QuizRadioInputValue;
-  haveTimeline: QuizRadioInputValue;
-  haveBudget: QuizRadioInputValue;
-  haveMarketingPlan: QuizRadioInputValue;
-  numberOfProducts: QuizRadioInputValue;
-  salesCopyPurpose: QuizRadioInputValue;
-  additionalDetailsValue: QuizTextInputValue;
-  additionalDetailsOptions: QuizeTextInputOptions;
-  websiteUrlValue: QuizTextInputValue;
-  websiteUrlOptions: QuizeTextInputOptions;
-  idealTimeline: QuizRadioInputValue;
-  firstName: QuizTextInputValue;
-  firstNameOptions: QuizeTextInputOptions;
-  emailAddress: QuizTextInputValue;
-  emailAddressOptions: QuizeTextInputOptions;
-  updateInputValue: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  updateInputOptions: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => void;
-  setNextQuestionId: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const BackgroundOverlay = styled.div`
@@ -114,33 +87,36 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   isOpen,
   toggleOverlay,
   toggleNotificationCard,
-  currentQuestion,
-  setCurrentQuestion,
-  nextQuestionId,
-  pastQuestionArray,
-  setPastQuestionArray,
-  primaryInterest,
-  haveWebsite,
-  haveTimeline,
-  haveBudget,
-  haveMarketingPlan,
-  numberOfProducts,
-  salesCopyPurpose,
-  additionalDetailsValue,
-  additionalDetailsOptions,
-  websiteUrlValue,
-  websiteUrlOptions,
-  idealTimeline,
-  firstName,
-  firstNameOptions,
-  emailAddress,
-  emailAddressOptions,
-  updateInputValue,
-  updateInputOptions,
-  setNextQuestionId,
 }) => {
   const navRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const {
+    currentQuestion,
+    setCurrentQuestion,
+    nextQuestionId,
+    primaryInterest,
+    haveWebsite,
+    haveTimeline,
+    haveBudget,
+    haveMarketingPlan,
+    numberOfProducts,
+    salesCopyPurpose,
+    additionalDetailsValue,
+    additionalDetailsOptions,
+    websiteUrlValue,
+    websiteUrlOptions,
+    idealTimeline,
+    firstName,
+    firstNameOptions,
+    emailAddress,
+    emailAddressOptions,
+    updateInputValue,
+    updateInputOptions,
+    setNextQuestionId,
+    pastQuestionArray,
+    setPastQuestionArray,
+  } = useProjectQuizForm();
 
   useEffect(() => {
     const nav = navRef.current;

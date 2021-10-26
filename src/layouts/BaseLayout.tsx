@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Global from "../styles/Global";
@@ -35,33 +35,6 @@ export const BaseLayout: React.FC = ({ children }) => {
     })
   );
 
-  const {
-    currentQuestion,
-    setCurrentQuestion,
-    nextQuestionId,
-    primaryInterest,
-    haveWebsite,
-    haveTimeline,
-    haveBudget,
-    haveMarketingPlan,
-    numberOfProducts,
-    salesCopyPurpose,
-    additionalDetailsValue,
-    additionalDetailsOptions,
-    websiteUrlValue,
-    websiteUrlOptions,
-    idealTimeline,
-    firstName,
-    firstNameOptions,
-    emailAddress,
-    emailAddressOptions,
-    updateInputValue,
-    updateInputOptions,
-    setNextQuestionId,
-    pastQuestionArray,
-    setPastQuestionArray,
-  } = useProjectQuizForm();
-
   const toggleNotificationCard = () => {
     setIsErrorOpen(false);
   };
@@ -79,30 +52,6 @@ export const BaseLayout: React.FC = ({ children }) => {
           isOpen={isQuizOverlayOpen}
           toggleOverlay={toggleQuizOverlay}
           toggleNotificationCard={toggleNotificationCard}
-          currentQuestion={currentQuestion}
-          setCurrentQuestion={setCurrentQuestion}
-          nextQuestionId={nextQuestionId}
-          primaryInterest={primaryInterest}
-          haveWebsite={haveWebsite}
-          haveTimeline={haveTimeline}
-          haveBudget={haveBudget}
-          haveMarketingPlan={haveMarketingPlan}
-          numberOfProducts={numberOfProducts}
-          salesCopyPurpose={salesCopyPurpose}
-          additionalDetailsValue={additionalDetailsValue}
-          additionalDetailsOptions={additionalDetailsOptions}
-          websiteUrlValue={websiteUrlValue}
-          websiteUrlOptions={websiteUrlOptions}
-          idealTimeline={idealTimeline}
-          firstName={firstName}
-          firstNameOptions={firstNameOptions}
-          emailAddress={emailAddress}
-          emailAddressOptions={emailAddressOptions}
-          updateInputValue={updateInputValue}
-          updateInputOptions={updateInputOptions}
-          setNextQuestionId={setNextQuestionId}
-          pastQuestionArray={pastQuestionArray}
-          setPastQuestionArray={setPastQuestionArray}
         />
         <NotificationCard
           isActive={isErrorOpen}
