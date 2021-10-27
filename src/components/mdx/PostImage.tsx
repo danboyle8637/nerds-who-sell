@@ -10,13 +10,24 @@ interface ImageProps {
   title: string;
 }
 
+const ImageSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
 const ImageContainer = styled.div`
-  padding-bottom: 40px;
-  background-color: none;
+  background-color: var(--section-background-5);
   border-radius: 12px;
   width: var(--container-width, 100%);
   max-width: 800px;
   overflow: hidden;
+  line-height: 0;
+`;
+
+const Spacer = styled.div`
+  width: 100%;
+  height: 40px;
 `;
 
 export const PostImage: React.FC<ImageProps> = ({
@@ -28,16 +39,19 @@ export const PostImage: React.FC<ImageProps> = ({
   title,
 }) => {
   return (
-    <ImageContainer>
-      <Image
-        src={url}
-        width={imageWidth}
-        height={imageHeight}
-        layout="intrinsic"
-        alt={alt}
-        title={title}
-        quality={90}
-      />
-    </ImageContainer>
+    <ImageSection>
+      <ImageContainer>
+        <Image
+          src={url}
+          width={imageWidth}
+          height={imageHeight}
+          layout="intrinsic"
+          alt={alt}
+          title={title}
+          quality={90}
+        />
+      </ImageContainer>
+      <Spacer />
+    </ImageSection>
   );
 };

@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "blurhash": "^1.1.4",
     "gray-matter": "^4.0.3",
     "gsap": "npm:@gsap/shockingly@^3.7.1",
     "next": "^11.1.2",

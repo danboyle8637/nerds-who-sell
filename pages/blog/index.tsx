@@ -80,13 +80,24 @@ export const getStaticProps: GetStaticProps = async () => {
     return !isDraft;
   });
 
+  const sorted = publishedPosts.sort((a, b) => {
+    const aDate = a.frontmatter.date;
+    const bDate = b.frontmatter.date;
+
+    if (aDate > bDate) {
+      return -1;
+    } else {
+      return 1;
+    }
+  });
+
   const totalPosts = publishedPosts.length;
   const postsPerPage = 8;
   const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   return {
     props: {
-      posts: publishedPosts,
+      posts: sorted,
       ctaContent: ctaContent,
       totalPages: totalPages,
     },
