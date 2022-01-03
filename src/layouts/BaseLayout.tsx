@@ -5,7 +5,6 @@ import Global from "../styles/Global";
 import { NavBar } from "../components/navigation/NavBar";
 import { Footer } from "../components/navigation/Footer";
 import { NotificationCard } from "../components/cards/NotificationCard";
-import { useProjectQuizForm } from "../hooks/forms/useProjectQuizForm";
 import { QuizOverlay } from "../components/overlays/QuizOverlay";
 import { Portal } from "../components/shared/Portal";
 import { nerdsWhoSellStore } from "../../lib/store";

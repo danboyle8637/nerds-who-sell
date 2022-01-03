@@ -19,6 +19,7 @@ const Global = createGlobalStyle`
 
     --accent-1: hsl(246, 59%, 62%);
     --accent-2: hsl(176, 92%, 53%);
+    --matrix-green: hsl(120, 100%, 50%);
   
     --base-text-color: hsl(227, 37%, 93%);
     --strong-paragraph-color: hsl(259, 78%, 70%);

@@ -1,4 +1,4 @@
-import { gsap, Power2, Linear } from "gsap";
+import { gsap, Power2 } from "gsap";
 import { randomValue, randomNegOne } from "../utils/utilityFunctions";
 import { NavColor } from "../types/components";
 
@@ -27,12 +27,18 @@ export const navPixelsOpenAni = (pixel: HTMLDivElement) => {
   const translateY = [40, 140, 240, 340, 440, 540, 640, 740];
   const scalePixel = [8, 11, 14, 16, 20, 19, 24];
   const opacity = [0.7, 0.6, 0.5, 0.3, 0.2, 0.1, 0.05];
-  const colorArray = [
+  const purpleArray = [
     "hsl(246, 59%, 62%)",
     "hsl(259, 78%, 70%)",
     "hsl(256, 39%, 62%)",
     "hsl(227, 39%, 62%)",
   ];
+
+  const matrixArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
+
+  const blueArray = [];
+
+  const colorArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
 
   const tX = translateX[randomValue(8)];
   const tY = translateY[randomValue(8)];
@@ -136,12 +142,14 @@ export const footerNavPixelSpreadAni = (
     "hsl(176, 92%, 83%)",
     "hsl(176, 92%, 93%)",
   ];
-  const purpleArray = [
-    "hsl(246, 59%, 62%)",
-    "hsl(246, 59%, 72%)",
-    "hsl(246, 59%, 82%)",
-    "hsl(246, 59%, 92%)",
-  ];
+  // const purpleArray = [
+  //   "hsl(246, 59%, 62%)",
+  //   "hsl(246, 59%, 72%)",
+  //   "hsl(246, 59%, 82%)",
+  //   "hsl(246, 59%, 92%)",
+  // ];
+
+  const purpleArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
 
   const tX = translateX[randomValue(translateX.length)];
   const tY = translateY[randomValue(translateY.length)];

@@ -26,7 +26,7 @@ const DrawerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--section-background-4);
+  background-image: linear-gradient(to bottom, #1a1a1a, #000);
   border-radius: 12px;
   box-shadow: 2px 2px 8px 1px hsla(0, 0%, 0%, 0.3);
   z-index: 999;

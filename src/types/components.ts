@@ -1,3 +1,5 @@
+export type SiteTheme = "blue" | "purple" | "green";
+
 export type ButtonType = "word-bubble";
 
 export type AlignQuestion = "left" | "right";

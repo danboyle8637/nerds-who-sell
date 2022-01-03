@@ -33,6 +33,16 @@ const ButtonBooster = styled.div`
   pointer-events: none;
 `;
 
+const ButtonCodeBackground = styled.div`
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  background-color: black;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  transform: translate(18px, 20px) rotate(4grad);
+`;
+
 const Button = styled.button`
   ${baseButtonStyles}
   grid-column: 1 / -1;
@@ -68,7 +78,7 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       <Button type="button" onClick={handleClick}>
         {children}
       </Button>
-      <ButtonBooster ref={boosterRef} />
+      <ButtonCodeBackground />
     </ButtonContainer>
   );
 };
