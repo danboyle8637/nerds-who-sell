@@ -10,7 +10,10 @@ import { sizes } from "../../../styles/sizes";
 const ImageContainer = styled.div`
   position: relative;
   width: 100px;
-  transform: translateX(20px);
+  transform: translateX(-20px);
+  ${sizes.aboveMobile} {
+    width: 120px;
+  }
 `;
 
 const LeadImage1 = styled.div`

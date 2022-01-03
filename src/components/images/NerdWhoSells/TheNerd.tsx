@@ -1,10 +1,14 @@
 import Image from "next/image";
 
-export const NerdWhoSells = () => {
+interface ImageProps {
+  imageUrl: string;
+}
+
+export const TheNerd: React.FC<ImageProps> = ({ imageUrl }) => {
   return (
     <Image
-      src="https://ik.imagekit.io/csu76xuqqlwj/nerds-who-sell/site-assets/nerds-who-sell-online_0Sk5hWIic.png"
-      width={392}
+      src={imageUrl}
+      width={350}
       height={434}
       alt="Dan holding a laptop and phone"
       title="Nerds Who Sell"

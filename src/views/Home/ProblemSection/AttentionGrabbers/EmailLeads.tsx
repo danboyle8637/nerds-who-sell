@@ -6,8 +6,12 @@ import { sizes } from "../../../../styles/sizes";
 
 const ContentContainer = styled.div`
   position: relative;
+  justify-self: end;
   width: 300px;
   isolation: isolate;
+  ${sizes.aboveMobile} {
+    width: 500px;
+  }
 `;
 
 const HeadlinePhoneContainer = styled.div`
@@ -27,7 +31,7 @@ const Headline = styled.h3`
 `;
 
 const Phone = styled.div`
-  width: 140px;
+  width: fit-content;
 `;
 
 const Shadow = styled.div`
@@ -46,7 +50,7 @@ export const EmailLeads = () => {
   return (
     <ContentContainer>
       <HeadlinePhoneContainer>
-        <Headline>Fresh Email Leads Every Week</Headline>
+        <Headline>Getting Fresh Email Leads Every Week</Headline>
         <Phone>
           <Emails />
         </Phone>

@@ -8,6 +8,9 @@ const ContentContainer = styled.div`
   position: relative;
   width: 300px;
   isolation: isolate;
+  ${sizes.aboveMobile} {
+    width: 500px;
+  }
 `;
 
 const HeadlinePhoneContainer = styled.div`
@@ -28,6 +31,12 @@ const Headline = styled.h3`
 
 const Button = styled.div`
   width: 240px;
+  ${sizes.aboveMobile} {
+    width: 260px;
+  }
+  ${sizes.aboveIpadPro} {
+    width: 300px;
+  }
 `;
 
 const Shadow = styled.div`

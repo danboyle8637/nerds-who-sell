@@ -7,9 +7,12 @@ const HeadlineContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
-  gap: 60px;
+  gap: 80px;
   justify-items: start;
   width: 100%;
+  ${sizes.aboveTablet} {
+    width: 660px;
+  }
   ${sizes.aboveTablet} {
     width: 800px;
   }

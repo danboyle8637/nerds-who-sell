@@ -10,9 +10,24 @@ const SectionContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
+  gap: 80px;
+  justify-items: center;
+  width: 100%;
+  ${sizes.aboveMobile} {
+    gap: 120px;
+  }
+  ${sizes.aboveTablet} {
+    width: 800px;
+  }
+`;
+
+const AttentionCardsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
   gap: 140px;
   justify-items: center;
-  width: fit-content;
+  width: 100%;
 `;
 
 const Headline = styled.h3`
@@ -26,9 +41,11 @@ export const AttentionGrabbers = () => {
   return (
     <SectionContainer>
       <Headline>Your website should be...</Headline>
-      <PhoneRing />
-      <EmailLeads />
-      <DailySales />
+      <AttentionCardsContainer>
+        <PhoneRing />
+        <EmailLeads />
+        <DailySales />
+      </AttentionCardsContainer>
     </SectionContainer>
   );
 };

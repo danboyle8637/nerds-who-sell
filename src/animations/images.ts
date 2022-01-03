@@ -104,3 +104,23 @@ export const codingLoaderAni = (codeLines: HTMLDivElement[], kill: boolean) => {
     ease: Linear.easeNone,
   });
 };
+
+export const dollarBillCellAni = (dollarBill: HTMLDivElement) => {
+  gsap.to(dollarBill, {
+    duration: 1.4,
+    y: 0,
+    scale: 1,
+    ease: Power3.easeOut,
+  });
+};
+
+export const dollarBillLaptopAni = (dollarBill: HTMLDivElement) => {
+  gsap.to(dollarBill, {
+    duration: 1.4,
+    y: 0,
+    rotateY: 180,
+    scale: 1,
+    ease: Power3.easeOut,
+    delay: 0.6,
+  });
+};

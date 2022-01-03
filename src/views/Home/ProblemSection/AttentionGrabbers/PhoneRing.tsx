@@ -9,8 +9,12 @@ import { sizes } from "../../../../styles/sizes";
 
 const ContentContainer = styled.div`
   position: relative;
+  justify-self: start;
   width: 300px;
   isolation: isolate;
+  ${sizes.aboveMobile} {
+    width: 500px;
+  }
 `;
 
 const HeadlinePhoneContainer = styled.div`
@@ -31,6 +35,9 @@ const Headline = styled.h3`
 
 const Phone = styled.div`
   width: 140px;
+  ${sizes.aboveMobile} {
+    width: 160px;
+  }
 `;
 
 const Shadow = styled.div`
