@@ -7,11 +7,12 @@ const LogoContainer = styled.div`
   align-self: flex-start;
   position: relative;
   width: 250px;
-  transform: translateX(-10px);
+  transform: translateX(-20px);
 `;
 
 const TheNerd = styled.div`
   width: 142px;
+  pointer-events: none;
 `;
 
 export const Logo = () => {

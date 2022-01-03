@@ -7,3 +7,7 @@ export const greenTheme = css`
 export const blueTheme = css`
   --accent-2: hsl(176, 92%, 53%);
 `;
+
+export const purpleTheme = css`
+  --accent-2: hsl(246, 59%, 62%);
+`;

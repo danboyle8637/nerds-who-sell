@@ -1,12 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const Global = createGlobalStyle`
-  @font-face {
-    font-family: 'RobotoBold';
-    src: url('/fonts/Roboto-Black.woff2') format('woff2');
-    font-display: fallback;
-  }
-
   :root {
     --primary-background: hsl(225, 32%, 20%);
     --secondary-background: hsl(224, 33%, 32%);
@@ -19,7 +13,6 @@ const Global = createGlobalStyle`
 
     --accent-1: hsl(246, 59%, 62%);
     --accent-2: hsl(176, 92%, 53%);
-    --matrix-green: hsl(120, 100%, 50%);
   
     --base-text-color: hsl(227, 37%, 93%);
     --strong-paragraph-color: hsl(259, 78%, 70%);
@@ -69,7 +62,7 @@ const Global = createGlobalStyle`
   h1, h2, h3, h4, h5 {
     margin: 0;
     padding: 0;
-    font-family: RobotoBold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--base-text-color);
   }
 

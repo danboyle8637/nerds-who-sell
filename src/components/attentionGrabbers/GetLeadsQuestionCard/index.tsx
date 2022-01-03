@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { AnimatedImage } from "./AnimatedImage";
 import { bodyText } from "../../../styles/typography";
 import { sizes } from "../../../styles/sizes";
 
@@ -53,9 +52,7 @@ export const GetLeadsCard = () => {
       <QuestionContainer>
         <Question>Bringing in fresh leads?</Question>
         <Spacer />
-        <Phone>
-          <AnimatedImage />
-        </Phone>
+        <Phone></Phone>
       </QuestionContainer>
     </CardContainer>
   );

@@ -3,11 +3,15 @@ import styled from "styled-components";
 
 import { CloseIcon } from "../images/CloseIcon";
 import { NavList } from "../navigation/MobileNavigation/NavList";
+import { MatrixTerminal } from "../images/navigation/MatrixTerminal";
+import { BlueTerminal } from "../images/navigation/BlueTerminal";
+import { PurpleTerminal } from "../images/navigation/PurpleTerminal";
 import { MobileNavDrawerTransition } from "../../animations/transitions/MobileNavDrawerTransition";
 import {
   closeIconEnterAni,
   closeIconExitAni,
 } from "../../animations/navigation";
+import { siteThemeStore } from "../../../lib/siteThemeStore";
 import { buttonFocus } from "../buttons/buttonStyles";
 import { sizes } from "../../styles/sizes";
 
@@ -63,6 +67,8 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
 }) => {
   const closeIconRef = useRef<HTMLButtonElement | null>(null);
 
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
+
   useEffect(() => {
     const closeIcon = closeIconRef.current;
 
@@ -86,6 +92,13 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
   return (
     <MobileNavDrawerTransition isOpen={isOpen}>
       <DrawerContainer>
+        {activeTheme === "blue" ? (
+          <BlueTerminal />
+        ) : activeTheme === "green" ? (
+          <MatrixTerminal />
+        ) : (
+          <PurpleTerminal />
+        )}
         <Close
           ref={closeIconRef}
           tabIndex={0}

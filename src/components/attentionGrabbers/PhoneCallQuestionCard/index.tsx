@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { PhoneImage } from "./PhoneImage";
-import { bodyText } from "../../../styles/typography";
+import { text24, text36 } from "../../../styles/typography";
 import { phoneRingAni } from "../../../animations/images";
 import { useIntersectionObserver } from "../../../hooks/componets/useIntersectionObserver";
 import { sizes } from "../../../styles/sizes";
@@ -27,7 +27,7 @@ const QuestionContainer = styled.div`
 `;
 
 const Question = styled.p`
-  ${bodyText}
+  ${text24}
 `;
 
 const Spacer = styled.span`

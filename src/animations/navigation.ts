@@ -1,4 +1,4 @@
-import { gsap, Power2 } from "gsap";
+import { gsap, Power2, Linear } from "gsap";
 import { randomValue, randomNegOne } from "../utils/utilityFunctions";
 import { NavColor } from "../types/components";
 
@@ -36,7 +36,12 @@ export const navPixelsOpenAni = (pixel: HTMLDivElement) => {
 
   const matrixArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
 
-  const blueArray = [];
+  const blueArray = [
+    "hsl(176, 92%, 53%)",
+    "hsl(176, 92%, 83%)",
+    "hsl(176, 92%, 43%)",
+    "hsl(216, 82%, 43%)",
+  ];
 
   const colorArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
 
@@ -195,4 +200,20 @@ export const footerNavPixelsReturnAni = (
     scale: 0,
     ease: Power2.easeIn,
   });
+};
+
+export const blinkingCursor = (cursor: HTMLDivElement) => {
+  gsap.fromTo(
+    cursor,
+    {
+      autoAlpha: 0,
+    },
+    {
+      duration: 0.5,
+      autoAlpha: 1,
+      ease: Linear.easeNone,
+      yoyo: true,
+      repeat: -1,
+    }
+  );
 };

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-import { smallHeadline } from "../../../../styles/typography";
-import { PhoneCallsCard } from "../../../../components/attentionGrabbers/PhoneCallQuestionCard";
-import { GetLeadsCard } from "../../../../components/attentionGrabbers/GetLeadsQuestionCard";
-import { BuyNowCard } from "../../../../components/attentionGrabbers/BuyNowQuestionCard";
+import { text24, text36 } from "../../../../styles/typography";
+import { PhoneRing } from "./PhoneRing";
+import { EmailLeads } from "./EmailLeads";
+import { DailySales } from "./DailySales";
+import { sizes } from "../../../../styles/sizes";
 
 const SectionContainer = styled.section`
   display: grid;
@@ -15,16 +16,19 @@ const SectionContainer = styled.section`
 `;
 
 const Headline = styled.h3`
-  ${smallHeadline}
+  ${text24}
+  ${sizes.aboveMobile} {
+    ${text36}
+  }
 `;
 
 export const AttentionGrabbers = () => {
   return (
     <SectionContainer>
-      <Headline>Is your website...</Headline>
-      <PhoneCallsCard />
-      <GetLeadsCard />
-      <BuyNowCard />
+      <Headline>Your website should be...</Headline>
+      <PhoneRing />
+      <EmailLeads />
+      <DailySales />
     </SectionContainer>
   );
 };

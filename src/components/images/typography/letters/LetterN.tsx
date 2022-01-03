@@ -1,9 +1,11 @@
 import Image from "next/image";
 
-export const LetterN = () => {
+import { TerminalProps } from "./LetterT";
+
+export const LetterN: React.FC<TerminalProps> = ({ letterUrl }) => {
   return (
     <Image
-      src="https://ik.imagekit.io/csu76xuqqlwj/nerds-who-sell/site-assets/typography/letter-n_lGv63dN-7-.png"
+      src={letterUrl}
       width={14}
       height={21}
       alt="Letter N"

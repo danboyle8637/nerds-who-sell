@@ -49,7 +49,7 @@ const LeadImage3 = styled.div`
   }
 `;
 
-export const AnimatedImage = () => {
+export const EmailLeads = () => {
   const lead1Ref = useRef<HTMLDivElement | null>(null);
   const lead2Ref = useRef<HTMLDivElement | null>(null);
   const lead3Ref = useRef<HTMLDivElement | null>(null);
