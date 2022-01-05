@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import styled from "styled-components";
 
+import { MatrixRainBackground } from "../fun/MatrixRainBackground";
 import { useIsHovering } from "../../hooks/componets/useIsHovering";
 import { baseButtonStyles } from "./buttonStyles";
 import {
@@ -13,24 +14,12 @@ interface ActionButtonProps {
 }
 
 const ButtonContainer = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   width: 300px;
-`;
-
-const ButtonBooster = styled.div`
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
-  justify-self: center;
-  align-self: center;
-  background-image: radial-gradient(#1ab5de, #cff5ff);
-  border-radius: 600px;
-  width: 90%;
-  height: 40px;
-  filter: blur(16px);
-  opacity: 0;
-  pointer-events: none;
+  isolation: isolate;
 `;
 
 const ButtonCodeBackground = styled.div`
@@ -54,31 +43,31 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   handleClick,
   children,
 }) => {
-  const boosterRef = useRef<HTMLDivElement | null>(null);
+  const [isHovering, setIsHovering] = useState<boolean>(false);
 
-  const { isHovering, toggleIsHovering } = useIsHovering();
-
-  useEffect(() => {
-    const booster = boosterRef.current;
-
-    if (booster && isHovering) {
-      buttonBoostersOnAni(booster);
+  const handleStartMatrixRain = () => {
+    console.log(isHovering);
+    if (!isHovering) {
+      setIsHovering(true);
     }
+  };
 
-    if (booster && !isHovering) {
-      buttonBoostersOffAni(booster);
+  const handleResetMatrixRain = () => {
+    if (isHovering) {
+      setIsHovering(false);
     }
-  }, [isHovering]);
+  };
 
   return (
-    <ButtonContainer
-      onMouseOver={toggleIsHovering}
-      onMouseLeave={toggleIsHovering}
-    >
+    <ButtonContainer onMouseOver={handleStartMatrixRain}>
       <Button type="button" onClick={handleClick}>
         {children}
       </Button>
-      <ButtonCodeBackground />
+      <MatrixRainBackground
+        shouldRainHalf={false}
+        runAction={isHovering}
+        resetRain={handleResetMatrixRain}
+      />
     </ButtonContainer>
   );
 };

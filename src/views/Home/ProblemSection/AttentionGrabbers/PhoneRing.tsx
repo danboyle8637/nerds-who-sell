@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { text24, text36 } from "../../../../styles/typography";
 import { IPhoneImage } from "../../../../components/images/IPhone";
+import { MatrixRainBackground } from "../../../../components/fun/MatrixRainBackground";
 import { useIntersectionObserver } from "../../../../hooks/componets/useIntersectionObserver";
 import { phoneRingAni } from "../../../../animations/images";
 import { sizes } from "../../../../styles/sizes";
@@ -30,6 +31,15 @@ const Headline = styled.h3`
   line-height: 1.5;
   ${sizes.aboveMobile} {
     ${text36}
+  }
+`;
+
+const ImageContainer = styled.div`
+  position: relative;
+  width: 140px;
+  isolation: isolate;
+  ${sizes.aboveMobile} {
+    width: 160px;
   }
 `;
 
@@ -72,9 +82,12 @@ export const PhoneRing = () => {
   return (
     <ContentContainer ref={nodeRef}>
       <HeadlinePhoneContainer>
-        <Phone ref={phoneRef}>
-          <IPhoneImage />
-        </Phone>
+        <ImageContainer>
+          <Phone ref={phoneRef}>
+            <IPhoneImage />
+          </Phone>
+          <MatrixRainBackground shouldRainHalf={true} runAction={runAction} />
+        </ImageContainer>
         <Headline>Making Your Phone Ring</Headline>
       </HeadlinePhoneContainer>
       <Shadow />

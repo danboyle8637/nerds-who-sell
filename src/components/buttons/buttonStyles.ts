@@ -19,6 +19,7 @@ export const baseButtonStyles = css`
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 2.6rem;
   color: var(--base-button-text-color, var(--base-text-color));
+  font-weight: 700;
   letter-spacing: 0.08rem;
   background-color: var(--base-button-background, var(--accent-1));
   border: none;

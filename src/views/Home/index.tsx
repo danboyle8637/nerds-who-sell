@@ -7,6 +7,8 @@ import { ServicesSection } from "./ServicesSection";
 import { CallToActionSection } from "./CallToActionSection";
 import { Markdown, Services } from "../../types/pages";
 
+import { MatrixRainBackground } from "../../components/fun/MatrixRainBackground";
+
 interface HomeViewProps {
   webDevContent: Markdown;
   webDevServices: Services;
