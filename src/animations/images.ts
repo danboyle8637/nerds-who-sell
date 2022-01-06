@@ -124,3 +124,48 @@ export const dollarBillLaptopAni = (dollarBill: HTMLDivElement) => {
     delay: 0.6,
   });
 };
+
+export const mainLogoScreenGlow = (glow: HTMLDivElement) => {
+  gsap.fromTo(
+    glow,
+    {
+      scale: 0.8,
+      autoAlpha: 0.7,
+    },
+    {
+      duration: 1,
+      scale: 1.1,
+      autoAlpha: 1,
+      ease: Power3.easeInOut,
+      yoyo: true,
+      repeat: -1,
+    }
+  );
+};
+
+export const serviceCardImageShadowHover = (shadow: HTMLDivElement) => {
+  gsap.fromTo(
+    shadow,
+    {
+      y: 0,
+      scale: 0.2,
+      autoAlpha: 0,
+    },
+    {
+      duration: 0.2,
+      y: 30,
+      scale: 1,
+      autoAlpha: 1,
+      ease: Linear.easeNone,
+    }
+  );
+};
+
+export const serviceCardImageShadowNotHover = (shadow: HTMLDivElement) => {
+  gsap.to(shadow, {
+    duration: 0.2,
+    y: 0,
+    scale: 0.2,
+    autoAlpha: 0,
+  });
+};

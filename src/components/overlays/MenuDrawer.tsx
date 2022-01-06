@@ -6,19 +6,22 @@ import { NavList } from "../navigation/MobileNavigation/NavList";
 import { MatrixTerminal } from "../images/navigation/MatrixTerminal";
 import { BlueTerminal } from "../images/navigation/BlueTerminal";
 import { PurpleTerminal } from "../images/navigation/PurpleTerminal";
+import { ThemeSwitcher } from "../buttons/ThemeSwitcher";
 import { MobileNavDrawerTransition } from "../../animations/transitions/MobileNavDrawerTransition";
 import {
   closeIconEnterAni,
   closeIconExitAni,
 } from "../../animations/navigation";
-import { siteThemeStore } from "../../../lib/siteThemeStore";
 import { buttonFocus } from "../buttons/buttonStyles";
+import { blueTheme, purpleTheme, greenTheme } from "../../styles/colors";
+import { SiteTheme } from "../../types/components";
 import { sizes } from "../../styles/sizes";
 
 interface MenuDrawerProps {
   activePage: string;
   isOpen: boolean;
   toggleNavDrawer: () => void;
+  activeTheme: SiteTheme;
 }
 
 const DrawerContainer = styled.div`
@@ -60,14 +63,21 @@ const Close = styled.button`
   ${buttonFocus}
 `;
 
+const ThemeSwitcherContainer = styled.div`
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  width: fit-content;
+  transform: translateX(-50%);
+`;
+
 export const MenuDrawer: React.FC<MenuDrawerProps> = ({
   activePage,
   isOpen,
   toggleNavDrawer,
+  activeTheme,
 }) => {
   const closeIconRef = useRef<HTMLButtonElement | null>(null);
-
-  const activeTheme = siteThemeStore((state) => state.activeTheme);
 
   useEffect(() => {
     const closeIcon = closeIconRef.current;
@@ -89,9 +99,16 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
     }
   }, [isOpen]);
 
+  const mobileNavStyles =
+    activeTheme === "blue"
+      ? blueTheme
+      : activeTheme === "purple"
+      ? purpleTheme
+      : greenTheme;
+
   return (
     <MobileNavDrawerTransition isOpen={isOpen}>
-      <DrawerContainer>
+      <DrawerContainer style={mobileNavStyles}>
         {activeTheme === "blue" ? (
           <BlueTerminal />
         ) : activeTheme === "green" ? (
@@ -113,6 +130,9 @@ export const MenuDrawer: React.FC<MenuDrawerProps> = ({
           toggleNavDrawer={toggleNavDrawer}
           activePage={activePage}
         />
+        <ThemeSwitcherContainer>
+          <ThemeSwitcher />
+        </ThemeSwitcherContainer>
       </DrawerContainer>
     </MobileNavDrawerTransition>
   );

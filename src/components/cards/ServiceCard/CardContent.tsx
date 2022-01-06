@@ -29,6 +29,8 @@ const Container = styled.div`
 const Headline = styled.h3`
   ${smallHeadline}
   font-size: 2.4rem;
+  color: var(--service-card-headline);
+  transition: color 300ms ease-in-out;
   ${sizes.aboveMobile} {
     font-size: 2.4rem;
   }

@@ -1,6 +1,6 @@
 import { gsap, Power2, Linear } from "gsap";
 import { randomValue, randomNegOne } from "../utils/utilityFunctions";
-import { NavColor } from "../types/components";
+import { SiteTheme } from "../types/components";
 
 export const navDrawerOpenAni = (drawer: HTMLElement) => {
   const tl = gsap.timeline();
@@ -22,7 +22,7 @@ export const navDrawerClosedAni = (drawer: HTMLElement) => {
   });
 };
 
-export const navPixelsOpenAni = (pixel: HTMLDivElement) => {
+export const navPixelsOpenAni = (pixel: HTMLDivElement, color: SiteTheme) => {
   const translateX = [10, 52, 92, 132, 172, 212, 252, 320];
   const translateY = [40, 140, 240, 340, 440, 540, 640, 740];
   const scalePixel = [8, 11, 14, 16, 20, 19, 24];
@@ -34,7 +34,7 @@ export const navPixelsOpenAni = (pixel: HTMLDivElement) => {
     "hsl(227, 39%, 62%)",
   ];
 
-  const matrixArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
+  const greenArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
 
   const blueArray = [
     "hsl(176, 92%, 53%)",
@@ -43,13 +43,16 @@ export const navPixelsOpenAni = (pixel: HTMLDivElement) => {
     "hsl(216, 82%, 43%)",
   ];
 
-  const colorArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
-
   const tX = translateX[randomValue(8)];
   const tY = translateY[randomValue(8)];
   const s = scalePixel[randomValue(8)];
   const o = opacity[randomValue(8)];
-  const bg = colorArray[randomValue(4)];
+  const bg =
+    color === "blue"
+      ? blueArray[randomValue(blueArray.length)]
+      : color == "purple"
+      ? purpleArray[randomValue(purpleArray.length)]
+      : greenArray[randomValue(greenArray.length)];
 
   const tl = gsap.timeline();
 
@@ -134,7 +137,7 @@ export const navItemsEnterAni = (navItems: HTMLDivElement[]) => {
 
 export const footerNavPixelSpreadAni = (
   pixel: HTMLDivElement,
-  color: NavColor,
+  color: SiteTheme,
   kill: boolean
 ) => {
   const translateX = [5, 10, 20, 30, 40, 50, 60, 70];
@@ -147,14 +150,14 @@ export const footerNavPixelSpreadAni = (
     "hsl(176, 92%, 83%)",
     "hsl(176, 92%, 93%)",
   ];
-  // const purpleArray = [
-  //   "hsl(246, 59%, 62%)",
-  //   "hsl(246, 59%, 72%)",
-  //   "hsl(246, 59%, 82%)",
-  //   "hsl(246, 59%, 92%)",
-  // ];
+  const purpleArray = [
+    "hsl(246, 59%, 62%)",
+    "hsl(246, 59%, 72%)",
+    "hsl(246, 59%, 82%)",
+    "hsl(246, 59%, 92%)",
+  ];
 
-  const purpleArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
+  const greenArray = ["#00FF2C", "#53FF74", "#9EF9AF", "#277240"];
 
   const tX = translateX[randomValue(translateX.length)];
   const tY = translateY[randomValue(translateY.length)];
@@ -163,7 +166,9 @@ export const footerNavPixelSpreadAni = (
   const bg =
     color === "blue"
       ? blueArray[randomValue(blueArray.length)]
-      : purpleArray[randomValue(purpleArray.length)];
+      : color == "purple"
+      ? purpleArray[randomValue(purpleArray.length)]
+      : greenArray[randomValue(greenArray.length)];
 
   const tl = gsap.timeline();
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { QuizDrawerTransition } from "../../animations/transitions/QuizDrawerTransition";
@@ -56,11 +56,10 @@ const DrawerContainer = styled.nav`
   justify-content: center;
   align-items: center;
   gap: 80px;
-  background-color: var(--section-background-4);
+  background-image: linear-gradient(to bottom, #1a1a1a, #000 60%);
   outline: none;
   overflow: hidden;
-  box-shadow: 0 0 0 8px var(--section-background-4),
-    -12px 0 42px 2px hsla(0, 0%, 0%, 0.6);
+  box-shadow: 0 0 0 8px #000, -12px 0 42px 2px hsla(0, 0%, 0%, 0.6);
   z-index: 995;
   transform: translateX(108%);
   &:focus {

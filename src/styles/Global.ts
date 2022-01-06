@@ -12,7 +12,6 @@ const Global = createGlobalStyle`
     --section-background-5: hsl(225, 32%, 16%);
 
     --accent-1: hsl(246, 59%, 62%);
-    --accent-2: hsl(176, 92%, 53%);
   
     --base-text-color: hsl(227, 37%, 93%);
     --strong-paragraph-color: hsl(259, 78%, 70%);

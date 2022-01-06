@@ -8,6 +8,7 @@ import {
   dollarBillCellAni,
   dollarBillLaptopAni,
 } from "../../../animations/images";
+import { siteThemeStore } from "../../../../lib/siteThemeStore";
 import { sizes } from "../../../styles/sizes";
 
 const NerdContainer = styled.div`
@@ -51,6 +52,8 @@ export const NerdWhoSells = () => {
   const dollarCellRef = useRef<HTMLDivElement | null>(null);
   const dollarLaptopRef = useRef<HTMLDivElement | null>(null);
 
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
+
   const { nodeRef, runAction } = useIntersectionObserver({
     threshold: 0.8,
     shouldUnobserve: true,
@@ -68,7 +71,13 @@ export const NerdWhoSells = () => {
 
   return (
     <NerdContainer ref={nodeRef}>
-      <TheNerd imageUrl="https://ik.imagekit.io/csu76xuqqlwj/nerds-who-sell/site-assets/nerds-who-sell-online_1TWzgRwN9.png" />
+      <TheNerd
+        imageUrl={
+          activeTheme !== "green"
+            ? "https://ik.imagekit.io/csu76xuqqlwj/nerds-who-sell/site-assets/nerds-who-sell-online_1TWzgRwN9.png"
+            : "https://ik.imagekit.io/csu76xuqqlwj/nerds-who-sell/site-assets/nerds-who-sell-online-sunglasses_H5ULzGBNq.png"
+        }
+      />
       <DollarBillCell ref={dollarCellRef}>
         <DollarBillMessage />
       </DollarBillCell>

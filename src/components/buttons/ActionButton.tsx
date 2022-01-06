@@ -63,11 +63,6 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
       <Button type="button" onClick={handleClick}>
         {children}
       </Button>
-      <MatrixRainBackground
-        shouldRainHalf={false}
-        runAction={isHovering}
-        resetRain={handleResetMatrixRain}
-      />
     </ButtonContainer>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, CSSProperties } from "react";
 import styled from "styled-components";
 
 import Global from "../styles/Global";
@@ -7,7 +7,9 @@ import { Footer } from "../components/navigation/Footer";
 import { NotificationCard } from "../components/cards/NotificationCard";
 import { QuizOverlay } from "../components/overlays/QuizOverlay";
 import { Portal } from "../components/shared/Portal";
+import { blueTheme, purpleTheme, greenTheme } from "../styles/colors";
 import { nerdsWhoSellStore } from "../../lib/store";
+import { siteThemeStore } from "../../lib/siteThemeStore";
 
 const BaseContainer = styled.main`
   display: flex;
@@ -27,6 +29,7 @@ const ContentContainer = styled.div`
 export const BaseLayout: React.FC = ({ children }) => {
   const [isErrorOpen, setIsErrorOpen] = useState<boolean>(false);
 
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
   const { isQuizOverlayOpen, toggleQuizOverlay } = nerdsWhoSellStore(
     (state) => ({
       isQuizOverlayOpen: state.isQuizOverlayOpen,
@@ -38,9 +41,16 @@ export const BaseLayout: React.FC = ({ children }) => {
     setIsErrorOpen(false);
   };
 
+  const themeStyles =
+    activeTheme === "blue"
+      ? blueTheme
+      : activeTheme === "purple"
+      ? purpleTheme
+      : greenTheme;
+
   return (
     <>
-      <BaseContainer>
+      <BaseContainer style={themeStyles}>
         <Global />
         <NavBar />
         <ContentContainer>{children}</ContentContainer>

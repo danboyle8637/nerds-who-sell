@@ -20,6 +20,7 @@ const Label = styled.a`
   text-decoration: none;
   text-transform: capitalize;
   ${buttonFocus}
+  transition: color 300ms ease-in-out;
 `;
 
 export const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
