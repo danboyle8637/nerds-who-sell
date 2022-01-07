@@ -40,7 +40,7 @@ const ImageShadow = styled.div`
   background-color: hsla(0, 0%, 0%, 0.4);
   border-radius: 50%;
   width: 200px;
-  height: 40px;
+  height: 100px;
   filter: blur(12px);
   transform: translate(-50%, 30px);
   z-index: -1;

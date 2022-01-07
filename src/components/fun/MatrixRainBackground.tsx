@@ -11,7 +11,6 @@ import { sizes } from "../../styles/sizes";
 interface MatrixBackgroundProps {
   shouldRainHalf: boolean;
   runAction: boolean;
-  resetRain?: () => void;
 }
 
 const RainContainer = styled.div`
@@ -23,13 +22,12 @@ const RainContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  z-index: -1;
+  z-index: -2;
 `;
 
 export const MatrixRainBackground: React.FC<MatrixBackgroundProps> = ({
   shouldRainHalf,
   runAction,
-  resetRain,
 }) => {
   const fullWidth = (
     <>

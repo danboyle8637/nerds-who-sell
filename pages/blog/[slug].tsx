@@ -28,10 +28,44 @@ const Post: React.FC<PostProps> = ({ code, frontmatter }) => {
   );
 };
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const POSTS_PATH = path.join(process.cwd(), `data/blog/published`);
+
+  const getSourceOfFile = (filename: string) => {
+    return fs.readFileSync(path.join(POSTS_PATH, filename), "utf8");
+  };
+
+  const getAllSlugs = () => {
+    return fs
+      .readdirSync(POSTS_PATH)
+      .filter((path) => /\.mdx?$/.test(path))
+      .map((post) => {
+        const slug = post.replace(/\.mdx?$/, "");
+
+        return {
+          slug: slug,
+        };
+      });
+  };
+
+  const paths = getAllSlugs().map(({ slug }) => {
+    return {
+      params: {
+        slug: slug,
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params?.slug || "";
 
-  const POSTS_PATH = path.join(process.cwd(), "data/blog/2021");
+  const POSTS_PATH = path.join(process.cwd(), "data/blog/published");
 
   const getSourceOfFile = (filename: string) => {
     return fs.readFileSync(path.join(POSTS_PATH, filename), "utf8");
@@ -56,43 +90,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       code,
       frontmatter,
     },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const currentYear = new Date().getFullYear();
-
-  const POSTS_PATH = path.join(process.cwd(), `data/blog/${currentYear}`);
-
-  const getSourceOfFile = (filename: string) => {
-    return fs.readFileSync(path.join(POSTS_PATH, filename), "utf8");
-  };
-
-  const getAllSlugs = () => {
-    return fs
-      .readdirSync(POSTS_PATH)
-      .filter((path) => /\.mdx?$/.test(path))
-      .map((post) => {
-        const source = getSourceOfFile(post);
-        const slug = post.replace(/\.mdx?$/, "");
-
-        return {
-          slug: slug,
-        };
-      });
-  };
-
-  const paths = getAllSlugs().map(({ slug }) => {
-    return {
-      params: {
-        slug: slug,
-      },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
   };
 };
 

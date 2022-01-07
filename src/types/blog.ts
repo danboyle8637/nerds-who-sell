@@ -29,6 +29,11 @@ export interface BlogPostListPage {
   totalPages: number;
 }
 
+export interface FilteredBlogPostListPage {
+  posts: BlogPostCard[];
+  totalPage: number;
+}
+
 export type Headline4Type = "normal" | "call out";
 
 export type BlogCategory =

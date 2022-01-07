@@ -30,6 +30,9 @@ const NavLinkContainer = styled.a`
     outline-offset: 4px;
     outline-style: dotted;
   }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 `;
 
 const Label = styled.span`

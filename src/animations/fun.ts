@@ -6,8 +6,7 @@ export const matrixRain = (
   char: HTMLDivElement,
   delay: number,
   kill: boolean,
-  runAction: boolean,
-  resetRain?: () => void
+  runAction: boolean
 ) => {
   const tl = gsap.timeline({ paused: true });
 
@@ -27,29 +26,25 @@ export const matrixRain = (
 
   tl.addLabel("beg")
     .to(char, {
-      duration: 0.5,
-      y: 60,
+      duration: 1,
+      y: 200,
       autoAlpha: 1,
       fill: blueColorArray[value],
       ease: Linear.easeNone,
       delay: delay,
     })
     .to(char, {
-      duration: 0.5,
-      y: 140,
+      duration: 1,
+      y: 400,
       autoAlpha: 0,
       ease: Linear.easeNone,
       onComplete: () => {
-        if (resetRain) {
-          resetRain();
-        }
+        tl.pause();
+        tl.seek("beg");
       },
     });
 
   if (runAction) {
     tl.play();
-  } else {
-    tl.stop();
-    tl.seek("beg");
   }
 };

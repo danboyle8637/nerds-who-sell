@@ -33,6 +33,7 @@ export const ThemeSwitcher = () => {
 
   const setActiveSiteTheme = (theme: SiteTheme) => {
     updateActiveTheme(theme);
+    localStorage.setItem("nerdTheme", theme);
   };
 
   return (

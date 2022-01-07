@@ -7,13 +7,12 @@ interface RainColumnProps {
   charArray: JSX.Element[];
   delay: number;
   runAction: boolean;
-  resetRain?: () => {};
 }
 
 const ColumContianer = styled.div`
   position: relative;
   width: fit-content;
-  height: 120px;
+  height: 100%;
 `;
 
 const CodeChar = styled.div`
@@ -28,7 +27,6 @@ export const RainColumn: React.FC<RainColumnProps> = ({
   charArray,
   delay,
   runAction,
-  resetRain,
 }) => {
   const char1Ref = useRef<HTMLDivElement>(null);
   const char2Ref = useRef<HTMLDivElement>(null);
@@ -48,12 +46,12 @@ export const RainColumn: React.FC<RainColumnProps> = ({
     if (char1 && char2 && char3 && char4 && char5 && char6 && runAction) {
       console.log(runAction);
       setTimeout(() => {
-        matrixRain(char1, 0.4, false, runAction, resetRain);
-        matrixRain(char2, 1.5, false, runAction, resetRain);
-        matrixRain(char3, 3, false, runAction, resetRain);
-        matrixRain(char4, 4.5, false, runAction, resetRain);
-        matrixRain(char5, 6, false, runAction, resetRain);
-        matrixRain(char6, 7.5, false, runAction, resetRain);
+        matrixRain(char1, 0.4, false, runAction);
+        matrixRain(char2, 1.5, false, runAction);
+        matrixRain(char3, 3, false, runAction);
+        matrixRain(char4, 4.5, false, runAction);
+        matrixRain(char5, 6, false, runAction);
+        matrixRain(char6, 7.5, false, runAction);
       }, delay);
     }
 

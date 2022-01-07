@@ -48,7 +48,7 @@ const Global = createGlobalStyle`
   }
   
   body::-webkit-scrollbar-thumb {
-    background-color: var(--accent-1) ;
+    background-color: var(--accent-1);
     border-radius: 6px;
     border: none;
   }

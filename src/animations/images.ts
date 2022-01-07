@@ -169,3 +169,31 @@ export const serviceCardImageShadowNotHover = (shadow: HTMLDivElement) => {
     autoAlpha: 0,
   });
 };
+
+export const dejaVuExitAni = (dejaVu: HTMLDivElement, meow: HTMLDivElement) => {
+  const tl = gsap.timeline();
+
+  tl.to(meow, {
+    duration: 0.4,
+    x: -20,
+    y: 60,
+    autoAlpha: 1,
+    scale: 1,
+    ease: Power3.easeOut,
+  })
+    .to(
+      meow,
+      {
+        scale: 0,
+        ease: Power3.easeIn,
+      },
+      "+=0.8"
+    )
+    .to(dejaVu, {
+      duration: 0.5,
+      x: 200,
+      y: 80,
+      scale: 0.6,
+      ease: Power3.easeIn,
+    });
+};

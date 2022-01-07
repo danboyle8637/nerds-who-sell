@@ -38,9 +38,9 @@ export const randomNegOne = () => {
   }
 };
 
-export const cleanBlogTag = (tag: BlogTag) => {
-  return tag.split("-").join(" ");
-};
+// export const cleanBlogTag = (tag: BlogTag) => {
+//   return tag.split("-").join(" ");
+// };
 
 export const filterBlogCategory = (tag: BlogTag): BlogCategory => {
   switch (tag) {
@@ -90,4 +90,8 @@ export const filterBlogCategory = (tag: BlogTag): BlogCategory => {
       );
     }
   }
+};
+
+export const cleanBlogTag = (tag: BlogTag) => {
+  return tag.split(" ").join("-");
 };
