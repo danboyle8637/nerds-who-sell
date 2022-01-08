@@ -9,6 +9,7 @@ import { BlogHeader } from "../../../../src/views/Blog/BlogPostList/BlogHeader";
 // import { PostListSection } from "../../../../src/views/blog/PostListSection";
 // import { BlogPagination } from "../../../../src/components/navigation/pagination/Blog";
 // import { FilterSection } from "../../../../src/views/blog/FilterSection";
+import { tagArray } from "../../../../src/data/blog";
 import { BlogTag, FilteredBlogPostListPage } from "../../../../src/types/blog";
 import {
   capitalizeName,
@@ -20,8 +21,6 @@ const BlogTagPage: React.FC<FilteredBlogPostListPage> = ({
   totalPage,
 }) => {
   // const currentTag = capitalizeName(tag ? tag : "all posts");
-
-  console.log(posts);
 
   return (
     <>
@@ -40,28 +39,6 @@ const BlogTagPage: React.FC<FilteredBlogPostListPage> = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const tagArray: BlogTag[] = [
-    "typescript",
-    "javascript",
-    "react",
-    "faunadb",
-    "cloudflare workers",
-    "durable objects",
-    "images",
-    "node",
-    "swift",
-    "dates",
-    "marketing book review",
-    "coding book review",
-    "media buying",
-    "copywriting",
-    "email copy",
-    "conversion",
-    "portfolio",
-    "web dev",
-    "all",
-  ];
-
   const slugPaths = tagArray.map((tag) => {
     const cleanTag = cleanBlogTag(tag);
 

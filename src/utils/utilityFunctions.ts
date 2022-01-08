@@ -68,10 +68,6 @@ export const filterBlogCategory = (tag: BlogTag): BlogCategory => {
       return "coding";
     case "faunadb":
       return "coding";
-    case "email copy":
-      return "conversion";
-    case "durable objects":
-      return "coding";
     case "dates":
       return "coding";
     case "copywriting":
@@ -80,7 +76,7 @@ export const filterBlogCategory = (tag: BlogTag): BlogCategory => {
       return "conversion";
     case "coding book review":
       return "coding";
-    case "cloudflare workers":
+    case "cloudflare":
       return "coding";
     case "all":
       return "web-design";
