@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import { text24, text36 } from "../../../../styles/typography";
 import { IPhoneImage } from "../../../../components/images/IPhone";
-import { MatrixRainBackground } from "../../../../components/fun/MatrixRainBackground";
 import { useIntersectionObserver } from "../../../../hooks/componets/useIntersectionObserver";
 import { phoneRingAni } from "../../../../animations/images";
 import { sizes } from "../../../../styles/sizes";
@@ -86,7 +85,6 @@ export const PhoneRing = () => {
           <Phone ref={phoneRef}>
             <IPhoneImage />
           </Phone>
-          <MatrixRainBackground shouldRainHalf={true} runAction={runAction} />
         </ImageContainer>
         <Headline>Making Your Phone Ring</Headline>
       </HeadlinePhoneContainer>

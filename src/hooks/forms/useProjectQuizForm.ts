@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { ProjectQuizFormInput } from "../../types/forms";
 import {
@@ -298,6 +298,12 @@ export const useProjectQuizForm = () => {
   const [nextQuestionId, setNextQuestionId] = useState<number>(11);
   const [pastQuestionArray, setPastQuestionArray] = useState<number[]>([]);
 
+  const setNextQuestionIdWithDelay = (id: number) => {
+    setTimeout(() => {
+      setNextQuestionId(id);
+    }, 600);
+  };
+
   const [firstName, setFirstName] = useState<QuizTextInputValue>({
     value: "",
     valid: false,
@@ -432,7 +438,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           haveWebsiteQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setHaveWebsite({
           value: value,
           nextQuestion: nextQuestion,
@@ -451,7 +457,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           haveTimelineQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setHaveTimeline({
           value: value,
           nextQuestion: nextQuestion,
@@ -470,7 +476,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           haveBudgetQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setHaveBudget({
           value: value,
           nextQuestion: nextQuestion,
@@ -489,7 +495,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           haveMarketingPlanQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setHaveMarketingPlan({
           value: value,
           nextQuestion: nextQuestion,
@@ -508,7 +514,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           howManyProductsQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setNumberOfProducts({
           value: value,
           nextQuestion: nextQuestion,
@@ -527,7 +533,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           salesCopyPurposeQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setSalesCopyPurpose({
           value: value,
           nextQuestion: nextQuestion,
@@ -561,7 +567,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           idealTimelineQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setIdealTimeline({
           value: value,
           nextQuestion: nextQuestion,
@@ -580,7 +586,7 @@ export const useProjectQuizForm = () => {
           ...preValue,
           primaryInterestQuestion.id,
         ]);
-        setNextQuestionId(nextQuestion);
+        setNextQuestionIdWithDelay(nextQuestion);
         setPrimaryInterest({
           value: value,
           nextQuestion: nextQuestion,

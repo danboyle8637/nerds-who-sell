@@ -51,7 +51,6 @@ const Pixel = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  background: purple;
   width: 10px;
   height: 10px;
   opacity: 0;

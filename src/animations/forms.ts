@@ -1,5 +1,14 @@
 import { gsap, Power3, Back, Linear } from "gsap";
 
+export const setLabelAboveInputAni = (label: HTMLLabelElement) => {
+  gsap.set(label, {
+    x: 20,
+    y: "-140%",
+    fontSize: "1.4rem",
+    fontWeight: 500,
+  });
+};
+
 export const moveLabelAboveInputAni = (
   label: HTMLLabelElement,
   reverse: boolean
@@ -24,6 +33,15 @@ export const moveLabelAboveInputAni = (
       reversed: reverse,
     }
   );
+};
+
+export const setLabelAboveTextareaAni = (label: HTMLLabelElement) => {
+  gsap.set(label, {
+    x: "20%",
+    y: "-140%",
+    fontSize: "1.4rem",
+    fontWeight: 500,
+  });
 };
 
 export const moveLabelAboveTextareaAni = (

@@ -78,6 +78,7 @@ export const ProjectQuizTextInput: React.FC<TextInputProps> = ({
           nextQuestionId={nextQuestionId}
           handleNextQuestion={handleNextQuestion}
           handlePrevQuestion={handlePrevQuestion}
+          valid={valid}
         />
       </InputContainer>
     </MultiDirectionWithScaleTransition>

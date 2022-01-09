@@ -7,6 +7,7 @@ type ButtonControlType = "back" | "next";
 interface InputControlButtonProps {
   controlType: ButtonControlType;
   handleClick: () => void;
+  isValid: boolean;
 }
 
 const Button = styled.button`
@@ -14,11 +15,9 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 1.4rem;
+  font-family: "VT323", monospace;
+  font-size: 2rem;
   color: var(--button-label-color);
-  text-transform: uppercase;
   letter-spacing: 0.08rem;
   background-color: var(--button-background);
   border: none;
@@ -34,6 +33,7 @@ const Button = styled.button`
 export const InputControlButton: React.FC<InputControlButtonProps> = ({
   controlType,
   handleClick,
+  isValid,
 }) => {
   const label = controlType === "back" ? "back" : "next";
 
@@ -41,11 +41,15 @@ export const InputControlButton: React.FC<InputControlButtonProps> = ({
     "--button-label-color":
       controlType === "back"
         ? "var(--base-text-color)"
-        : "var(--primary-background)",
+        : isValid
+        ? "var(--quiz-form-valid-label-color)"
+        : "hsla(0, 0%, 0%, 0.2)",
     "--button-background":
       controlType === "back"
         ? "var(--secondary-background)"
-        : "var(--accent-2)",
+        : isValid
+        ? "var(--accent-2)"
+        : "var(--quiz-form-not-valid-bg-color)",
   } as React.CSSProperties;
 
   return (

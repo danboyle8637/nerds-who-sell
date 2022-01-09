@@ -11,10 +11,7 @@ interface ProgressBarProps {
   nextQuestionId: number;
 }
 
-const ProgressContainer = styled.div`
-  position: absolute;
-  top: 40px;
-  left: 50%;
+const ProgressBarContainer = styled.div`
   padding: 0 24px;
   display: flex;
   justify-content: center;
@@ -23,10 +20,6 @@ const ProgressContainer = styled.div`
   border-radius: 90px;
   width: 260px;
   height: 50px;
-  transform: translateX(-50%);
-  ${sizes.aboveMobile} {
-    top: 200px;
-  }
 `;
 
 const ProgressTrack = styled.div`
@@ -39,6 +32,14 @@ const ProgressTrack = styled.div`
   width: 100%;
   height: 12px;
   box-shadow: inset 0 0 6px 0 hsla(0, 0%, 0%, 0.3);
+  overflow: hidden;
+`;
+
+const ProgressContainer = styled.div`
+  background: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
   overflow: hidden;
 `;
 
@@ -91,10 +92,12 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       : greenTheme;
 
   return (
-    <ProgressContainer style={activeStyle}>
+    <ProgressBarContainer style={activeStyle}>
       <ProgressTrack>
-        <Progress ref={progressBarRef} />
+        <ProgressContainer>
+          <Progress ref={progressBarRef} />
+        </ProgressContainer>
       </ProgressTrack>
-    </ProgressContainer>
+    </ProgressBarContainer>
   );
 };

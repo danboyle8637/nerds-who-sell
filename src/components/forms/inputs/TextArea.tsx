@@ -7,7 +7,10 @@ import { InputActiveIcon } from "../InputActiveIcon";
 import { CharacterCountChip } from "../../chips/CharacterCountChip";
 import { darkFormTheme } from "../../../styles/themes/forms";
 import { InputStatusTransition } from "../../../animations/transitions/InputStatusTransition";
-import { moveLabelAboveTextareaAni } from "../../../animations/forms";
+import {
+  moveLabelAboveTextareaAni,
+  setLabelAboveTextareaAni,
+} from "../../../animations/forms";
 import { ContactFormInput, ProjectQuizFormInput } from "../../../types/forms";
 
 interface TextareaProps {
@@ -134,6 +137,10 @@ export const Textarea: React.FC<TextareaProps> = ({
 
     if (inputLabel && touched && value === "") {
       moveLabelAboveTextareaAni(inputLabel, false);
+    }
+
+    if (inputLabel && !touched && value.length > 0) {
+      setLabelAboveTextareaAni(inputLabel);
     }
 
     if (inputLabel && !touched && value === "") {

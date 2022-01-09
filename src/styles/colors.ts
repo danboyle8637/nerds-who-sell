@@ -20,3 +20,21 @@ export const purpleTheme = {
   "--service-card-body-color": "var(--section-background-3)",
   "--service-card-headline": "var(--base-text-color)",
 } as CSSProperties;
+
+export const greenQuizTheme = {
+  "--accent-2": "hsl(120, 100%, 50%)",
+  "--quiz-form-valid-label-color": "hsl(0, 0%, 9%)",
+  "--quiz-form-not-valid-bg-color": "hsla(120, 100%, 50%, 0.1)",
+} as CSSProperties;
+
+export const blueQuizTheme = {
+  "--accent-2": "hsl(176, 92%, 53%)",
+  "--quiz-form-valid-label-color": "hsl(176, 92%, 6%)",
+  "--quiz-form-not-valid-bg-color": "hsla(176, 92%, 53%, 0.1)",
+} as CSSProperties;
+
+export const purpleQuizTheme = {
+  "--accent-2": "hsl(246, 59%, 62%)",
+  "--quiz-form-valid-label-color": "var(--base-text-color)",
+  "--quiz-form-not-valid-bg-color": "hsla(246, 59%, 62%, 0.1)",
+} as CSSProperties;

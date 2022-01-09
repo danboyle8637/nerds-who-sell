@@ -1,23 +1,29 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { QuizDrawerTransition } from "../../animations/transitions/QuizDrawerTransition";
+import { QuizDrawerTransition } from "../../../animations/transitions/QuizDrawerTransition";
 import {
   navDrawerOpenAni,
   navDrawerClosedAni,
-} from "../../animations/navigation";
-import { quizCloseButtonEnterAni } from "../../animations/buttons";
-import { ProjectQuizForm } from "../forms/ProjectQuizForm";
-import { ProgressBar } from "../forms/ProjectQuizForm/ProgressBar";
-import { CloseIcon } from "../images/CloseIcon";
-import { useProjectQuizForm } from "../../hooks/forms/useProjectQuizForm";
-import { buttonFocus } from "../buttons/buttonStyles";
+} from "../../../animations/navigation";
+import { quizCloseButtonEnterAni } from "../../../animations/buttons";
+import { ProjectQuizForm } from "../../forms/ProjectQuizForm";
+import { ProgressThemeIndicator } from "./ProgressThemeIndicator";
+import { CloseIcon } from "../../images/CloseIcon";
+import { useProjectQuizForm } from "../../../hooks/forms/useProjectQuizForm";
+import { siteThemeStore } from "../../../../lib/siteThemeStore";
+import { buttonFocus } from "../../buttons/buttonStyles";
+import {
+  blueQuizTheme,
+  purpleQuizTheme,
+  greenQuizTheme,
+} from "../../../styles/colors";
 import {
   QuizRadioInputValue,
   QuizeTextInputOptions,
   QuizTextInputValue,
-} from "../../hooks/forms/useProjectQuizForm";
-import { sizes } from "../../styles/sizes";
+} from "../../../hooks/forms/useProjectQuizForm";
+import { sizes } from "../../../styles/sizes";
 
 interface QuizOverlayProps {
   isOpen: boolean;
@@ -82,6 +88,14 @@ const Close = styled.button`
   ${buttonFocus}
 `;
 
+const ProgressContainer = styled.div`
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  width: fit-content;
+  transform: translateX(-50%);
+`;
+
 export const QuizOverlay: React.FC<QuizOverlayProps> = ({
   isOpen,
   toggleOverlay,
@@ -89,6 +103,8 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
 }) => {
   const navRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
 
   const {
     currentQuestion,
@@ -131,14 +147,17 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
     }
   }, [isOpen]);
 
+  const styles =
+    activeTheme === "blue"
+      ? blueQuizTheme
+      : activeTheme === "purple"
+      ? purpleQuizTheme
+      : greenQuizTheme;
+
   return (
     <QuizDrawerTransition isOpen={isOpen}>
       <BackgroundOverlay>
-        <DrawerContainer ref={navRef}>
-          <ProgressBar
-            currentQuestion={currentQuestion}
-            nextQuestionId={nextQuestionId}
-          />
+        <DrawerContainer ref={navRef} style={styles}>
           <ProjectQuizForm
             setCurrentQuestion={setCurrentQuestion}
             nextQuestionId={nextQuestionId}
@@ -173,6 +192,12 @@ export const QuizOverlay: React.FC<QuizOverlayProps> = ({
           >
             <CloseIcon />
           </Close>
+          <ProgressContainer>
+            <ProgressThemeIndicator
+              currentQuestion={currentQuestion}
+              nextQuestion={nextQuestionId}
+            />
+          </ProgressContainer>
         </DrawerContainer>
         <ClickLayer onClick={toggleOverlay} />
       </BackgroundOverlay>
