@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { quizProgressAni } from "../../../animations/forms";
+import { blueTheme, purpleTheme, greenTheme } from "../../../styles/colors";
+import { siteThemeStore } from "../../../../lib/siteThemeStore";
 import { sizes } from "../../../styles/sizes";
 
 interface ProgressBarProps {
@@ -45,7 +47,7 @@ const Progress = styled.div`
   border-radius: 50px;
   width: 100%;
   height: 100%;
-  transform: translateX(-100%);
+  /* transform: translateX(-100%); */
 `;
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({
@@ -55,6 +57,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const [totalQuestions, setTotalQuestions] = useState<number>(10);
 
   const progressBarRef = useRef<HTMLDivElement | null>(null);
+
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
 
   useEffect(() => {
     if (currentQuestion === 2 && nextQuestionId === 9) {
@@ -77,10 +81,17 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     if (progressBar) {
       quizProgressAni(progressBar, percent);
     }
-  }, [currentQuestion / totalQuestions]);
+  }, [currentQuestion, totalQuestions]);
+
+  const activeStyle =
+    activeTheme === "blue"
+      ? blueTheme
+      : activeTheme === "purple"
+      ? purpleTheme
+      : greenTheme;
 
   return (
-    <ProgressContainer>
+    <ProgressContainer style={activeStyle}>
       <ProgressTrack>
         <Progress ref={progressBarRef} />
       </ProgressTrack>
