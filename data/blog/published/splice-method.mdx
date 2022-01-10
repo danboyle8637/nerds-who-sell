@@ -1,0 +1,94 @@
+---
+id: javascript-splice-method
+date: "1/10/22"
+draft: false
+pageTitle: "Learning Javascript: Splice Method"
+pageDescription: The splice method in Javascript is powerful and it can come in handy. But you need to understand what it returns and how it works. Let's play and master the splice method.
+author: Dan
+featureImage: "https://ik.imagekit.io/csu76xuqqlwj/nerds-who-sell/blog/2022/javascript-splice-method_yFsJHcjIW.jpg"
+altTag: A picture of a DNA strand splicing into two
+titleTag: The Javascript Splice Method
+headline: "Javascript Methods: Let's Splice and Dice Some Arrays"
+description: The splice method in Javascript is powerful and it can come in handy. But you need to understand what it returns and how it works. Let's play and master the splice method.
+category: coding
+tags: ["javascript", "typescript"]
+socialImage: "https://ik.imagekit.io/csu76xuqqlwj/nerds-who-sell/blog/2022/javascript-splice-method-social_DXvZ10K9v.jpg"
+socialHeadline: Can Splicing an Array Save You Code? Let's Find Out
+socialDescription: Splicing an array is a unique method. If you were to implement this on your own it would take a lot of code. So let's look into what it does and why you might want to use it.
+socialSlug: "/blog/javascript-splice-method"
+---
+
+import { CallOutBox } from "../../../src/components/mdx/CallOutBox.tsx";
+import { PostLink } from "../../../src/components/mdx/Link.tsx";
+import { ReplitEmbed } from "../../../src/components/mdx/ReplitEmbed.tsx";
+
+Splice is a Javascript array method.
+
+If you're reading this... you're learning Javascript. Get to know the <PostLink url="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">
+MD Array Method Docs</PostLink>... I spend a little bit of every single day in these docs reading.
+
+### What Does The Splice Method Do?
+
+Removes... replaces... or adds to an array based on what you pass to it and how.
+
+It takes the **starting index** as the first parameter.
+
+How many **indexes you want to delete** as the second parameter.
+
+And any **data you want to add** as the third parameter.
+
+It's a pretty versatile method.
+
+### What The Splice Method Returns
+
+BTW... as you learn to code... what functions return is one of the most important things to understand.
+
+**An array of the removed items**.
+
+If no items are removed... an empty array is returned.
+
+### Important
+
+This method changes the original array. It does not make a copy... this is really important to understand.
+
+You are mutating the original array.
+
+### When Would You Use This?
+
+I honestly don't use this method that much.
+
+At least not yet.
+
+But if you ever needed to add an element or object to an array... especially in the middle of the array... this would be the method to reach for.
+
+When I use it in the real world... I'll report back here when and how I used it.
+
+If you've used it in a real project... let me know and maybe you'll let me include it in this article.
+
+The important thing to consider is...
+
+Do you want to change the original array?
+
+### Let's Look At Some Code
+
+Here is an embed from Repl.it.
+
+This is in Typescript but it's the same things in this case.
+
+Keep in mind though... in Typescript you can't just add anything to an array. It will need to be of the same type.
+
+Read the comments and look at the different cases I came up with.
+
+You will have to:
+
+- Click code at the bottom...
+- Click Files at the top right...
+- In the `methods` directory you will find `splice.ts`
+
+<ReplitEmbed replitUrl="https://replit.com/@danboyle8637/Array-Methods?embed=true" />
+
+### Any Questions?
+
+If you have any questions... hit me up on Twitter or go to my <PostLink slug="/contact">contact page</PostLink>.
+
+If you need some help with Javascript or web development in your project... reach out and maybe we can work together.

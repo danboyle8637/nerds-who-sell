@@ -105,7 +105,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     const aDate = a.frontmatter.date;
     const bDate = b.frontmatter.date;
 
-    if (aDate > bDate) {
+    if (aDate < bDate) {
       return -1;
     } else {
       return 1;

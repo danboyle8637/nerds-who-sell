@@ -197,3 +197,49 @@ export const dejaVuExitAni = (dejaVu: HTMLDivElement, meow: HTMLDivElement) => {
       ease: Power3.easeIn,
     });
 };
+
+export const phoneTextMessageScaleAni = (messages: HTMLDivElement[]) => {
+  gsap.to(messages, {
+    transformOrigin: "50% 50%",
+    scale: 1,
+    stagger: 1,
+    ease: Back.easeInOut,
+  });
+};
+
+export const phoneTextMessageTransformAni = (messages: HTMLDivElement[]) => {
+  const tl = gsap.timeline();
+
+  const message1From = {
+    x: -100,
+    y: 98,
+  };
+
+  const message1To = {
+    x: 40,
+    y: 50,
+    autoAlpha: 1,
+  };
+
+  const message2From = {
+    x: 80,
+    y: 20,
+  };
+
+  const message2To = {
+    x: -40,
+    y: 60,
+    autoAlpha: 1,
+  };
+
+  const message3From = {
+    x: -80,
+    y: 20,
+  };
+
+  const message3To = {
+    x: 60,
+    y: -20,
+    autoAlpha: 1,
+  };
+};

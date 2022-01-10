@@ -11,9 +11,15 @@ export const BlogPostImage: React.FC<BlogPostImageProps> = ({
   altTag,
   titleTag,
 }) => {
-  const splitUrl = url.split("2021");
+  const currentYear = new Date().getFullYear();
+  const splitUrl = url.split(String(currentYear));
   const progressive = "tr:pr-true";
-  const fullUrl = [splitUrl[0], `2021/${progressive}`, splitUrl[1]].join("");
+  const fullUrl = [
+    splitUrl[0],
+    `${String(currentYear)}/${progressive}`,
+    splitUrl[1],
+  ].join("");
+
   return (
     <Image
       src={fullUrl}

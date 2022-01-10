@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { smallHeadline, largeHeadline } from "../../../../styles/typography";
 import { ConversationWordBubbles } from "../../../../components/images/ConversationBubbles";
+import { TextMessagePhone } from "../../../../components/images/TextMessagePhone";
 import { sizes } from "../../../../styles/sizes";
 
 interface HeaderProps {
@@ -13,6 +14,7 @@ const HeaderContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 800px;
+  isolation: isolate;
 `;
 
 const ConversationImage = styled.div`
@@ -48,9 +50,10 @@ const MainHeadline = styled.h3`
 export const Header: React.FC<HeaderProps> = ({ preHeadline, headline }) => {
   return (
     <HeaderContainer>
-      <ConversationImage>
+      {/* <ConversationImage>
         <ConversationWordBubbles />
-      </ConversationImage>
+      </ConversationImage> */}
+      <TextMessagePhone />
       <HeadlineContainer>
         <PreHeadline>{preHeadline}</PreHeadline>
         <MainHeadline>{headline}</MainHeadline>

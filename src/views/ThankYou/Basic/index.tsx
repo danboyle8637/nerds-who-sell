@@ -6,7 +6,7 @@ import { ThankYouNerd } from "./ThankYouNerd";
 import { ContactInfoChip } from "../../../components/chips/ContactInfoChip";
 import {
   Paragraph,
-  InternalLink,
+  PostLink,
   Strong,
   List,
   ListItem,
@@ -23,8 +23,8 @@ interface BasicThankYouProps {
 
 const components = {
   p: (props: any) => <Paragraph {...props} />,
-  InternalLink,
-  a: (props: any) => <InternalLink {...props} />,
+  PostLink,
+  a: (props: any) => <PostLink {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ul: (props: any) => <List type="ul" {...props} />,
   ol: (props: any) => <List type="ol" {...props} />,
