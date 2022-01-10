@@ -104,9 +104,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({
   tags,
   slug,
 }) => {
-  const handleTagClick = () => {
-    console.log("Redirect to page with filtered blog posts for that tag.");
-  };
+  const handleTagClick = () => {};
 
   const postTags = tags.map((tag, i) => {
     return <BlogPostTagButton key={i} tag={tag} handleClick={handleTagClick} />;

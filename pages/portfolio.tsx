@@ -35,7 +35,7 @@ const Portgolio: React.FC<BlogPostListPage> = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const POSTS_PATH_2021 = path.join(process.cwd(), "data/blog/2021");
+  const POSTS_PATH_2021 = path.join(process.cwd(), "data/blog/published");
   const contentPath = path.join(process.cwd(), "data/home");
 
   const getSourceOfFile = (postsPath: string, filename: string) => {

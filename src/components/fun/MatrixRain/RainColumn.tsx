@@ -44,7 +44,6 @@ export const RainColumn: React.FC<RainColumnProps> = ({
     const char6 = char6Ref.current;
 
     if (char1 && char2 && char3 && char4 && char5 && char6 && runAction) {
-      console.log(runAction);
       setTimeout(() => {
         matrixRain(char1, 0.4, false, runAction);
         matrixRain(char2, 1.5, false, runAction);

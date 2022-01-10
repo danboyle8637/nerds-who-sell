@@ -38,9 +38,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
   frontmatter,
   content,
 }) => {
-  const handleTagClick = () => {
-    console.log("Show a warning before you direct them to a tag filter page.");
-  };
+  const handleTagClick = () => {};
 
   return (
     <ViewContainer>

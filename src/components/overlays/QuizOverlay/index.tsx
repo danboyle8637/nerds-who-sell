@@ -18,11 +18,6 @@ import {
   purpleQuizTheme,
   greenQuizTheme,
 } from "../../../styles/colors";
-import {
-  QuizRadioInputValue,
-  QuizeTextInputOptions,
-  QuizTextInputValue,
-} from "../../../hooks/forms/useProjectQuizForm";
 import { sizes } from "../../../styles/sizes";
 
 interface QuizOverlayProps {
@@ -94,6 +89,9 @@ const ProgressContainer = styled.div`
   left: 50%;
   width: fit-content;
   transform: translateX(-50%);
+  ${sizes.aboveMobile} {
+    bottom: 26px;
+  }
 `;
 
 export const QuizOverlay: React.FC<QuizOverlayProps> = ({

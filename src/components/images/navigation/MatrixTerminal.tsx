@@ -40,7 +40,6 @@ export const MatrixTerminal = () => {
     const cursor = cursorRef.current;
 
     if (cursor) {
-      console.log(cursor);
       blinkingCursor(cursor);
     }
   }, []);

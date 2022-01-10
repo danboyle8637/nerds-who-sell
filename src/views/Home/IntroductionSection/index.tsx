@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import {
@@ -7,12 +7,7 @@ import {
   bodyText,
 } from "../../../styles/typography";
 import { NerdWhoSells } from "../../../components/images/NerdWhoSells";
-import { MatrixCat } from "../../../components/images/MatrixCat";
-import { MeowDown } from "../../../components/images/MatrixCat/MeowDown";
-import { MeowUp } from "../../../components/images/MatrixCat/MeowUp";
-import { MatrixRainBackground } from "../../../components/fun/MatrixRainBackground";
 import { ActionButton } from "../../../components/buttons/ActionButton";
-import { dejaVuExitAni } from "../../../animations/images";
 import { nerdsWhoSellStore } from "../../../../lib/store";
 import { sizes } from "../../../styles/sizes";
 
@@ -90,8 +85,9 @@ const Sells = styled.span`
 
 const PreHeadline = styled.h3`
   ${smallHeadline}
-  color: var(--accent-1);
+  color: var(--strong-paragraph-color);
   justify-self: start;
+  transition: color 300ms ease-in-out;
   ${sizes.aboveMobile} {
     padding-left: 40px;
   }
@@ -127,37 +123,7 @@ const TheNerd = styled.div`
   }
 `;
 
-const DejaVuContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 120px;
-  transform: translate(24px, 12px);
-  ${sizes.aboveMobile} {
-    bottom: 0;
-    right: 0;
-    transform: translate(180px, -140px);
-  }
-`;
-
-const DejaVu = styled.div`
-  width: 100%;
-`;
-
-const MeowMobile = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 80px;
-  opacity: 0;
-  transform-origin: top right;
-  transform: scale(0);
-`;
-
 export const IntroductionSection = () => {
-  const [shouldMatrixRain, setShouldMatrixRain] = useState<boolean>(false);
-  const dejaVuRef = useRef<HTMLDivElement | null>(null);
-  const meowRef = useRef<HTMLDivElement | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout>();
 
   const toggleQuizOverlay = nerdsWhoSellStore(
@@ -174,21 +140,6 @@ export const IntroductionSection = () => {
 
   const handleButtonClick = () => {
     toggleQuizOverlay();
-  };
-
-  const handleDejaVuClick = () => {
-    const dejaVu = dejaVuRef.current;
-    const meow = meowRef.current;
-
-    setShouldMatrixRain(true);
-
-    timeoutRef.current = setTimeout(() => {
-      setShouldMatrixRain(false);
-
-      if (dejaVu && meow) {
-        dejaVuExitAni(dejaVu, meow);
-      }
-    }, 1700);
   };
 
   return (
@@ -208,18 +159,6 @@ export const IntroductionSection = () => {
       <TheNerd>
         <NerdWhoSells />
       </TheNerd>
-      <DejaVuContainer>
-        <DejaVu ref={dejaVuRef} onClick={handleDejaVuClick}>
-          <MatrixCat />
-        </DejaVu>
-        <MeowMobile ref={meowRef}>
-          <MeowDown />
-        </MeowMobile>
-      </DejaVuContainer>
-      <MatrixRainBackground
-        runAction={shouldMatrixRain}
-        shouldRainHalf={false}
-      />
     </SectionContainer>
   );
 };

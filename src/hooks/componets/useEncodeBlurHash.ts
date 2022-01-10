@@ -22,7 +22,6 @@ const getImageData = (image: HTMLImageElement) => {
 
 const encodeImageToBlurhash = async (imageUrl: string) => {
   const image = await loadImage(imageUrl);
-  console.log(image);
   const imageData = getImageData(image);
   return encode(imageData!.data, imageData!.width, imageData!.height, 4, 4);
 };

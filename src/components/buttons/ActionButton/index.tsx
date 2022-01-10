@@ -15,9 +15,6 @@ interface ActionButtonProps {
 
 const ButtonContainer = styled.div`
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
   width: 300px;
   isolation: isolate;
 `;
@@ -25,9 +22,14 @@ const ButtonContainer = styled.div`
 const Button = styled.button`
   ${baseButtonStyles}
   background-color: var(--accent-2);
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
-  z-index: 1;
+  transition: box-shadow, background-color, 300ms ease-in-out;
+  &:hover {
+    box-shadow: 0 4px 4px 0px hsla(0, 0%, 0%, 0.6),
+      0 0 0 6px var(--action-button-shadow);
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 `;
 
 const Pixel = styled.div`

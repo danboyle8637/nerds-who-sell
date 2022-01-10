@@ -17,7 +17,7 @@ export const baseButtonStyles = css`
   align-items: center;
   font-family: "VT323", monospace;
   font-size: 2.6rem;
-  color: var(--base-button-text-color, var(--base-text-color));
+  color: var(--action-button-label-color, var(--base-text-color));
   font-weight: 700;
   letter-spacing: 0.08rem;
   background-color: var(--base-button-background, var(--accent-1));

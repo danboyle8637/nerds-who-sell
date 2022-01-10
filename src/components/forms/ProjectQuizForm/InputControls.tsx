@@ -28,8 +28,6 @@ export const InputControls: React.FC<InputControlsProps> = ({
 }) => {
   const showControls = activeId === 11 || activeId === 12 ? false : true;
 
-  console.log(valid);
-
   return (
     <ControlsContainer>
       {showControls ? (

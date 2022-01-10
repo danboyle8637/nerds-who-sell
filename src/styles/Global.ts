@@ -14,14 +14,12 @@ const Global = createGlobalStyle`
     --accent-1: hsl(246, 59%, 62%);
   
     --base-text-color: hsl(227, 37%, 93%);
-    --strong-paragraph-color: hsl(259, 78%, 70%);
   }
 
   html {
     font-size: 62.5%;
     box-sizing: border-box;
     scrollbar-width: thin;
-    /* scrollbar-color: var(--accent-blue); */
   }
 
   *,

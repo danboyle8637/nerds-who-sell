@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
-import { largeHeadline } from "../../../styles/typography";
+import { text36, text56 } from "../../../styles/typography";
 import { BlogCategory } from "../../../types/blog";
+import { sizes } from "../../../styles/sizes";
 
 interface RenderHeadlineProps {
   category: BlogCategory;
 }
 
 const Headline = styled.h1`
-  ${largeHeadline}
+  ${text36}
+  font-family: 'VT323', monospace;
+  ${sizes.aboveMobile} {
+    ${text56}
+  }
 `;
 
 export const RenderHeadline: React.FC<RenderHeadlineProps> = ({ category }) => {

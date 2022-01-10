@@ -28,8 +28,6 @@ export const LaptopNav = () => {
     );
   });
 
-  console.log(activeTheme);
-
   return (
     <NavContainer>
       {links} <ThemeSwitcher />
