@@ -6,6 +6,7 @@ import { BlogTag } from "../../types/blog";
 import { sizes } from "../../styles/sizes";
 
 interface BlogPostHeaderProps {
+  date: string;
   featureImage: string;
   altTag: string;
   titleTag: string;
@@ -41,6 +42,7 @@ const TagsContainer = styled.div`
 `;
 
 export const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
+  date,
   featureImage,
   altTag,
   titleTag,
@@ -53,7 +55,12 @@ export const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
   return (
     <HeaderContainer>
       <PostImage>
-        <BlogPostImage url={featureImage} altTag={altTag} titleTag={titleTag} />
+        <BlogPostImage
+          date={date}
+          url={featureImage}
+          altTag={altTag}
+          titleTag={titleTag}
+        />
       </PostImage>
       <TagsContainer>{postTags}</TagsContainer>
     </HeaderContainer>

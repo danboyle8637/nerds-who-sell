@@ -41,6 +41,7 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
   return (
     <ViewContainer>
       <BlogPostHeader
+        date={frontmatter.date}
         featureImage={frontmatter.featureImage}
         altTag={frontmatter.altTag}
         titleTag={frontmatter.titleTag}
