@@ -51,10 +51,6 @@ export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
         return "#2CA6E8";
       case "dates":
         return "#4F30FF";
-      case "durable objects":
-        return "#FFD955";
-      case "email copy":
-        return "#65C76F";
       case "faunadb":
         return "#7C54FA";
       case "go":
@@ -77,12 +73,20 @@ export const BlogPostTagButton: React.FC<BlogPostTagChipProps> = ({
         return "#7351F6";
       case "marketing book review":
         return "#F63B69";
-      case "cloudflare workers":
+      case "cloudflare":
         return "#F8B63C";
       case "portfolio":
         return "#A9006A";
       case "web dev":
         return "#6063a7";
+      case "coding course review":
+        return "#47b896";
+      case "marketing course review":
+        return "#df5220";
+      case "css":
+        return "#5d5da2";
+      case "serverless":
+        return "#cc3390";
       default: {
         throw new Error("You did not handle all possible blog tags.");
       }

@@ -38,7 +38,6 @@ export const List: React.FC<ListProps> = ({ posts }) => {
     const altTag = post.frontmatter.altTag;
     const titleTag = post.frontmatter.titleTag;
     const headline = post.frontmatter.headline;
-    const description = post.frontmatter.description;
     const category = post.frontmatter.category;
     const tags = post.frontmatter.tags;
     const slug = post.slug;
@@ -50,7 +49,6 @@ export const List: React.FC<ListProps> = ({ posts }) => {
         altTag={altTag}
         titleTag={titleTag}
         headline={headline}
-        description={description}
         category={category}
         tags={tags}
         slug={slug}
