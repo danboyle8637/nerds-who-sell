@@ -76,12 +76,6 @@ const CardHeadline = styled.h2`
   }
 `;
 
-const CategoryContainer = styled.div`
-  position: absolute;
-  top: 12px;
-  right: 12px;
-`;
-
 const TagContainer = styled.div`
   display: flex;
   justify-content: flex-end;

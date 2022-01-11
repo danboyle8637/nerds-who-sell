@@ -2,6 +2,7 @@ import { Markdown } from "./pages";
 
 export interface BlogFrontmatter {
   id: string;
+  date: string;
   pageTitle: string;
   pageDescription: string;
   author: string;

@@ -1,22 +1,25 @@
 import Image from "next/image";
 
 interface BlogPostImageProps {
+  date: string;
   url: string;
   altTag: string;
   titleTag: string;
 }
 
 export const BlogPostImage: React.FC<BlogPostImageProps> = ({
+  date,
   url,
   altTag,
   titleTag,
 }) => {
-  const currentYear = new Date().getFullYear();
-  const splitUrl = url.split(String(currentYear));
+  const dateArray = date.split("/");
+  const publishedYear = `20${dateArray[dateArray.length - 1]}`;
+  const splitUrl = url.split(publishedYear);
   const progressive = "tr:pr-true";
   const fullUrl = [
     splitUrl[0],
-    `${String(currentYear)}/${progressive}`,
+    `${publishedYear}/${progressive}`,
     splitUrl[1],
   ].join("");
 
