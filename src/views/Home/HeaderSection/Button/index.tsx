@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { bodyText } from "../../../../styles/typography";
+import { text20 } from "../../../../styles/typography";
 import { ActionButton } from "../../../../components/buttons/ActionButton";
 import { nerdsWhoSellStore } from "../../../../../lib/store";
 
@@ -13,8 +13,9 @@ const ButtonContainer = styled.div`
 `;
 
 const Declaration = styled.p`
-  ${bodyText}
+  ${text20}
   padding-left: 20px;
+  font-weight: 700;
 `;
 
 export const Button = () => {

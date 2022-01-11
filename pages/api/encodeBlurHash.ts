@@ -10,7 +10,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const loadImage = async (src: string) => {
     return new Promise<HTMLImageElement>((resolve, reject) => {
-      console.log("Before creating image");
       const img = new Image();
       img.src = src;
       img.setAttribute("crossOrigin", "");
@@ -21,7 +20,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   // @ts-ignore
   const getImageData = (image) => {
-    console.log(image);
     const canvas = document.createElement("canvas");
     canvas.width = image.width;
     canvas.height = image.height;

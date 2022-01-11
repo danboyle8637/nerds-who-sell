@@ -1,47 +1,49 @@
+import { useCallback } from "react";
 import styled from "styled-components";
 
+import { text20 } from "../../../styles/typography";
 import { MarketingCategory } from "../../images/MarketingCategory";
 import { CodingCategory } from "../../images/CodingCategory";
 import { ConversionCategory } from "../../images/ConversionCategory";
 import { WebDesignCategory } from "../../images/WebDesignCategory";
 import { PortfolioCategory } from "../../images/PortfolioCategory";
 import { BlogCategory } from "../../../types/blog";
-import { useCallback } from "react";
+import { sizes } from "../../../styles/sizes";
 
 interface CategoryIconProps {
   category: BlogCategory;
 }
 
-const CategoryContainer = styled.div`
+const CategoryChip = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(0, 0%, 8%);
-  border-radius: 50%;
   width: 64px;
   height: 64px;
-  box-shadow: 0 0 0 5px var(--box-shadow-color);
+  ${sizes.aboveTablet} {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const CodingIcon = styled.div`
-  width: 40px;
+  width: 100%;
 `;
 
 const ConversionIcon = styled.div`
-  width: 34px;
+  width: 100%;
 `;
 
 const MarketingIcon = styled.div`
-  width: 46px;
-  transform: rotate(-20grad);
+  width: 100%;
 `;
 
 const WebDesignIcon = styled.div`
-  width: 40px;
+  width: 100%;
 `;
 
 const PortfolioIcon = styled.div`
-  width: 46px;
+  width: 100%;
 `;
 
 export const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
@@ -99,7 +101,5 @@ export const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
         : "hsla(227, 37%, 93%, 0.4)",
   } as React.CSSProperties;
 
-  return (
-    <CategoryContainer style={styles}>{renderIconImage()}</CategoryContainer>
-  );
+  return <CategoryChip style={styles}>{renderIconImage()}</CategoryChip>;
 };

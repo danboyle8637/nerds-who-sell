@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { largeHeadline } from "../../../styles/typography";
+import { text56, text68 } from "../../../styles/typography";
 import { BlogHeaderImage } from "../../../components/images/blog/BlogHeaderLogo";
 import { sizes } from "../../../styles/sizes";
 
@@ -25,9 +25,14 @@ const HeaderImage = styled.div`
 const Headline = styled.h1`
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-  ${largeHeadline}
-  transform: translate(20px, 0);
+  ${text56}
+  font-family: 'VT323', monospace;
+  transform: translate(80px, 0);
   z-index: 1;
+  ${sizes.aboveMobile} {
+    ${text68}
+    transform: translate(60px, 0);
+  }
 `;
 
 export const BlogHeader = () => {

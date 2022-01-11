@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { quizProgressAni } from "../../../animations/forms";
+import { blueTheme, purpleTheme, greenTheme } from "../../../styles/colors";
+import { siteThemeStore } from "../../../../lib/siteThemeStore";
 import { sizes } from "../../../styles/sizes";
 
 interface ProgressBarProps {
@@ -9,10 +11,7 @@ interface ProgressBarProps {
   nextQuestionId: number;
 }
 
-const ProgressContainer = styled.div`
-  position: absolute;
-  top: 40px;
-  left: 50%;
+const ProgressBarContainer = styled.div`
   padding: 0 24px;
   display: flex;
   justify-content: center;
@@ -21,10 +20,6 @@ const ProgressContainer = styled.div`
   border-radius: 90px;
   width: 260px;
   height: 50px;
-  transform: translateX(-50%);
-  ${sizes.aboveMobile} {
-    top: 200px;
-  }
 `;
 
 const ProgressTrack = styled.div`
@@ -40,12 +35,20 @@ const ProgressTrack = styled.div`
   overflow: hidden;
 `;
 
+const ProgressContainer = styled.div`
+  background: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+  overflow: hidden;
+`;
+
 const Progress = styled.div`
   background-color: var(--accent-2);
   border-radius: 50px;
   width: 100%;
   height: 100%;
-  transform: translateX(-100%);
+  /* transform: translateX(-100%); */
 `;
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({
@@ -55,6 +58,8 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const [totalQuestions, setTotalQuestions] = useState<number>(10);
 
   const progressBarRef = useRef<HTMLDivElement | null>(null);
+
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
 
   useEffect(() => {
     if (currentQuestion === 2 && nextQuestionId === 9) {
@@ -77,13 +82,22 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
     if (progressBar) {
       quizProgressAni(progressBar, percent);
     }
-  }, [currentQuestion / totalQuestions]);
+  }, [currentQuestion, totalQuestions]);
+
+  const activeStyle =
+    activeTheme === "blue"
+      ? blueTheme
+      : activeTheme === "purple"
+      ? purpleTheme
+      : greenTheme;
 
   return (
-    <ProgressContainer>
+    <ProgressBarContainer style={activeStyle}>
       <ProgressTrack>
-        <Progress ref={progressBarRef} />
+        <ProgressContainer>
+          <Progress ref={progressBarRef} />
+        </ProgressContainer>
       </ProgressTrack>
-    </ProgressContainer>
+    </ProgressBarContainer>
   );
 };

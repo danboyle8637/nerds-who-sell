@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-import { nerdsWhoSellStore } from "../../../lib/store";
+import { nerdBlogStore } from "../../../lib/blogStore";
+import { BlogTag } from "../../types/blog";
 
 export const createPageRange = (from: number, to: number, step: number = 1) => {
   let pageRange: number[] = [];
@@ -17,21 +18,25 @@ export type Direction = 11111111 | 99999999;
 export const LEFT = 11111111;
 export const RIGHT = 99999999;
 
-export const usePagination = (totalPages: number, pageNeighbors: number) => {
+export const usePagination = (
+  totalPages: number,
+  pageNeighbors: number,
+  tag?: BlogTag
+) => {
   const [pages, setPages] = useState<number[]>([]);
 
   const { asPath, isReady } = useRouter();
 
-  const { activeBlogPage, updateActiveBlogPage } = nerdsWhoSellStore(
-    (state) => ({
-      activeBlogPage: state.activeBlogPage,
-      updateActiveBlogPage: state.updateActiveBlogPage,
-    })
-  );
+  const { activeBlogPage, updateActiveBlogPage } = nerdBlogStore((state) => ({
+    activeBlogPage: state.activeBlogPage,
+    updateActiveBlogPage: state.updateActiveBlogPage,
+  }));
 
   useEffect(() => {
     if (isReady) {
-      const currentPage = Number(asPath.split("/")[2]);
+      const pathArray = asPath.split("/");
+      const lastIndex = pathArray.length - 1;
+      const currentPage = Number(pathArray[lastIndex]);
 
       if (currentPage) {
         updateActiveBlogPage(currentPage);
@@ -39,7 +44,7 @@ export const usePagination = (totalPages: number, pageNeighbors: number) => {
         updateActiveBlogPage(1);
       }
     }
-  }, [isReady, asPath]);
+  }, [isReady, asPath, tag]);
 
   const getPageNumbers = () => {
     // total page numbers to show on controls
@@ -87,7 +92,7 @@ export const usePagination = (totalPages: number, pageNeighbors: number) => {
   useEffect(() => {
     const pages = getPageNumbers();
     setPages(pages);
-  }, [activeBlogPage]);
+  }, [activeBlogPage, totalPages]);
 
   return pages;
 };

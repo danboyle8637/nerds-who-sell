@@ -29,6 +29,13 @@ export interface BlogPostListPage {
   totalPages: number;
 }
 
+export interface FilteredBlogPostListPage {
+  tag: BlogTag;
+  posts: BlogPostCard[];
+  ctaContent: Markdown;
+  totalPage: number;
+}
+
 export type Headline4Type = "normal" | "call out";
 
 export type BlogCategory =
@@ -43,8 +50,7 @@ export type BlogTag =
   | "javascript"
   | "react"
   | "faunadb"
-  | "cloudflare workers"
-  | "durable objects"
+  | "cloudflare"
   | "images"
   | "node"
   | "go"
@@ -54,8 +60,17 @@ export type BlogTag =
   | "coding book review"
   | "media buying"
   | "copywriting"
-  | "email copy"
   | "conversion"
   | "portfolio"
   | "web dev"
+  | "css"
+  | "marketing course review"
+  | "coding course review"
+  | "serverless"
   | "all";
+
+export interface BlogTagMetaData {
+  bg: string;
+  label: string;
+  category: BlogCategory;
+}

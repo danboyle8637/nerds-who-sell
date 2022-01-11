@@ -24,8 +24,8 @@ const ChipContainer = styled.button`
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.6rem;
-  color: var(--base-text-color);
-  background-color: var(--accent-1);
+  color: var(--back-button-label);
+  background-color: var(--back-button-bg);
   border: none;
   border-radius: 80px;
   width: fit-content;
@@ -33,6 +33,7 @@ const ChipContainer = styled.button`
   cursor: pointer;
   box-shadow: 0 0 0 4px hsla(225, 32%, 16%, 0.7);
   ${buttonFocus}
+  transition: color, background-color, 300ms ease-in-out;
   ${sizes.aboveMobile} {
   }
 `;

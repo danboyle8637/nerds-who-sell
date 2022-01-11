@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { bodyText } from "../../../styles/typography";
-import { InternalLink } from "../../mdx/Link";
+import { PostLink } from "../../mdx/Link";
 import { sizes } from "../../../styles/sizes";
 
 const LegalContainer = styled.div`
@@ -33,7 +33,9 @@ export const Legal = () => {
   return (
     <LegalContainer>
       <Copywrite>© 2021</Copywrite>
-      <InternalLink slug="/legal/privacy">Privacy Policy</InternalLink>
+      <p style={{ lineHeight: "1.6" }}>
+        <PostLink slug="/legal/privacy">Privacy Policy</PostLink>
+      </p>
     </LegalContainer>
   );
 };

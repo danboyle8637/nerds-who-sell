@@ -7,10 +7,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 
 import { BlogPostList } from "../../../src/views/Blog/BlogPostList";
-import {
-  cleanBlogTag,
-  filterBlogCategory,
-} from "../../../src/utils/utilityFunctions";
+import { cleanBlogTag } from "../../../src/utils/utilityFunctions";
 import {
   BlogPostListPage,
   BlogPostCard,
@@ -60,7 +57,6 @@ const TagPostList: React.FC<BlogPostListPage> = ({
       <BlogPostList
         posts={filteredPosts}
         ctaContent={ctaContent}
-        category={filterBlogCategory(tag)}
         totalPages={totalPages}
       />
     </>
@@ -68,7 +64,7 @@ const TagPostList: React.FC<BlogPostListPage> = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const POSTS_PATH_2021 = path.join(process.cwd(), "data/blog/2021");
+  const POSTS_PATH_2021 = path.join(process.cwd(), "data/blog/published");
   const contentPath = path.join(process.cwd(), "data/home");
 
   const getSourceOfFile = (postsPath: string, filename: string) => {

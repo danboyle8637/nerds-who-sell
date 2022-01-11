@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import { List } from "./List";
 import { BlogHeader } from "./BlogHeader";
-import { CategoryHeader } from "../PostCategoryHeader";
 import { BlogPostCard } from "../../../types/blog";
 import { BlogPagination } from "../../../components/navigation/BlogPagination";
 import { CallToActionSection } from "../../Home/CallToActionSection";
@@ -13,7 +12,6 @@ import { sizes } from "../../../styles/sizes";
 interface BlogPostListProps {
   posts: BlogPostCard[];
   ctaContent: Markdown;
-  category?: BlogCategory;
   totalPages: number;
 }
 
@@ -42,12 +40,11 @@ const ListContainer = styled.div`
 export const BlogPostList: React.FC<BlogPostListProps> = ({
   posts,
   ctaContent,
-  category,
   totalPages,
 }) => {
   return (
     <ViewContainer>
-      {category ? <CategoryHeader category={category} /> : <BlogHeader />}
+      <BlogHeader />
       <ListContainer>
         <List posts={posts} />
         <BlogPagination totalPages={totalPages} pageNeighbors={1} />

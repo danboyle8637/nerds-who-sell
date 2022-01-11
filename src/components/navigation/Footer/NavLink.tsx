@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, forwardRef } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -9,20 +9,30 @@ import {
 import { useIsHovering } from "../../../hooks/componets/useIsHovering";
 import { useActivePage } from "../../../hooks/componets/useActivePage";
 import { buttonFocus } from "../../buttons/buttonStyles";
-import { NavColor } from "../../../types/components";
+import { SiteTheme } from "../../../types/components";
 
 interface NavLinkProps {
   navLabel: string;
   slug: string;
-  color: NavColor;
+  color: SiteTheme;
 }
 
 const NavLinkContainer = styled.a`
   position: relative;
   padding: 12px 24px;
   text-decoration: none;
+  border-radius: 16px;
   width: fit-content;
   cursor: pointer;
+  &:focus {
+    outline-color: var(--accent-2);
+    outline-width: 2px;
+    outline-offset: 4px;
+    outline-style: dotted;
+  }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 `;
 
 const Label = styled.span`
@@ -33,7 +43,7 @@ const Label = styled.span`
   border-radius: 4px;
   ${buttonFocus}
   pointer-events: none;
-  transition: color 120ms ease-in-out;
+  transition: color 200ms ease-in-out;
   z-index: 1;
 `;
 
@@ -41,7 +51,6 @@ const Pixel = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  background: purple;
   width: 10px;
   height: 10px;
   opacity: 0;

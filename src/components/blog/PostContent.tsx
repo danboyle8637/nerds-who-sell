@@ -6,13 +6,14 @@ import {
   Headline4,
   Headline5,
   Paragraph,
-  InternalLink,
+  PostLink,
   Strong,
   List,
   ListItem,
   CallOutBox,
   PostImage,
   YouTubeEmbed,
+  ReplitEmbed,
 } from "../mdx";
 import { sizes } from "../../styles/sizes";
 
@@ -25,8 +26,8 @@ const components = {
   h4: (props: any) => <Headline4 {...props} />,
   h5: (props: any) => <Headline5 {...props} />,
   p: (props: any) => <Paragraph {...props} />,
-  InternalLink,
-  a: (props: any) => <InternalLink {...props} />,
+  PostLink,
+  a: (props: any) => <PostLink {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ul: (props: any) => <List type="ul" {...props} />,
   ol: (props: any) => <List type="ol" {...props} />,
@@ -34,6 +35,7 @@ const components = {
   CallOutBox,
   PostImage,
   YouTubeEmbed,
+  ReplitEmbed,
 };
 
 const BaseContainer = styled.div`

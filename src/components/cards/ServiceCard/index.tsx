@@ -16,11 +16,11 @@ interface ServiceCardProps {
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: var(--section-background-3);
+  background-color: var(--service-card-body-color);
   border-radius: 12px;
   width: 350px;
   box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.6), 0 8px 8px 0 hsla(0, 0%, 0%, 0.2);
-  transition: transform 300ms ease-in-out;
+  transition: transform, background-color, 300ms ease-in-out;
   &:hover {
     transform: var(--card-transform);
   }

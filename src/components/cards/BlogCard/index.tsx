@@ -2,9 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { BlogCardImage } from "../../images/blog/BlogCardImage";
-import { CategoryIcon } from "./CategoryIcon";
-import { BlogPostTagButton } from "../../buttons/BlogPostTagButton";
-import { bodyText, smallHeadline } from "../../../styles/typography";
+import { BlogPostTagButton } from "../../buttons/blog/BlogPostTagButton";
+import { text24, text36 } from "../../../styles/typography";
 import { BlogCategory, BlogTag } from "../../../types/blog";
 import { sizes } from "../../../styles/sizes";
 
@@ -13,7 +12,6 @@ interface BlogCardProps {
   altTag: string;
   titleTag: string;
   headline: string;
-  description: string;
   category: BlogCategory;
   tags: BlogTag[];
   slug: string;
@@ -35,7 +33,7 @@ const CardContainer = styled.a`
   grid-auto-rows: min-content;
   gap: 0;
   text-decoration: none;
-  background-color: var(--blog-card-background);
+  background-color: var(--service-card-header-color);
   border-radius: 12px 40px 12px 12px;
   width: 100%;
   cursor: pointer;
@@ -54,11 +52,6 @@ const CardContainer = styled.a`
   }
 `;
 
-const ImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
 const ContentContainer = styled.div`
   padding: 12px;
   display: grid;
@@ -70,28 +63,16 @@ const ContentContainer = styled.div`
 `;
 
 const CardHeadline = styled.h2`
-  ${smallHeadline}
+  ${text24}
   font-size: 2.6rem;
   line-height: 1.4;
   ${sizes.aboveMobile} {
+    ${text36}
     font-size: 2.6rem;
     line-height: 1.4;
   }
   ${sizes.aboveTablet} {
     font-size: 3.8rem;
-  }
-`;
-
-const CardDescription = styled.p`
-  ${bodyText}
-  font-size: 1.4rem;
-  line-height: 1.5;
-  ${sizes.aboveMobile} {
-    font-size: 1.4rem;
-    line-height: 1.5;
-  }
-  ${sizes.aboveTablet} {
-    font-size: 1.6rem;
   }
 `;
 
@@ -113,17 +94,12 @@ export const BlogCard: React.FC<BlogCardProps> = ({
   altTag,
   titleTag,
   headline,
-  description,
   category,
   tags,
   slug,
 }) => {
-  const handleTagClick = () => {
-    console.log("Redirect to page with filtered blog posts for that tag.");
-  };
-
   const postTags = tags.map((tag, i) => {
-    return <BlogPostTagButton key={i} tag={tag} handleClick={handleTagClick} />;
+    return <BlogPostTagButton key={i} tag={tag} />;
   });
 
   const styles = {
@@ -134,19 +110,13 @@ export const BlogCard: React.FC<BlogCardProps> = ({
     <CardComplexContainer style={styles} aria-label={headline}>
       <Link href={`/blog/${slug}`} passHref={true}>
         <CardContainer>
-          <ImageContainer>
-            <BlogCardImage
-              url={featureImage}
-              altTag={altTag}
-              titleTag={titleTag}
-            />
-            <CategoryContainer>
-              <CategoryIcon category={category} />
-            </CategoryContainer>
-          </ImageContainer>
+          <BlogCardImage
+            url={featureImage}
+            altTag={altTag}
+            titleTag={titleTag}
+          />
           <ContentContainer>
             <CardHeadline>{headline}</CardHeadline>
-            <CardDescription>{description}</CardDescription>
           </ContentContainer>
         </CardContainer>
       </Link>

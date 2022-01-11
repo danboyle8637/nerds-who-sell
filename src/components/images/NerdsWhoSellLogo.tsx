@@ -15,6 +15,7 @@ const LogoContainer = styled.div`
   gap: 0px;
   width: 130px;
   transform: translate(10px, 22px);
+  pointer-events: none;
 `;
 
 const Nerds = styled.div`

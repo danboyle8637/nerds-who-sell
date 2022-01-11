@@ -35,11 +35,13 @@ export const InputControls: React.FC<InputControlsProps> = ({
           <InputControlButton
             controlType="back"
             handleClick={handlePrevQuestion}
+            isValid={true}
           />
           {nextQuestionId && handleNextQuestion ? (
             <InputControlButton
               controlType="next"
               handleClick={() => handleNextQuestion(nextQuestionId)}
+              isValid={valid}
             />
           ) : null}
         </>

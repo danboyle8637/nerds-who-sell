@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import {
@@ -19,11 +20,14 @@ const SectionContainer = styled.section`
   gap: 60px;
   justify-items: center;
   width: 100%;
+  isolation: isolate;
   ${sizes.aboveMobile} {
+    padding: 120px 0;
     gap: 40px;
     width: fit-content;
   }
   ${sizes.aboveTablet} {
+    padding: 160px 0;
     align-self: center;
     transform: translateX(-60px);
   }
@@ -81,8 +85,9 @@ const Sells = styled.span`
 
 const PreHeadline = styled.h3`
   ${smallHeadline}
-  color: var(--accent-1);
+  color: var(--strong-paragraph-color);
   justify-self: start;
+  transition: color 300ms ease-in-out;
   ${sizes.aboveMobile} {
     padding-left: 40px;
   }
@@ -102,26 +107,36 @@ const TheNerd = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: 230px;
+  width: 240px;
   transform: translate(10px, 40px);
+  z-index: -1;
   ${sizes.aboveMobile} {
-    width: 260px;
-    transform: translate(160px, -50px);
+    width: 300px;
+    transform: translate(160px, -40px);
   }
   ${sizes.aboveTablet} {
-    width: 260px;
-    transform: translate(200px, -30px);
+    width: 320px;
+    transform: translate(280px, 0);
   }
   ${sizes.aboveIpadPro} {
-    width: 260px;
-    transform: translate(220px, 0px);
+    transform: translate(340px, 20px);
   }
 `;
 
 export const IntroductionSection = () => {
+  const timeoutRef = useRef<NodeJS.Timeout>();
+
   const toggleQuizOverlay = nerdsWhoSellStore(
     (state) => state.toggleQuizOverlay
   );
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleButtonClick = () => {
     toggleQuizOverlay();

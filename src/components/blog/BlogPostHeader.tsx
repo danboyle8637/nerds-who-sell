@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { BlogPostImage } from "../images/blog/BlogPostImage";
-import { BlogPostTagButton } from "../buttons/BlogPostTagButton";
+import { BlogPostTagButton } from "../buttons/blog/BlogPostTagButton";
 import { BlogTag } from "../../types/blog";
 import { sizes } from "../../styles/sizes";
 
@@ -10,7 +10,6 @@ interface BlogPostHeaderProps {
   altTag: string;
   titleTag: string;
   tags: BlogTag[];
-  handleTagClick: () => void;
 }
 
 const HeaderContainer = styled.div`
@@ -46,10 +45,9 @@ export const BlogPostHeader: React.FC<BlogPostHeaderProps> = ({
   altTag,
   titleTag,
   tags,
-  handleTagClick,
 }) => {
   const postTags = tags.map((tag, i) => {
-    return <BlogPostTagButton key={i} tag={tag} handleClick={handleTagClick} />;
+    return <BlogPostTagButton key={i} tag={tag} />;
   });
 
   return (

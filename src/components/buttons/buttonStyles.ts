@@ -15,10 +15,10 @@ export const baseButtonStyles = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: RobotoBold, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "VT323", monospace;
   font-size: 2.6rem;
-  color: var(--base-button-text-color, var(--base-text-color));
+  color: var(--action-button-label-color, var(--base-text-color));
+  font-weight: 700;
   letter-spacing: 0.08rem;
   background-color: var(--base-button-background, var(--accent-1));
   border: none;

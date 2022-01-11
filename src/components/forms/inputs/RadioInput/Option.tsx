@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { UncheckRadioButton } from "./UncheckedRadioButton";
-import { CheckRadioButton } from "./CheckedRadioButton";
+import { RadioChecked } from "../../../images/forms/RadioChecked";
+import { RadioUnchecked } from "../../../images/forms/RadioUnchecked";
+import { siteThemeStore } from "../../../../../lib/siteThemeStore";
 import {
   basicRadioIsChecked,
   basicRadioIsNotChecked,
@@ -79,6 +80,8 @@ export const Option: React.FC<BasicRadioOptionProps> = ({
 }) => {
   const checkedDotRef = useRef<HTMLDivElement>(null);
 
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
+
   useEffect(() => {
     const checkedDot = checkedDotRef.current;
 
@@ -96,10 +99,10 @@ export const Option: React.FC<BasicRadioOptionProps> = ({
       <InputLabel htmlFor={id}>
         <CircleRadioContainer>
           <CircleBorder>
-            <UncheckRadioButton />
+            <RadioUnchecked activeTheme={activeTheme} />
           </CircleBorder>
           <CircleSelect ref={checkedDotRef}>
-            <CheckRadioButton />
+            <RadioChecked activeTheme={activeTheme} />
           </CircleSelect>
           <RadioInput
             type="radio"

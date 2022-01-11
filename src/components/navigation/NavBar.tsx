@@ -6,6 +6,7 @@ import { MobileNav } from "./MobileNavigation";
 import { LaptopNav } from "./LaptopNavigation";
 import { BackChip } from "../chips/BackChip";
 import { useMatchMedia } from "../../hooks/componets/useMatchMedia";
+import { siteThemeStore } from "../../../lib/siteThemeStore";
 
 const BarContainer = styled.div`
   position: fixed;
@@ -30,6 +31,8 @@ const ContentContainer = styled.div`
 
 export const NavBar = () => {
   const [showBackButton, setShowBackButton] = useState<boolean>(false);
+
+  const activeTheme = siteThemeStore((state) => state.activeTheme);
 
   const isAboveIpadPro = useMatchMedia(1100);
 
@@ -61,7 +64,11 @@ export const NavBar = () => {
             showBackButton={showBackButton}
             handleBackButtonClick={handleBackButtonClick}
           />
-          {isAboveIpadPro ? <LaptopNav /> : <MobileNav />}
+          {isAboveIpadPro ? (
+            <LaptopNav />
+          ) : (
+            <MobileNav activeTheme={activeTheme} />
+          )}
         </ContentContainer>
       </BarContainer>
     </>

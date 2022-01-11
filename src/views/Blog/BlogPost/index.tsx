@@ -38,10 +38,6 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
   frontmatter,
   content,
 }) => {
-  const handleTagClick = () => {
-    console.log("Show a warning before you direct them to a tag filter page.");
-  };
-
   return (
     <ViewContainer>
       <BlogPostHeader
@@ -49,7 +45,6 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         altTag={frontmatter.altTag}
         titleTag={frontmatter.titleTag}
         tags={frontmatter.tags}
-        handleTagClick={handleTagClick}
       />
       <BlogPostHeadline
         headline={frontmatter.headline}

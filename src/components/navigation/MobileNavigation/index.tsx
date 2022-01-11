@@ -9,6 +9,11 @@ import {
   navPixelsOpenAni,
   navPixelCloseAni,
 } from "../../../animations/navigation";
+import { SiteTheme } from "../../../types/components";
+
+interface MobileNavProps {
+  activeTheme: SiteTheme;
+}
 
 const NavContainer = styled.div`
   position: relative;
@@ -26,7 +31,7 @@ const Pixel = styled.div`
   opacity: 0;
 `;
 
-export const MobileNav = () => {
+export const MobileNav: React.FC<MobileNavProps> = ({ activeTheme }) => {
   const pixelArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
@@ -62,7 +67,7 @@ export const MobileNav = () => {
 
     if (pixels && isNavOpen) {
       for (let i = 0; i < pixelArray.length; i++) {
-        navPixelsOpenAni(pixels[i]);
+        navPixelsOpenAni(pixels[i], activeTheme);
       }
     }
 
@@ -88,6 +93,7 @@ export const MobileNav = () => {
           isOpen={isNavOpen}
           toggleNavDrawer={toggleNavDrawer}
           activePage={activePage}
+          activeTheme={activeTheme}
         />
       </Portal>
     </>

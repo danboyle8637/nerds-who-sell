@@ -34,9 +34,10 @@ const BackgroundContainer = styled.div`
   height: 100%;
   z-index: -1;
   ${sizes.aboveTablet} {
-    align-items: center;
+    padding-bottom: 80px;
   }
   ${sizes.aboveIpadPro} {
+    padding-bottom: 0;
     align-items: end;
   }
 `;

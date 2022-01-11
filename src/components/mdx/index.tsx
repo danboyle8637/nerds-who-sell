@@ -3,7 +3,7 @@ import { Headline4 } from "./Headline4";
 import { Headline5 } from "./Headline5";
 import { Paragraph } from "./Paragraph";
 import { Strong } from "./Strong";
-import { InternalLink } from "./Link";
+import { PostLink } from "./Link";
 import { PostImage } from "./PostImage";
 import { CodeSandboxEmbed } from "./CodeSandboxEmbed";
 import { List } from "./List";
@@ -12,6 +12,7 @@ import { Code } from "./Code";
 import { CallOutBox } from "./CallOutBox";
 import { ContentContainer } from "./ContentContainer";
 import { YouTubeEmbed } from "./YouTubePlayer";
+import { ReplitEmbed } from "./ReplitEmbed";
 
 export {
   Headline3,
@@ -19,7 +20,7 @@ export {
   Headline5,
   Paragraph,
   Strong,
-  InternalLink,
+  PostLink,
   PostImage,
   CodeSandboxEmbed,
   List,
@@ -28,4 +29,5 @@ export {
   CallOutBox,
   ContentContainer,
   YouTubeEmbed,
+  ReplitEmbed,
 };

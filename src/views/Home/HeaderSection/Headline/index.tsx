@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-import { largeHeadline } from "../../../../styles/typography";
-import { bodyText } from "../../../../styles/typography";
+import { text20, text56, text68 } from "../../../../styles/typography";
 import { sizes } from "../../../../styles/sizes";
 
 const HeadlineContainer = styled.div`
@@ -28,7 +27,6 @@ const MainHeadline = styled.h1`
     "two"
     "three";
   gap: 6px;
-  ${largeHeadline}
   width: 100%;
   ${sizes.aboveMobile} {
     grid-template-areas:
@@ -44,21 +42,34 @@ const MainHeadline = styled.h1`
 
 const One = styled.span`
   grid-area: one;
+  ${text56}
   width: 100%;
+  ${sizes.aboveMobile} {
+    ${text68}
+  }
 `;
 
 const Two = styled.span`
   grid-area: two;
+  ${text56}
   width: 100%;
+  ${sizes.aboveMobile} {
+    ${text68}
+  }
 `;
 
 const Three = styled.span`
   grid-area: three;
+  ${text56}
   width: 100%;
+  ${sizes.aboveMobile} {
+    ${text68}
+  }
 `;
 
 const TagLine = styled.p`
-  ${bodyText}
+  ${text20}
+  font-weight: 700;
   width: 100%;
   line-height: 1.6;
 `;

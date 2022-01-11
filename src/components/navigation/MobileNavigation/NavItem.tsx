@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { buttonFocus } from "../../buttons/buttonStyles";
+import { siteThemeStore } from "../../../../lib/siteThemeStore";
 
 interface NavItemProps {
   isActive: boolean;
@@ -19,14 +20,17 @@ const Label = styled.a`
   text-decoration: none;
   text-transform: capitalize;
   ${buttonFocus}
+  transition: color 300ms ease-in-out;
 `;
 
 export const NavItem = forwardRef<HTMLDivElement, NavItemProps>(
   ({ isActive, label, slug, handleToggleNavDrawer }, ref) => {
+    const activeTheme = siteThemeStore((state) => state.activeTheme);
+
     const styles = {
       "--nav-item-color": isActive
-        ? "var(--accent-2)"
-        : "var(--base-text-color)",
+        ? "var(--base-text-color)"
+        : "var(--accent-2)",
     } as React.CSSProperties;
 
     return (

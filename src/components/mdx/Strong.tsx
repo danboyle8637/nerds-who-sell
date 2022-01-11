@@ -6,6 +6,7 @@ export const Strong: React.FC = (props) => {
     fontWeight: 700,
     color: "var(--strong-paragraph-color)",
     textShadow: "0 2px 4px hsla(0, 0%, 0%, 0.3)",
+    transition: "color 300ms ease-in-out",
   };
 
   return <strong style={styles} {...props} />;

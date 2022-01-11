@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ExternalLinkIcon } from "../svgs/ExternalLinkIcon";
 import { InternalLinkIcon } from "../svgs/InternalLinkIcon";
 
-interface InternalLink {
+interface PostLinkProps {
   slug?: string;
   url?: string;
 }
@@ -47,11 +47,7 @@ const ExternalIcon = styled(ExternalLinkIcon)`
   width: 14px;
 `;
 
-export const InternalLink: React.FC<InternalLink> = ({
-  slug,
-  url,
-  children,
-}) => {
+export const PostLink: React.FC<PostLinkProps> = ({ slug, url, children }) => {
   return (
     <>
       {slug ? (

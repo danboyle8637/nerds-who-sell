@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import {
-  InternalLink,
+  PostLink,
   Paragraph,
   Strong,
   List,
@@ -12,8 +12,8 @@ import { sizes } from "../../../styles/sizes";
 
 const components = {
   p: (props: any) => <Paragraph {...props} />,
-  InternalLink,
-  a: (props: any) => <InternalLink {...props} />,
+  PostLink,
+  a: (props: any) => <PostLink {...props} />,
   strong: (props: any) => <Strong {...props} />,
   ul: (props: any) => <List type="ul" {...props} />,
   ol: (props: any) => <List type="ol" {...props} />,

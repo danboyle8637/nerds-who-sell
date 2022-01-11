@@ -104,3 +104,142 @@ export const codingLoaderAni = (codeLines: HTMLDivElement[], kill: boolean) => {
     ease: Linear.easeNone,
   });
 };
+
+export const dollarBillCellAni = (dollarBill: HTMLDivElement) => {
+  gsap.to(dollarBill, {
+    duration: 1.4,
+    y: 0,
+    scale: 1,
+    ease: Power3.easeOut,
+  });
+};
+
+export const dollarBillLaptopAni = (dollarBill: HTMLDivElement) => {
+  gsap.to(dollarBill, {
+    duration: 1.4,
+    y: 0,
+    rotateY: 180,
+    scale: 1,
+    ease: Power3.easeOut,
+    delay: 0.6,
+  });
+};
+
+export const mainLogoScreenGlow = (glow: HTMLDivElement) => {
+  gsap.fromTo(
+    glow,
+    {
+      scale: 0.8,
+      autoAlpha: 0.7,
+    },
+    {
+      duration: 1,
+      scale: 1.1,
+      autoAlpha: 1,
+      ease: Power3.easeInOut,
+      yoyo: true,
+      repeat: -1,
+    }
+  );
+};
+
+export const serviceCardImageShadowHover = (shadow: HTMLDivElement) => {
+  gsap.fromTo(
+    shadow,
+    {
+      y: 0,
+      scale: 0.2,
+      autoAlpha: 0,
+    },
+    {
+      duration: 0.2,
+      y: 30,
+      scale: 1,
+      autoAlpha: 1,
+      ease: Linear.easeNone,
+    }
+  );
+};
+
+export const serviceCardImageShadowNotHover = (shadow: HTMLDivElement) => {
+  gsap.to(shadow, {
+    duration: 0.2,
+    y: 0,
+    scale: 0.2,
+    autoAlpha: 0,
+  });
+};
+
+export const dejaVuExitAni = (dejaVu: HTMLDivElement, meow: HTMLDivElement) => {
+  const tl = gsap.timeline();
+
+  tl.to(meow, {
+    duration: 0.4,
+    x: -20,
+    y: 60,
+    autoAlpha: 1,
+    scale: 1,
+    ease: Power3.easeOut,
+  })
+    .to(
+      meow,
+      {
+        scale: 0,
+        ease: Power3.easeIn,
+      },
+      "+=0.8"
+    )
+    .to(dejaVu, {
+      duration: 0.5,
+      x: 200,
+      y: 80,
+      scale: 0.6,
+      ease: Power3.easeIn,
+    });
+};
+
+export const phoneTextMessageScaleAni = (messages: HTMLDivElement[]) => {
+  gsap.to(messages, {
+    transformOrigin: "50% 50%",
+    scale: 1,
+    stagger: 1,
+    ease: Back.easeInOut,
+  });
+};
+
+export const phoneTextMessageTransformAni = (messages: HTMLDivElement[]) => {
+  const tl = gsap.timeline();
+
+  const message1From = {
+    x: -100,
+    y: 98,
+  };
+
+  const message1To = {
+    x: 40,
+    y: 50,
+    autoAlpha: 1,
+  };
+
+  const message2From = {
+    x: 80,
+    y: 20,
+  };
+
+  const message2To = {
+    x: -40,
+    y: 60,
+    autoAlpha: 1,
+  };
+
+  const message3From = {
+    x: -80,
+    y: 20,
+  };
+
+  const message3To = {
+    x: 60,
+    y: -20,
+    autoAlpha: 1,
+  };
+};

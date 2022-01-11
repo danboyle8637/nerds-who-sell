@@ -13,7 +13,7 @@ interface CallToActionProps {
 }
 
 const SectionContainer = styled.section`
-  padding: 160px 12px;
+  padding: 200px 12px 160px 12px;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;

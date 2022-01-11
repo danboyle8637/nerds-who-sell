@@ -6,7 +6,10 @@ import { ErrorIcon } from "../ErrorIcon";
 import { InputActiveIcon } from "../InputActiveIcon";
 import { darkFormTheme } from "../../../styles/themes/forms";
 import { InputStatusTransition } from "../../../animations/transitions/InputStatusTransition";
-import { moveLabelAboveInputAni } from "../../../animations/forms";
+import {
+  moveLabelAboveInputAni,
+  setLabelAboveInputAni,
+} from "../../../animations/forms";
 import { ContactFormInput, ProjectQuizFormInput } from "../../../types/forms";
 
 interface TextInputProps {
@@ -120,6 +123,10 @@ export const TextInput: React.FC<TextInputProps> = ({
 
     if (inputLabel && touched && value === "") {
       moveLabelAboveInputAni(inputLabel, false);
+    }
+
+    if (inputLabel && !touched && value.length > 0) {
+      setLabelAboveInputAni(inputLabel);
     }
 
     if (inputLabel && !touched && value === "") {

@@ -34,7 +34,7 @@ const Blog: React.FC<BlogPostListPage> = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const POSTS_PATH_2021 = path.join(process.cwd(), "data/blog/2021");
+  const POSTS_PATH = path.join(process.cwd(), "data/blog/published");
   const contentPath = path.join(process.cwd(), "data/home");
 
   const getSourceOfFile = (postsPath: string, filename: string) => {
@@ -71,9 +71,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const ctaContent = await getContent("call-to-action", contentPath);
 
-  const posts2021 = getAllPosts(POSTS_PATH_2021);
+  const posts = getAllPosts(POSTS_PATH);
 
-  const allPosts = [...posts2021];
+  const allPosts = [...posts];
 
   const publishedPosts = allPosts.filter((post) => {
     const isDraft = post.frontmatter.draft;
@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const aDate = a.frontmatter.date;
     const bDate = b.frontmatter.date;
 
-    if (aDate > bDate) {
+    if (aDate < bDate) {
       return -1;
     } else {
       return 1;
