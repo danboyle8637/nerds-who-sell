@@ -35,6 +35,9 @@ const FirstMessage = styled.div`
   width: 90px;
   transform: translate(40px, 50px) scale(0);
   filter: drop-shadow(-2px 4px 12px var(--message-shadow));
+  ${sizes.aboveMobile} {
+    transform: translate(80px, 50px) scale(0);
+  }
 `;
 
 const SecondMessage = styled.div`
@@ -44,6 +47,9 @@ const SecondMessage = styled.div`
   width: 90px;
   filter: drop-shadow(-2px 4px 12px var(--message-shadow));
   transform: translate(-40px, 60px) scale(0);
+  ${sizes.aboveMobile} {
+    transform: translate(-80px, 60px) scale(0);
+  }
 `;
 
 const ThirdMessage = styled.div`
@@ -53,6 +59,9 @@ const ThirdMessage = styled.div`
   width: 90px;
   filter: drop-shadow(-2px 4px 12px var(--message-shadow));
   transform: translate(60px, -20px) scale(0);
+  ${sizes.aboveMobile} {
+    transform: translate(120px, -20px) scale(0);
+  }
 `;
 
 export const TextMessagePhone = () => {

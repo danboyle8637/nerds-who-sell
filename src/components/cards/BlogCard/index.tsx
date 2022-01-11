@@ -2,8 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 import { BlogCardImage } from "../../images/blog/BlogCardImage";
-import { CategoryIcon } from "./CategoryIcon";
-import { BlogPostTagButton } from "../../buttons/BlogPostTagButton";
+import { BlogPostTagButton } from "../../buttons/blog/BlogPostTagButton";
 import { text24, text36 } from "../../../styles/typography";
 import { BlogCategory, BlogTag } from "../../../types/blog";
 import { sizes } from "../../../styles/sizes";
@@ -53,11 +52,6 @@ const CardContainer = styled.a`
   }
 `;
 
-const ImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
 const ContentContainer = styled.div`
   padding: 12px;
   display: grid;
@@ -104,10 +98,8 @@ export const BlogCard: React.FC<BlogCardProps> = ({
   tags,
   slug,
 }) => {
-  const handleTagClick = () => {};
-
   const postTags = tags.map((tag, i) => {
-    return <BlogPostTagButton key={i} tag={tag} handleClick={handleTagClick} />;
+    return <BlogPostTagButton key={i} tag={tag} />;
   });
 
   const styles = {
@@ -118,16 +110,11 @@ export const BlogCard: React.FC<BlogCardProps> = ({
     <CardComplexContainer style={styles} aria-label={headline}>
       <Link href={`/blog/${slug}`} passHref={true}>
         <CardContainer>
-          <ImageContainer>
-            <BlogCardImage
-              url={featureImage}
-              altTag={altTag}
-              titleTag={titleTag}
-            />
-            <CategoryContainer>
-              <CategoryIcon category={category} />
-            </CategoryContainer>
-          </ImageContainer>
+          <BlogCardImage
+            url={featureImage}
+            altTag={altTag}
+            titleTag={titleTag}
+          />
           <ContentContainer>
             <CardHeadline>{headline}</CardHeadline>
           </ContentContainer>

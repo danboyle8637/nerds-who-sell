@@ -30,7 +30,9 @@ export interface BlogPostListPage {
 }
 
 export interface FilteredBlogPostListPage {
+  tag: BlogTag;
   posts: BlogPostCard[];
+  ctaContent: Markdown;
   totalPage: number;
 }
 
@@ -66,3 +68,9 @@ export type BlogTag =
   | "coding course review"
   | "serverless"
   | "all";
+
+export interface BlogTagMetaData {
+  bg: string;
+  label: string;
+  category: BlogCategory;
+}

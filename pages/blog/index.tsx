@@ -71,9 +71,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const ctaContent = await getContent("call-to-action", contentPath);
 
-  const posts2021 = getAllPosts(POSTS_PATH);
+  const posts = getAllPosts(POSTS_PATH);
 
-  const allPosts = [...posts2021];
+  const allPosts = [...posts];
 
   const publishedPosts = allPosts.filter((post) => {
     const isDraft = post.frontmatter.draft;

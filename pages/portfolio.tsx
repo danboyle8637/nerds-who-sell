@@ -27,7 +27,6 @@ const Portgolio: React.FC<BlogPostListPage> = ({
       <BlogPostList
         posts={posts}
         ctaContent={ctaContent}
-        category="portfolio"
         totalPages={totalPages}
       />
     </>

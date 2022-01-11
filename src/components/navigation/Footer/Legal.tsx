@@ -33,7 +33,9 @@ export const Legal = () => {
   return (
     <LegalContainer>
       <Copywrite>© 2021</Copywrite>
-      <PostLink slug="/legal/privacy">Privacy Policy</PostLink>
+      <p style={{ lineHeight: "1.6" }}>
+        <PostLink slug="/legal/privacy">Privacy Policy</PostLink>
+      </p>
     </LegalContainer>
   );
 };

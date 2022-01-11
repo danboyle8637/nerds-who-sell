@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
 import { List } from "./List";
-import { BlogHeader } from "./BlogHeader";
+import { CategoryAndTagHeader } from "../CategoryAndTagHeader";
 import { BlogPostCard } from "../../../types/blog";
 import { BlogPagination } from "../../../components/navigation/BlogPagination";
-import { CallToActionSection } from "../../Home/CallToActionSection";
-import { Markdown } from "../../../types/pages";
-import { BlogCategory } from "../../../types/blog";
+import { BlogTag } from "../../../types/blog";
 import { sizes } from "../../../styles/sizes";
 
-interface BlogPostListProps {
+interface FilteredPostListProps {
+  tag: BlogTag;
   posts: BlogPostCard[];
-  ctaContent: Markdown;
   totalPages: number;
 }
 
@@ -37,23 +35,18 @@ const ListContainer = styled.div`
   }
 `;
 
-export const BlogPostList: React.FC<BlogPostListProps> = ({
+export const FilteredBlogPostList: React.FC<FilteredPostListProps> = ({
+  tag,
   posts,
-  ctaContent,
   totalPages,
 }) => {
   return (
     <ViewContainer>
-      <BlogHeader />
       <ListContainer>
+        <CategoryAndTagHeader tag={tag} />
         <List posts={posts} />
         <BlogPagination totalPages={totalPages} pageNeighbors={1} />
       </ListContainer>
-      <CallToActionSection
-        preHeadline={ctaContent.frontmatter.preHeadline as string}
-        headline={ctaContent.frontmatter.headline as string}
-        bodyCopy={ctaContent.code}
-      />
     </ViewContainer>
   );
 };

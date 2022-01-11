@@ -38,8 +38,6 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
   frontmatter,
   content,
 }) => {
-  const handleTagClick = () => {};
-
   return (
     <ViewContainer>
       <BlogPostHeader
@@ -47,7 +45,6 @@ export const BlogPostView: React.FC<BlogPostViewProps> = ({
         altTag={frontmatter.altTag}
         titleTag={frontmatter.titleTag}
         tags={frontmatter.tags}
-        handleTagClick={handleTagClick}
       />
       <BlogPostHeadline
         headline={frontmatter.headline}
