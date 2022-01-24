@@ -111,8 +111,8 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const ctaContent = await getContent("call-to-action", contentPath);
 
   const sorted = filteredPosts.sort((a, b) => {
-    const aDate = a.frontmatter.date;
-    const bDate = b.frontmatter.date;
+    const aDate = new Date(a.frontmatter.date);
+    const bDate = new Date(b.frontmatter.date);
 
     if (aDate < bDate) {
       return -1;

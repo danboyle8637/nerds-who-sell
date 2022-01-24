@@ -81,10 +81,10 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   const sorted = publishedPosts.sort((a, b) => {
-    const aDate = a.frontmatter.date;
-    const bDate = b.frontmatter.date;
+    const aDate = new Date(a.frontmatter.date);
+    const bDate = new Date(b.frontmatter.date);
 
-    if (aDate < bDate) {
+    if (aDate > bDate) {
       return -1;
     } else {
       return 1;
